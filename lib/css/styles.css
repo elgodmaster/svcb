@@ -1,0 +1,78 @@
+@charset "utf-8";
+/* CSS Document */
+header, footer, aside, nav, article{  
+    display: block;
+	}
+body{
+	background-image:url(../img/bg-main.png);
+	background-color:#454545;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	}
+.contenedor{
+	width:950px;
+	margin:auto;
+	height:auto;
+	}
+/*::::: CSS CABECERA SITIO :::::*/
+.cabecera{
+	background-image:url(../img/bg_header.gif);
+	margin:auto;
+	}
+.logo{
+	width:475px;
+	}
+.sesion{
+	width:320px;
+	color:#FFF;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	margin-left:120px;
+	}
+.sesion a {
+	color: #FFF;
+	text-decoration: none;
+	}
+.sesion a:hover{
+	color: #FFF;
+	text-decoration: underline;
+	}
+.contenido{
+	width:750px;
+	}
+/*::::: CSS ARTICULO SITIO :::::*/
+.articulo{
+	float:left;
+	width:720px;
+	color:#FFF;
+	font-family:Arial, Helvetica, sans-serif;
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	}
+.back_art{
+	background-color: rgba(255, 255, 255, 0.3);
+	}
+/*::::: CSS SECCION SITIO :::::*/
+.seccion{
+	background-color:#FFF;
+	border-radius:5px;
+	margin: 5px 5px 5px 5px;
+	padding: 15px 15px 15px 15px;
+	color:#000;
+	font-size:11pt;
+	}
+/*::::: PIE DE PAGINA :::::*/
+.pie{
+	float:left;
+	background-color:#72bec1;
+	width: 950px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#FFFFFF;
+	text-align:center;
+	font-size: 10pt;
+	}

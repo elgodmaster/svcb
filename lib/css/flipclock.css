@@ -1,0 +1,33 @@
+/******************************FLIPCLOCK******************************/  
+
+#flipclock .clock {
+	width: 900px;
+	height:260px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -450px;
+	margin-top: 50px;
+	}
+	
+#flipclock .clock span.dot
+{
+	background:transparent url(../img/login/dot.png) no-repeat 0 0;
+	display:block;
+	width:24px;
+	height:107px;
+	position:absolute;
+	top:160px;
+	left:260px
+}
+#flipclock .clock span.dot2{background:transparent url(../img/login/dot.png) no-repeat 0 0;display:block;width:24px;height:107px;position:absolute;top:160px;left:550px}
+#flipclock .clock img{background:transparent url(../img/login/flip.png) no-repeat 0 0;display:block;float:left;width:145px;height:260px;margin-right:1px}
+#flipclock .clock img.n1{background-position:-145px 0}
+#flipclock .clock img.n2{background-position:-290px 0}
+#flipclock .clock img.n3{background-position:-435px 0}
+#flipclock .clock img.n4{background-position:-580px 0}
+#flipclock .clock img.n5{background-position:-725px 0}
+#flipclock .clock img.n6{background-position:-870px 0}
+#flipclock .clock img.n7{background-position:-1015px 0}
+#flipclock .clock img.n8{background-position:-1160px 0}
+#flipclock .clock img.n9{background-position:-1305px 0}
