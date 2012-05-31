@@ -6,9 +6,9 @@
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 	function get(){
-		$.post('indexx.php?controlador=usuario&accion=ingresar', { 
-		txtRun: form.txtRun.value, txtPassword: form.txtPassword.value, txtNombre: form.txtNombre.value, 
-		txtApat: form.txtApat.value, txtAmat: form.txtAmat.value, cboUsuario: form.cboUsuario.value },
+		$.post('indexx.php?controlador=usuario&accion=ingresar', {
+			txtRun: form.txtRun.value, txtPassword: form.txtPassword.value, txtNombre: form.txtNombre.value, 
+			txtApat: form.txtApat.value, txtAmat: form.txtAmat.value, cboUsuario: form.cboUsuario.value },
 		function(output){
 			$('#datos').html(output).show();
 			});
@@ -30,14 +30,14 @@
      <td><input type="password" name="txtPassword" id="txtPassword" /></td>
     </tr>
      <td>Nombre:</td>
-     <td><input type="text" name="txtNombre" id="txtNombre" /></td>
+     <td><input type="text" name="txtNombre" size="40" id="txtNombre" /></td>
     </tr>
     <tr>
      <td>Apellido Paterno:</td>
-     <td><input type="text" name="txtApat" id="txtApat" /></td>
+     <td><input type="text" name="txtApat" size="40" id="txtApat" /></td>
     </tr>
      <td>Apellido Materno:</td>
-     <td><input type="text" name="txtAmat" id="txtAmat" /></td>
+     <td><input type="text" name="txtAmat" size="40" id="txtAmat" /></td>
     </tr>
      <td>Tipo Usuario:</td>
      <td>
@@ -51,7 +51,7 @@
     </tr>
     <tr>
      <td></td>
-     <td colspan="2"><input type="button" name="btnConsultar" id="btnConsultar" value="Ingresar" onClick="get();" /></td>
+     <td colspan="2"><input type="button" name="btnConsultar" value="Ingresar" onClick="get();" /><input type="reset" /></td>
     </tr>
    </table>
   </form>

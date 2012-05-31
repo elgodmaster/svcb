@@ -14,7 +14,17 @@
 		 $consulta = mysql_query($sp,$link);
 		 close($link);
 		 return $consulta;
-	 }	 
+	 }
+	 
+	 function todosProductos()
+	 {
+		 $link = conexion();
+		 $sp = "SELECT id_categoria_producto, nombre_categoria_producto FROM categoria_producto";
+		 $sp.= " WHERE estado_categoria_producto = 'ACTIVO' ORDER BY nombre_categoria_producto";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
+	 }
 	 
 	 //Get de la clase Categoria_Producto
 	 function getIdCategoriaProducto()

@@ -8,9 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <?php
  if($accion == 'listar')
- 	 echo '<title>Buscar Categoria Producto</title>';
+ 	 echo '<title>Listar Categoría Producto</title>';
  elseif($accion == 'modificar')
- 	 echo '<title>Modificar Categoria Producto</title>';
+ 	 echo '<title>Modificar Categoría Producto</title>';
+ elseif($accion == 'eliminar')
+ 	 echo '<title>Eliminar Categoría Producto</title>';
 ?>
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
@@ -28,16 +30,25 @@
  <div id="busqueda">
   <?php
    if($accion == 'listar')
-   	  echo '<h2>Buscar Categoria Producto</h2>';
+   	  echo '<h2>Listar Categoría Producto</h2>';
    elseif($accion == 'modificar')
- 	  echo '<h2>Modificar Categoria Producto</h2>';
+ 	  echo '<h2>Modificar Categoría Producto</h2>';
+   elseif($accion == 'eliminar')
+ 	  echo '<h2>Eliminar Categoría Producto</h2>';
   ?>
   <form id="form" name="form" method="post">
    <table>
     <tr>
      <td>Nombre:</td>
   	 <td><input type="text" name="txtNombre" id="txtNombre" /></td>
-     <td><input type="button" name="btnConsultar" id="btnConsultar" value="Buscar" onClick="get();" /></td>
+     <td>
+      <?php
+	   if($accion == 'eliminar')
+	   		echo '<input type="button" name="btnConsultar" value="Eliminar" onClick="get();" />';
+	   else
+	   		echo '<input type="button" name="btnConsultar" value="Buscar" onClick="get();" />';
+	  ?>
+     </td>
  	</tr>
    </table>
   </form>

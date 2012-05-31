@@ -20,7 +20,9 @@
 		 }
 		 
 		 $admin = new Administrador();
-	 	 $categoriax = $admin->ingresarCategoriaProducto($categoria->getIdCategoriaProducto(),$categoria->getNombreCategoriaProducto());
+	 	 $categoriax = $admin->ingresarCategoriaProducto($categoria->getIdCategoriaProducto(),
+		 												 $categoria->getNombreCategoriaProducto());
+														 
 		 while ($registro = mysql_fetch_array($categoriax))
 		 {
 			 $existe = $registro['v_existe'];	
@@ -98,21 +100,16 @@
 		 else
 			 echo("La categoria de producto '$nombre_categoria' no existe en el sistema");		 
 	 }
-	 elseif(isset($_REQUEST['txtNombreNuevo']))
+	 elseif(isset($_REQUEST['txtCodigo']) && isset($_REQUEST['txtNombreNuevo']) && isset($_REQUEST['cboEstado']))
 	 {
-		 
 		 $categoria = new Categoria_Producto();
 		 $categoria->setIdCategoriaProducto($_REQUEST['txtCodigo']);
 		 $categoria->setNombreCategoriaProducto(strtoupper($_REQUEST['txtNombreNuevo']));
+		 $categoria->setEstadoCategoriaProducto($_REQUEST['cboEstado']);
 		 
-		 if(isset($_REQUEST['chkEstado']))
-		 	$categoria->setEstadoCategoriaProducto('ACTIVO');
-		 else
-		 	$categoria->setEstadoCategoriaProducto('INACTIVO');
-			 
 		 $admin = new Administrador();
-		 $categoriaxx = $admin->modificarCategoriaProducto($categoria->getIdCategoriaProducto(),$categoria->getNombreCategoriaProducto
-		 (),$categoria->getEstadoCategoriaProducto());
+		 $categoriaxx = $admin->modificarCategoriaProducto($categoria->getIdCategoriaProducto(), $categoria->getNombreCategoriaProducto
+		 													(),$categoria->getEstadoCategoriaProducto());
 		 
 		 while ($registro = mysql_fetch_array($categoriaxx))
 		 {
@@ -132,8 +129,7 @@
  function eliminar()
  {
 	 if (isset($_REQUEST['txtNombre']))
-	 {		 
-		 require("_modelo/Categoria_Producto.php");
+	 {
 		 require("_modelo/Usuario.php");
 		 
 		 $nombre_categoria = $_REQUEST['txtNombre'];
@@ -153,5 +149,5 @@
 		 	 echo "La categoria producto '$nombre_categoria' no existe en el sistema";
 	 }
 	 else
-		 require("_vista/eliminarCategoriaProducto.php");
+		 require("_vista/buscarCategoriaProducto.php");
  }

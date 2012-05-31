@@ -133,7 +133,9 @@
 		 else
 			 echo("El usuario 'id_usuario' no existe en el sistema");		 
 	 }
-	 elseif(isset($_REQUEST['txtNombreNuevo']))
+	 elseif(isset($_REQUEST['txtRunNuevo']) && isset($_REQUEST['txtPassNuevo']) && isset($_REQUEST['txtNombreNuevo'])
+	 		&& isset($_REQUEST['txtApatNuevo']) && isset($_REQUEST['txtAmatNuevo']) && isset($_REQUEST['cboUsuarioNuevo'])
+			&& isset($_REQUEST['cboEstado']))
 	 {
 		 $usuario = new Usuario();
 		 
@@ -149,12 +151,10 @@
 		 $usuario->setNombreUsuario(addslashes(strtoupper($_REQUEST['txtNombreNuevo'])));
 		 $usuario->setApatUsuario(addslashes(strtoupper($_REQUEST['txtApatNuevo'])));
 		 $usuario->setAmatUsuario(addslashes(strtoupper($_REQUEST['txtAmatNuevo'])));
+		 $usuario->setEstadoUsuario(strtoupper($_REQUEST['cboEstado']));
 		 
-		 if(isset($_REQUEST['chkEstado']))
-		 	$usuario->setEstadoUsuario('ACTIVO');
-		 else
-		 	$usuario->setEstadoUsuario('INACTIVO');
-			 
+		 //Arreglar desde aqui:
+		 			 
 		 $admin = new Administrador();
 		 $usuarioxx = $admin->modificarUsuario($usuario->getIdUsuario(),$usuario->getPasswordUsuario(),$usuario->getNombreUsuario(),
 		 									   $usuario->getApatUsuario(),$usuario->getAmatUsuario(),$usuario->getTipoUsuario());
@@ -197,5 +197,5 @@
 		 	 echo "El usuario '$id_usuario' no existe en el sistema";
 	 }
 	 else
-		 require("_vista/eliminarUsuario.php");
+		 require("_vista/buscarUsuario.php");
  }

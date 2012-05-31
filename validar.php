@@ -22,7 +22,7 @@
 	 }
 	 else
 	 {
-		 echo "<script language='javascript'>alert('Nombre de Usuario y/o Contraseña Invalidos'); this.location ='validar.php';</script>";
+		 echo "<script language='javascript'>alert('Datos Incorrectos'); this.location ='validar.php';</script>";
 	 }
  }
  else

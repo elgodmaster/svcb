@@ -61,7 +61,7 @@
 							include("vendedor/index.php");
 							break;
 						case 1003:
-							include("bodeguero/index.php.php");
+							include("bodeguero/index.php");
 							break;
 					}
 				?>

@@ -1,7 +1,7 @@
 <ul class="top-level">
 	<li><a href="administrador">Inicio</a></li>    
     <li>
-    	<a style="cursor: pointer">Gestión de Usuarios</a>
+    	<a href="#">Gestión de Usuarios</a>
     	<ul class="sub-level">
         	<li><a href="indexx.php?controlador=usuario&accion=ingresar">Ingresar Usuario</a></li>
             <li><a href="indexx.php?controlador=usuario&accion=listar">Listar Usuario</a></li>
@@ -10,7 +10,7 @@
         </ul>
     </li>
     <li>    
-    	<a style="cursor: pointer">Gestión de Clientes</a>
+    	<a href="#">Gestión de Clientes</a>
         <ul class="sub-level">
         	<li><a href="indexx.php?controlador=cliente&accion=ingresar">Ingresar Cliente</a></li>
            	<li><a href="indexx.php?controlador=cliente&accion=listar">Listar Cliente</a></li>
@@ -19,10 +19,10 @@
         </ul>
     </li>
     <li>
-    	<a style="cursor: pointer">Gestión de Productos</a>
+    	<a href="#">Gestión de Productos</a>
         <ul class="sub-level">
         	<li>
-            	<a style="cursor: pointer">Categoría de Productos</a>
+            	<a href="#">Categoría de Productos</a>
                 <ul class="sub-level">
                 	<li><a href="indexx.php?controlador=categoriaproducto&accion=ingresar">Ingresar Categoría Producto</a></li>
                     <li><a href="indexx.php?controlador=categoriaproducto&accion=listar">Listar Categoría Producto</a></li>
@@ -31,7 +31,7 @@
                 </ul>
             </li>
             <li>
-            	<a style="cursor: pointer">Productos</a>
+            	<a href="#">Productos</a>
                 <ul class="sub-level">
                 	<li><a href="indexx.php?controlador=producto&accion=ingresar">Ingresar Producto</a></li>
                     <li><a href="indexx.php?controlador=producto&accion=listar">Listar Producto</a></li>
@@ -42,7 +42,7 @@
         </ul>
     </li>
     <li>
-    	<a style="cursor: pointer">Ayuda</a>
+    	<a href="#">Ayuda</a>
         <ul class="sub-level">
         	<li><a href="#">Video Tutorial</a></li>
             <li><a href="#">Manual de Usuario</a></li>

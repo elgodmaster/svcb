@@ -5,7 +5,7 @@
 <title>Documento sin t&iacute;tulo</title>
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
-id=0;
+/*id=0;
 function agregar() {
 	id=id+1;
 	$("#cantidad").append('<div id="area'+id+'"><input type="text" name="txtCantidad'+id+'" size="5" /></div>');
@@ -21,12 +21,29 @@ function borrar(cual) {
 	$("#area"+cual).remove();
 	$("#area"+cual).remove();
 	return false;
+}*/
+id=0;
+function agregar() {
+	id=id+1;
+	$("#cantidad").append('<div id="area'+id+'"><input type="text" name="txtCantidad[]" size="5" /></div>');
+	$("#detalle").append('<div id="area'+id+'"><input type="text" name="txtDetalle[]" size="20" /></div>');
+	$("#unitario").append('<div id="area'+id+'"><input type="text" name="txtUnitario[]" size="5" /></div>');
+	$("#descuento").append('<div id="area'+id+'"><input type="text" name="txtDescuento[]" size="5" /></div>');
+	$("#total").append('<div id="area'+id+'"><input type="text" name="txtTotal[]" size="20" /><a style="cursor:pointer" onclick="javascript:borrar('+id+');"><img src="lib/img/quitar.png" width="16" height="16" /></a></div>');
+}
+function borrar(cual) {
+	$("#area"+cual).remove();
+	$("#area"+cual).remove();
+	$("#area"+cual).remove();
+	$("#area"+cual).remove();
+	$("#area"+cual).remove();
+	return false;
 }
 </script>
 </head>
 
 <body>
-<form id="form1" name="form1" method="post" action="">
+<form id="form1" name="form1" method="post" action="test_pdf.php">
 <table width="675" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><table width="675" border="0" cellspacing="0" cellpadding="0">
@@ -72,9 +89,9 @@ function borrar(cual) {
           <label for="txtDireccion"></label>
           <input type="text" name="txtDireccion" id="txtDireccion" />
         </p></td>
-        <td><p>Comuna 
-          <label for="cboComuna"></label>
-          <select name="cboComuna" id="cboComuna">
+        <td><p>Ciudad 
+            <label for="cboComuna"></label>
+          <select name="cboCiudad" id="cboCiudad">
           </select>
         </p></td>
       </tr>
@@ -83,9 +100,9 @@ function borrar(cual) {
           <label for="txtRut"></label>
           <input type="text" name="txtRut" id="txtRut" />
         </p></td>
-        <td><p>Ciudad 
-          <label for="cboCiudad"></label>
-          <select name="cboCiudad" id="cboCiudad">
+        <td><p>Comuna 
+            <label for="cboCiudad"></label>
+          <select name="cboComuna" id="cboComuna">
           </select>
         </p></td>
       </tr>
@@ -171,7 +188,7 @@ function borrar(cual) {
     </table></td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
+    <td align="right"><input type="submit" name="btnEnviar" id="btnEnviar" value="Enviar" /></td>
   </tr>
 </table>
 </form>

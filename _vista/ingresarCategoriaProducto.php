@@ -23,7 +23,10 @@
     <tr>
      <td>Nombre: </td>
      <td><input type="text" name="txtNombre" id="txtNombre" /></td>
-     <td><input type="button" name="btnConsultar" id="btnConsultar" value="Ingresar" onClick="get();" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="button" name="btnConsultar" value="Ingresar" onClick="get();" /><input type="reset" /></td>
     </tr>
    </table>
   </form>

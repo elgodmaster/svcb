@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Modificar Categoria Producto</title>
+<title>Modificar Categoría Producto</title>
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
-	function get(){
+	function get2(){
 		$.post('indexx.php?controlador=categoriaproducto&accion=modificar', { 
-		txtNombreNuevo: form1.txtNombreNuevo.value, txtCodigo: form1.txtCodigo.value , chkEstado: form1.chkEstado.value },
+		txtNombreNuevo: form1.txtNombreNuevo.value, txtCodigo: form1.txtCodigo.value , cboEstado: form1.cboEstado.value },
 		function(output){
 			$('#datos2').html(output).show();
 			});
@@ -31,18 +31,25 @@
  	<tr>
   	 <td>Estado</td>
   	 <td>
+     <select name="cboEstado">
   	 <?php
    	 	if($categoria->getEstadoCategoriaProducto() == 'ACTIVO')
-   			echo '<input type="checkbox" name="chkEstado" checked="checked" />';
-   		else
-   			echo '<input type="checkbox" name="chkEstado" />';
+		{
+			echo '<option value="INACTIVO">No Disponible</option>';
+			echo '<option value="ACTIVO" selected="selected">Disponible</option>';
+		}
+		else
+		{
+			echo '<option value="INACTIVO" selected="selected">No Disponible</option>';
+			echo '<option value="ACTIVO">Disponible</option>';
+		}
   	 ?>
-  	 Disponible
+  	 </select>
   	 </td>
  	</tr>
  	<tr>
   	 <td></td>
-  	 <td colspan="2"><input type="button" name="btnConsultar" id="btnConsultar" value="Modificar" onClick="get();" /></td>
+  	 <td colspan="2"><input type="button" name="btnConsultar" value="Modificar" onClick="get2();" /></td>
  	</tr>
    </table>
   </form>

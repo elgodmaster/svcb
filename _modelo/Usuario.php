@@ -98,17 +98,18 @@
 	 function listarCliente($nombre_cliente)
 	 {
 		 $link = conexion();
-		 $sp = "call listarCliente('%$nombre_cliente%')";
+		 $sp = "call listarCliente('$nombre_cliente')";
 		 $consulta = mysql_query($sp,$link);
 		 close($link);
 		 return $consulta;
 	 }
 	 
-	 function modificarCliente($nombre_cliente,$direccion_cliente,$telefono_cliente,$email_cliente,$giro_cliente,$id_comuna)
+	 function modificarCliente($id_cliente,$nombre_cliente,$direccion_cliente,$telefono_cliente,$email_cliente,$estado_cliente,
+	 $giro_cliente,$id_comuna)
 	 {
 		 $link = conexion();
-		 $sp = "call modificarCliente('$nombre_cliente','$direccion_cliente','$telefono_cliente','$email_cliente',";
-		 $sp .= "$'giro_cliente',$id_comuna)";
+		 $sp = "call modificarCliente('$id_cliente','$nombre_cliente','$direccion_cliente','$telefono_cliente','$email_cliente',";
+		 $sp .= "'$estado_cliente','$giro_cliente',$id_comuna)";
 		 $consulta = mysql_query($sp,$link);
 		 close($link);
 		 return $consulta;
@@ -168,21 +169,32 @@
 		 return $consulta;
 	 }
 	 
-	 function listarProducto($nombre_producto)
+	 function listarProducto($v_nombre)
 	 {
 		 $link = conexion();
-		 $sp = "call listarProducto('$nombre_producto')";
+		 $sp = "call listarProducto('$v_nombre')";
 		 $consulta = mysql_query($sp,$link);
 		 close($link);
 		 return $consulta;
 	 }
 	 
-	 function modificarProducto()
+	 function modificarProducto($v_codigo,$v_nombre,$v_precio,$v_stock_r,$v_stock_m,$v_descripcion,$v_estado,$v_categoria)
 	 {
+		 $link = conexion();
+		 $sp = "call modificarProducto($v_codigo,'$v_nombre',$v_precio,$v_stock_r,$v_stock_m,'$v_descripcion','$v_estado',";
+		 $sp.= "$v_categoria)";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
 	 }
 	 
-	 function eliminarProducto()
+	 function eliminarProducto($v_nombre)
 	 {
+		 $link = conexion();
+		 $sp = "call eliminarProducto('$v_nombre')";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
 	 }
 	 
 	 function ingresarUsuario($id_usuario,$pass_usuario,$nombre_usuario,$apat_usuario,$amat_usuario,$tipo_usuario)

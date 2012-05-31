@@ -13,25 +13,15 @@
 	//Metodo utilizado para obtener el codigo siguiente del producto
 	function codigoSiguiente()
 	{
-	}
-	
-	//Metodo utilizado para insertar un producto a la base de datos
-	function insertarProducto()
-	{
+		$link = conexion();
+		 $sp = "SELECT IFNULL(MAX(id_producto),0)+1 as codigo FROM producto";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
 	}
 	
 	//Metodo utilizado para actualizar un producto
 	function actualizarProducto()
-	{
-	}
-	
-	//Metodo utilizado para buscar un producto
-	function buscarProducto()
-	{
-	}
-	
-	//Metodo utilizado para obtener todos los productos
-	function buscarProductoTodos()
 	{
 	}
 	

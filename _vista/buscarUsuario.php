@@ -8,9 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <?php
  if($accion == 'listar')
- 	 echo '<title>Buscar Usuario</title>';
+ 	 echo '<title>Listar Usuario</title>';
  elseif($accion == 'modificar')
  	 echo '<title>Modificar Usuario</title>';
+ elseif($accion == 'eliminar')
+ 	 echo '<title>Eliminar Usuario</title>';
 ?>
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
@@ -26,13 +28,26 @@
 <body>
 
  <div id="formulario">
-  <h2>Buscar Usuario</h2>
+  <?php
+   if($accion == 'listar')
+   	   echo '<h2>Listar Usuario</h2>';
+   elseif($accion == 'modificar')
+ 	   echo '<h2>Modificar Usuario</h2>';
+   elseif($accion == 'eliminar')
+ 	   echo '<h2>Eliminar Usuario</h2>';
+  ?>
   <form id="form" name="form" method="post">
    <table>
     <tr>
   	 <td>RUN: </td>
   	 <td><input type="text" name="txtNombre" id="txtNombre" /></td>
-     <td><input type="button" name="btnConsultar" id="btnConsultar" value="Buscar" onClick="get();" /></td>
+     <td>
+      <?php
+	   if($accion == 'eliminar')
+	   		echo '<input type="button" name="btnConsultar" value="Eliminar" onClick="get();" />';
+	   else
+	   		echo '<input type="button" name="btnConsultar" value="Buscar" onClick="get();" />';
+	  ?>
     </tr>
    </table>
   </form>
