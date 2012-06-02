@@ -206,28 +206,37 @@
 		 return $consulta;
 	 }
 	 
-	 function listarUsuario($id_usuario)
+	 function listarUsuario($p_rut)
 	 {
 		 $link = conexion();
-		 $sp = "call listarUsuario('$id_usuario')";		 
+		 $sp = "call listarUsuario('$p_rut')";		 
 		 $consulta = mysql_query($sp,$link);
 		 close($link);
 		 return $consulta;		 
 	 }
 	 
-	 function modificarUsuario($id_usuario,$pass_usuario,$nombre_usuario,$apat_usuario,$amat_usuario,$tipo_usuario)
+	 function modificarUsuario($p_rut,$p_nombre,$p_apat,$p_amat,$p_estado,$p_tipo)
 	 {
 		 $link = conexion();
-		 $sp = "call modificarUsuario('$id_usuario','$pass_usuario','$nombre_usuario','$apat_usuario','$amat_usuario',$tipo_usuario)";
+		 $sp = "call modificarUsuario('$p_rut','$p_nombre','$p_apat','$p_amat','$p_estado',$p_tipo)";
 		 $consulta = mysql_query($sp,$link);
 		 close($link);
 		 return $consulta;
 	 }
 	 
-	 function eliminarUsuario($id_usuario)
+	 function eliminarUsuario($p_rut)
 	 {
 		 $link = conexion();
-		 $sp = "call eliminarUsuario('$id_usuario')";		 
+		 $sp = "call eliminarUsuario('$p_rut')";		 
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
+	 }
+	 
+	 function modificarPasswordUsuario($p_rut,$p_password)
+	 {
+		 $link = conexion();
+		 $sp = "call modificarPasswordUsuario('$p_rut','$p_password')";		 
 		 $consulta = mysql_query($sp,$link);
 		 close($link);
 		 return $consulta;
@@ -280,14 +289,22 @@
 	 private $tipo_usuario = 1003;
 	 
 	 //Metodos de la clase Bodeguero
-	 function consultarProducto()
+	 function consultarProducto($p_nombre)
 	 {
-		 
+		 $link = conexion();
+		 $sp = "call listarProducto('$p_nombre')";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;		 
 	 }
 	 
-	 function ingresarStockProducto()
+	 function ingresarStockProducto($p_codigo,$p_stock)
 	 {
-		 
+		 $link = conexion();
+		 $sp = "call ingresarStockProducto($p_codigo,$p_stock)";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;		 
 	 }
 	 
 	 //Get de la clase Bodeguero
