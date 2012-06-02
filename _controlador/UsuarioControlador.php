@@ -15,7 +15,7 @@
 		 	 $usuario = new Bodeguero();
 			 
 		 $usuario->setIdUsuario(addslashes($_REQUEST['txtRun']));
-		 $usuario->setPasswordUsuario(addslashes($_REQUEST['txtPassword']));
+		 $usuario->setPasswordUsuario(addslashes(md5($_REQUEST['txtPassword'])));
 		 $usuario->setNombreUsuario(addslashes(strtoupper($_REQUEST['txtNombre'])));
 		 $usuario->setApatUsuario(addslashes(strtoupper($_REQUEST['txtApat'])));
 		 $usuario->setAmatUsuario(addslashes(strtoupper($_REQUEST['txtAmat'])));
