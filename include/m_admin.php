@@ -5,7 +5,13 @@
     	<ul class="sub-level">
         	<li><a href="indexx.php?controlador=usuario&accion=ingresar">Ingresar Usuario</a></li>
             <li><a href="indexx.php?controlador=usuario&accion=listar">Listar Usuario</a></li>
-            <li><a href="indexx.php?controlador=usuario&accion=modificar">Modificar Usuario</a></li>
+            <li>
+             <a href="#">Modificar Usuario</a>
+             <ul class="sub-level">
+              <li><a href="indexx.php?controlador=usuario&accion=modificar">Modificar Datos Usuario</a></li>
+              <li><a href="indexx.php?controlador=usuario&accion=modificarpassword">Modificar Password Usuario</a></li>
+             </ul>
+            </li>
             <li><a href="indexx.php?controlador=usuario&accion=eliminar">Eliminar Usuario</a></li>
         </ul>
     </li>

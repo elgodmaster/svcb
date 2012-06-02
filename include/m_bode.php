@@ -1,14 +1,14 @@
 <ul class="top-level">
-	<li><a href="#">Inicio</a></li>
+	<li><a href="bodeguero">Inicio</a></li>
     <li>
-    	<a style="cursor: pointer">Productos</a>
+    	<a href="#">Productos</a>
     	<ul class="sub-level">
-        	<li><a href="#">Ingresar Stock</a></li>   
-            <li><a href="#">Listar Producto</a></li>
+        	<li><a href="indexx.php?controlador=bodeguero&accion=ingresarstock">Ingresar Stock Producto</a></li>
+            <li><a href="indexx.php?controlador=bodeguero&accion=consultarproducto">Consultar Producto</a></li>
 		</ul>
 	</li>
     <li>
-    	<a style="cursor: pointer">Ayuda</a>
+    	<a href="#">Ayuda</a>
         <ul class="sub-level">
         	<li><a href="#">Video Tutorial</a></li>
             <li><a href="#">Manual de Usuario</a></li>
