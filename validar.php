@@ -5,20 +5,30 @@
 	 $link=conexion();
 	 $query = mysql_query("SELECT us.* FROM usuario us WHERE us.id_usuario='".$_POST['txtNombre']."'");
 	 $row = mysql_fetch_assoc($query);
+	 
+	 $pass = $_POST['txtClave'];
+	 $contrasena = md5($pass);
 	  
-	 if (($_POST['txtClave'] == $row['password_usuario']) && ($_POST['cboTipo'] == $row['tipo_usuario_id_tipo_usuario']))
+	 if (($contrasena == $row['password_usuario']) && ($_POST['cboTipo'] == $row['tipo_usuario_id_tipo_usuario']))
 	 {
-		 session_start();
-		 $_SESSION['usuario'] = $_POST['txtNombre'];
-		 $_SESSION['codigo_usuario'] = $_POST['cboTipo'];
-		 
-		 if ($_POST['cboTipo'] == 1001)
-		 	$_SESSION['tipo_usuario'] = "Administrador";
-		 elseif ($_POST['cboTipo'] == 1002)
-		 	$_SESSION['tipo_usuario'] = "Vendedor";
-		 elseif ($_POST['cboTipo'] == 1003)
-		 	$_SESSION['tipo_usuario'] = "Bodeguero";
-		 header("location:index.php");
+		 if($row['estado_usuario'] == 'ACTIVO')
+		 {
+			 session_start();
+			 $_SESSION['usuario'] = $_POST['txtNombre'];
+			 $_SESSION['codigo_usuario'] = $_POST['cboTipo'];
+			 
+			 if ($_POST['cboTipo'] == 1001)
+			 	$_SESSION['tipo_usuario'] = "Administrador";
+			 elseif ($_POST['cboTipo'] == 1002)
+			 	$_SESSION['tipo_usuario'] = "Vendedor";
+			 elseif ($_POST['cboTipo'] == 1003)
+			 	$_SESSION['tipo_usuario'] = "Bodeguero";
+			 header("location:index.php");
+		 }
+		 else
+		 {
+			 echo "<script language='javascript'>alert('La sesión no se encuentra disponible');this.location ='validar.php';</script>";			 
+		 }			 
 	 }
 	 else
 	 {
