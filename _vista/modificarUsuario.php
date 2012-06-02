@@ -7,9 +7,8 @@
 <script type="text/javascript">
 	function get2(){
 		$.post('indexx.php?controlador=usuario&accion=modificar', { 
-		txtRunNuevo: form1.txtRunNuevo.value, txtPassNuevo: form1.txtPassNuevo.value, rdoPassword: form1.rdoPassword.value,
-		txtNombreNuevo: form1.txtNombreNuevo.value, txtApatNuevo: form1.txtApatNuevo.value , txtAmatNuevo: form1.txtAmatNuevo.value,
-		cboUsuarioNuevo: form1.cboUsuarioNuevo.value, cboEstado: form1.cboEstado.value },
+		txtRunNuevo: form1.txtRunNuevo.value, txtNombreNuevo: form1.txtNombreNuevo.value, txtApatNuevo: form1.txtApatNuevo.value , 
+		txtAmatNuevo: form1.txtAmatNuevo.value, cboUsuarioNuevo: form1.cboUsuarioNuevo.value, cboEstado: form1.cboEstado.value },
 		function(output){
 			$('#datos2').html(output).show();
 			});
@@ -26,17 +25,6 @@
   	 <td>RUN:</td>
   	 <td><input type="text" size="25" name="txtRunNuevo" value="<?php echo  $usuario->getIdUsuario() ?>" readonly="readonly" /></td>
  	</tr>
-    <tr>
-     <td>Password:</td>
-     <td><input type="password" size="25" name="txtPassNuevo" /></td>
-    </tr>
-    <tr>
-     <td></td>
-     <td colspan="2">
-      <input type="radio" name="rdoPassword" checked="checked" />No Modificar
-      <input type="radio" name="rdoPassword"/>Modificar
-     </td>
-    </tr>
  	<tr>
   	 <td>Nombre:</td>
      <td><input type="text" size="25" name="txtNombreNuevo" value="<?php echo $usuario->getNombreUsuario() ?>" /></td>
