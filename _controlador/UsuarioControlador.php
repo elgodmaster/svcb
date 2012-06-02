@@ -131,12 +131,12 @@
 			 require("_vista/modificarUsuario.php");
 		 }
 		 else
-			 echo("El usuario 'id_usuario' no existe en el sistema");		 
+			 echo("El usuario '$id_usuario' no existe en el sistema");		 
 	 }
-	 elseif(isset($_REQUEST['txtRunNuevo']) && isset($_REQUEST['txtPassNuevo']) && isset($_REQUEST['txtNombreNuevo'])
-	 		&& isset($_REQUEST['txtApatNuevo']) && isset($_REQUEST['txtAmatNuevo']) && isset($_REQUEST['cboUsuarioNuevo'])
-			&& isset($_REQUEST['cboEstado']))
+	 elseif(isset($_REQUEST['txtRunNuevo']) && isset($_REQUEST['txtNombreNuevo']) && isset($_REQUEST['txtApatNuevo']) 
+	 		&& isset($_REQUEST['txtAmatNuevo']) && isset($_REQUEST['cboUsuarioNuevo']) && isset($_REQUEST['cboEstado']))
 	 {
+		 
 		 $usuario = new Usuario();
 		 
 		 if ($_REQUEST['cboUsuarioNuevo'] == 1001)
@@ -147,17 +147,14 @@
 		 	 $usuario = new Bodeguero();
 		 
 		 $usuario->setIdUsuario(addslashes($_REQUEST['txtRunNuevo']));
-		 $usuario->setPasswordUsuario(addslashes($_REQUEST['txtPassNuevo']));
 		 $usuario->setNombreUsuario(addslashes(strtoupper($_REQUEST['txtNombreNuevo'])));
 		 $usuario->setApatUsuario(addslashes(strtoupper($_REQUEST['txtApatNuevo'])));
 		 $usuario->setAmatUsuario(addslashes(strtoupper($_REQUEST['txtAmatNuevo'])));
 		 $usuario->setEstadoUsuario(strtoupper($_REQUEST['cboEstado']));
 		 
-		 //Arreglar desde aqui:
-		 			 
 		 $admin = new Administrador();
-		 $usuarioxx = $admin->modificarUsuario($usuario->getIdUsuario(),$usuario->getPasswordUsuario(),$usuario->getNombreUsuario(),
-		 									   $usuario->getApatUsuario(),$usuario->getAmatUsuario(),$usuario->getTipoUsuario());
+		 $usuarioxx = $admin->modificarUsuario($usuario->getIdUsuario(),$usuario->getNombreUsuario(),$usuario->getApatUsuario(),
+		 									   $usuario->getAmatUsuario(),$usuario->getEstadoUsuario(),$usuario->getTipoUsuario());
 		 
 		 while ($registro = mysql_fetch_array($usuarioxx))
 		 {
@@ -193,6 +190,41 @@
 		 
 		 if ($existe != 0)
 			 echo "El usuario '$id_usuario' ha sido eliminado satisfactoriamente";
+		 else
+		 	 echo "El usuario '$id_usuario' no existe en el sistema";
+	 }
+	 else
+		 require("_vista/buscarUsuario.php");
+ }
+ 
+ function modificarpassword()
+ {
+	 if (isset($_REQUEST['txtNombre']))
+	 {		 
+		 require("_modelo/Usuario.php");
+		 
+		 $id_usuario = $_REQUEST['txtNombre'];
+		 
+		 $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+		 $cad = "";
+		 for($i=0;$i<12;$i++)
+		 {
+			 $cad .= substr($str,rand(0,62),1);
+		 }
+		 
+		 $password_usuario = md5 ($cad);
+		 		 
+		 $admin = new Administrador();
+	 	 $usuariox = $admin->modificarPasswordUsuario($id_usuario,$password_usuario);
+		 
+		 while ($registro = mysql_fetch_array($usuariox))
+		 {
+			 $existe = $registro['v_existe'];
+			 break;		 
+		 }
+		 
+		 if ($existe != 0)
+			 echo "La nueva password del usuario '$id_usuario' es: '$cad'";
 		 else
 		 	 echo "El usuario '$id_usuario' no existe en el sistema";
 	 }
