@@ -13,6 +13,9 @@
   <td>Estado: </td><td><?php echo $producto->getEstado() ?></td>
  </tr>
  <tr>
+  <td>Categoria Producto: </td><td><?php echo $categoria->getNombreCategoriaProducto() ?></td>
+ </tr>
+ <tr>
   <td>Codigo: </td><td><?php echo $producto->getCodigoProducto() ?></td>
  </tr>
  <tr>
@@ -29,9 +32,6 @@
  </tr>
  <tr>
   <td>Stock Minimo:</td><td><?php echo $producto->getStockMinimo() ?></td>
- </tr>
- <tr>
-  <td>Categoria Producto: </td><td><?php echo $categoria->getNombreCategoriaProducto() ?></td>
  </tr>
 </table>
 

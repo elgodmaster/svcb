@@ -40,7 +40,7 @@
   <form id="form" name="form" method="post">
    <table>
  	<tr>
-  	 <td>Nombre: </td>
+  	 <td>Nombre:</td>
   	 <td><input type="text" name="txtNombre" id="txtNombre"/></td>
   	 <td>
       <?php
