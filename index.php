@@ -71,7 +71,7 @@
     </table></td>
   </tr>
   <tr>
-    <td><footer class="pie"><p>Arte Bismarck | todos los derechos reservados</p></footer></td>
+    <td><footer class="pie"><p>Copyright © 2012 Arte Bismarck | Todos los derechos reservados.</p></footer></td>
   </tr>
 </table>
 </div>
