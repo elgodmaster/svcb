@@ -260,16 +260,31 @@
 		 
 	 }
 	 
-	 function realizarCobro()
+	 function realizarCobro($p_codigo)
 	 {
+		 $link = conexion();
+		 $sp = "call realizarCobro($p_codigo)";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
 	 }
 	 
-	 function cambiarEstadoPago()
+	 function cambiarEstadoCobro($p_codigo,$p_estado)
 	 {
+		 $link = conexion();
+		 $sp = "call cambiarEstadoCobro($p_codigo,'$p_estado')";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
 	 }
 	 
-	 function listarFactura()
+	 function listarFactura($p_nombre)
 	 {
+		 $link = conexion();
+		 $sp = "call listarFacturaCliente('$p_nombre')";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
 	 }
 	 
 	 function mostrarReporteVentas()
