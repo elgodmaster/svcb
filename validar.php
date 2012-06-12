@@ -44,7 +44,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Arte Bismarck | Login</title>
 <link href="lib/css/login.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="lib/js/jquery-1.2.3.pack.js"></script>
+<script type="text/javascript" src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="lib/js/jquery.flipclock.js"></script>
 <script type="text/javascript" src="lib/js/validarut.js"></script>
 <script type="text/javascript">

@@ -85,7 +85,6 @@
  {
 	 if (isset($_REQUEST['txtNombre']))
 	 {
-		 require("_modelo/Cliente.php");
 		 require("_modelo/Usuario.php");
 		 require("_modelo/Documento_Pago.php");
 		 
@@ -98,19 +97,22 @@
 	 
 		 if($num_rows != 0)
 	 	 {
-			 /*while ($registro = mysql_fetch_assoc($documentox))
+			 $out = array();			 
+			 while ($registro = mysql_fetch_assoc($documentox))
 			 {
 				 $documento = new Documento_Pago();
 				 $documento->setIdDocumentoPago($registro['id_documento_pago']);
+				 $cliente_name=$registro['cliente_id_cliente'];
 				 $documento->setFechaEmisionDocumentoPago($registro['fecha_emision_documento_pago']);
 				 $documento->setFechaVencimientoDocumentoPago($registro['fecha_vencimiento_documento_pago']);
 				 $documento->setTotalDocumentoPago($registro['total_documento_pago']);
 				 $documento->setEstadoDocumentoPago($registro['estado_documento_pago']);
-			 }*/
+				 $out[]= $documento;
+			 }
 			 require("_vista/ventasxCliente2.php");
 		 }
 		 else
-		 	 echo "El cliente '$nombre_cliente' no existe en el sistema";
+		 	 echo "El cliente '$nombre_cliente' no registra ventas en el sistema";
 			 exit;
 	 }
 	 else
@@ -119,14 +121,38 @@
  
  function listarclientesmorosos()
  {
-	 if (isset($_REQUEST['txtNombre']))
-	 {
-		 echo "gua";
-		 /*require("_vista/ventasxCliente2.php");*/
-	 }
-	 else
-	 	 echo "listar clientes morosos";
-		 /*require("_vista/ventasxCliente.php");*/
+	 require("_modelo/Cliente.php");//ver si podemos hacer la wea
+	 require("_modelo/Usuario.php");
+	 require("_modelo/Documento_Pago.php");
+	 
+	 $vendedor = new Vendedor();
+	 $documentox = $vendedor->reporteClientesMorosos();
+	 
+	 $num_rows = mysql_num_rows($documentox);
+	 
+	if($num_rows != 0)
+	{
+		$out = array();
+		while ($registro = mysql_fetch_assoc($documentox))
+		{
+			$cliente = new Cliente();
+			//$cliente->setIdCliente($registro['id_cliente']);
+			//$cliente->setNombreCliente($registro['nombre_cliente']);
+			$id_cliente = $registro['id_cliente'];
+			$name_cliente = $registro['nombre_cliente'];
+			$documento = new Documento_Pago();
+			$documento->setIdDocumentoPago($registro['id_documento_pago']);
+			$documento->setFechaEmisionDocumentoPago($registro['fecha_emision_documento_pago']);
+			$documento->setFechaVencimientoDocumentoPago($registro['fecha_vencimiento_documento_pago']);
+			$documento->setTotalDocumentoPago($registro['total_documento_pago']);
+			$out[]= $documento;
+			//$out[]= $cliente;
+		}
+		require("_vista/clienteMoroso.php");
+	}
+	else
+		echo "¡Felicitaciones! No existen clientes morosos en el sistema.";
+		exit;
  }
  
  function alertascobros()

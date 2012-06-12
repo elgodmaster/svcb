@@ -287,8 +287,13 @@
 		 return $consulta;
 	 }
 	 
-	 function mostrarReporteVentas()
+	 function reporteClientesMorosos()
 	 {
+		 $link = conexion();
+		 $sp = "call listarClientesMorosos()";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
 	 }
 	 
 	 //Get de la clase Vendedor
