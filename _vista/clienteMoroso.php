@@ -2,32 +2,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Ventas por Cliente</title>
+<title>Clientes Morosos</title>
 </head>
 
 <body>
-
+ <h2>Clientes Morosos</h2>
  <div id="formulario">
   <table border="1" width="100%">
-   <tr align="center">
+   <tr align="center">    
+    <td>RUN Cliente</td>
+    <td>Nombre Cliente</td>
     <td>N° Factura</td>
-    <td>Cliente</td>
   	<td>Fecha Emisión</td>
     <td>Fecha Vencimiento</td>
     <td>Monto Total</td>
-    <td>Estado</td>
    </tr>
    <?php
    foreach ($out as $documento)
    {
    ?>
    <tr align="center">
-    <td><?php echo $documento->getIdDocumentoPago()?></td>
-    <td><?php echo $cliente_name?></td>
+    <!--<td><?php //echo $cliente->getIdCliente()?></td>
+    <td><?php //echo $cliente->getNombreCliente()?></td>-->
+    <td><?php echo $id_cliente?></td>
+    <td><?php echo $name_cliente?></td>
+    <td><?php echo $documento->getIdDocumentoPago()?></td>    
     <td><?php echo $documento->getFechaEmisionDocumentoPago()?></td>
     <td><?php echo $documento->getFechaVencimientoDocumentoPago()?></td>
-    <td><?php echo$documento->getTotalDocumentoPago()?></td>
-    <td><?php echo $documento->getEstadoDocumentoPago()?></td>
+    <td><?php echo $documento->getTotalDocumentoPago()?></td>
    </tr>
    <?php
    }
