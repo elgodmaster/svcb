@@ -17,6 +17,17 @@
  	 echo '<title>Modificar Password</title>';
 ?>
 <script src="lib/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src='lib/js/jquery.autocomplete.js'></script>
+<link href="lib/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+  $().ready(function() {
+	$("#txtNombre").autocomplete("lib/ajax/usuario.php", {
+      width: 260,
+      matchContains: true,
+      selectFirst: false
+    });
+  });
+</script>
 <script type="text/javascript">
 	function get(){
 		$.post('indexx.php?controlador=usuario&accion=<?php echo $accion ?>', { txtNombre: form.txtNombre.value },
