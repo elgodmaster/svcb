@@ -18,18 +18,16 @@
     <td>Monto Total</td>
    </tr>
    <?php
-   foreach ($out as $documento)
+   for($i=0;$i<count($out1);$i++)
    {
    ?>
    <tr align="center">
-    <!--<td><?php //echo $cliente->getIdCliente()?></td>
-    <td><?php //echo $cliente->getNombreCliente()?></td>-->
-    <td><?php echo $id_cliente?></td>
-    <td><?php echo $name_cliente?></td>
-    <td><?php echo $documento->getIdDocumentoPago()?></td>    
-    <td><?php echo $documento->getFechaEmisionDocumentoPago()?></td>
-    <td><?php echo $documento->getFechaVencimientoDocumentoPago()?></td>
-    <td><?php echo $documento->getTotalDocumentoPago()?></td>
+    <td><?php echo $out2[$i]->getIdCliente()?></td>
+    <td><?php echo $out2[$i]->getNombreCliente()?></td>
+    <td><?php echo $out1[$i]->getIdDocumentoPago()?></td>    
+    <td><?php echo $out1[$i]->getFechaEmisionDocumentoPago()?></td>
+    <td><?php echo $out1[$i]->getFechaVencimientoDocumentoPago()?></td>
+    <td>$<?php echo number_format($out1[$i]->getTotalDocumentoPago(),0, ",", ".")?></td>
    </tr>
    <?php
    }
