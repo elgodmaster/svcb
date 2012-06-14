@@ -121,7 +121,7 @@
  
  function listarclientesmorosos()
  {
-	 require("_modelo/Cliente.php");//ver si podemos hacer la wea
+	 require("_modelo/Cliente.php");
 	 require("_modelo/Usuario.php");
 	 require("_modelo/Documento_Pago.php");
 	 
@@ -132,21 +132,21 @@
 	 
 	if($num_rows != 0)
 	{
-		$out = array();
+		$out1 = array();
+		$out2 = array();
+		
 		while ($registro = mysql_fetch_assoc($documentox))
 		{
 			$cliente = new Cliente();
-			//$cliente->setIdCliente($registro['id_cliente']);
-			//$cliente->setNombreCliente($registro['nombre_cliente']);
-			$id_cliente = $registro['id_cliente'];
-			$name_cliente = $registro['nombre_cliente'];
+			$cliente->setIdCliente($registro['id_cliente']);
+			$cliente->setNombreCliente($registro['nombre_cliente']);
 			$documento = new Documento_Pago();
 			$documento->setIdDocumentoPago($registro['id_documento_pago']);
 			$documento->setFechaEmisionDocumentoPago($registro['fecha_emision_documento_pago']);
 			$documento->setFechaVencimientoDocumentoPago($registro['fecha_vencimiento_documento_pago']);
 			$documento->setTotalDocumentoPago($registro['total_documento_pago']);
-			$out[]= $documento;
-			//$out[]= $cliente;
+			$out1[] = $documento;
+			$out2[] = $cliente;
 		}
 		require("_vista/clienteMoroso.php");
 	}
