@@ -40,6 +40,19 @@ function borrar(cual) {
 	return false;
 }
 </script>
+<script language="javascript">
+function sumar(){
+var total = 0;
+var elem = document.getElementsByName('txtTotal[]');
+for (i=0;i<elem.length;i++){
+	if(isNaN(parseInt(elem[i].value))){
+	}else{
+		total += parseInt(elem[i].value);
+		document.form1.txtTotal2.value = total;
+		}
+}
+}
+</script>
 </head>
 
 <body>
@@ -164,7 +177,7 @@ function borrar(cual) {
         <td align="center" id="descuento"><label for="txtDescuento"></label>
           <input size="5" type="text" name="txtDescuento[]" id="txtDescuento" /></td>
         <td align="center" id="total"><label for="txtTotal"></label>
-          <input type="text" name="txtTotal[]" id="txtTotal" /><a href="javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
+          <input type="text" name="txtTotal[]" id="txtTotal" /><a href="javascript:agregar(); sumar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
       </tr>
       </table></td>
   </tr>
@@ -188,7 +201,7 @@ function borrar(cual) {
     </table></td>
   </tr>
   <tr>
-    <td align="right"><input type="submit" name="btnEnviar" id="btnEnviar" value="Enviar" /></td>
+    <td align="right"><input type="submit" name="btnEnviar" id="btnEnviar" value="Enviar" /><input name="mybutton" type="button" onclick="sumar()" value="Sumar"></td>
   </tr>
 </table>
 </form>
