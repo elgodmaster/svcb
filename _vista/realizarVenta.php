@@ -3,25 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Documento sin t&iacute;tulo</title>
-<script src="lib/js/jquery-1.7.2.min.js"></script>
+<script src="jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
-/*id=0;
-function agregar() {
-	id=id+1;
-	$("#cantidad").append('<div id="area'+id+'"><input type="text" name="txtCantidad'+id+'" size="5" /></div>');
-	$("#detalle").append('<div id="area'+id+'"><input type="text" name="txtDetalle'+id+'" size="20" /></div>');
-	$("#unitario").append('<div id="area'+id+'"><input type="text" name="txtUnitario'+id+'" size="5" /></div>');
-	$("#descuento").append('<div id="area'+id+'"><input type="text" name="txtDescuento'+id+'" size="5" /></div>');
-	$("#total").append('<div id="area'+id+'"><input type="text" name="txtTotal'+id+'" size="20" /><a style="cursor:pointer" onclick="javascript:borrar('+id+');"><img src="lib/img/quitar.png" width="16" height="16" /></a></div>');
-}
-function borrar(cual) {
-	$("#area"+cual).remove();
-	$("#area"+cual).remove();
-	$("#area"+cual).remove();
-	$("#area"+cual).remove();
-	$("#area"+cual).remove();
-	return false;
-}*/
 id=0;
 function agregar() {
 	id=id+1;
@@ -29,7 +12,7 @@ function agregar() {
 	$("#detalle").append('<div id="area'+id+'"><input type="text" name="txtDetalle[]" size="20" /></div>');
 	$("#unitario").append('<div id="area'+id+'"><input type="text" name="txtUnitario[]" size="5" /></div>');
 	$("#descuento").append('<div id="area'+id+'"><input type="text" name="txtDescuento[]" size="5" /></div>');
-	$("#total").append('<div id="area'+id+'"><input type="text" name="txtTotal[]" size="20" /><a style="cursor:pointer" onclick="javascript:borrar('+id+');"><img src="lib/img/quitar.png" width="16" height="16" /></a></div>');
+	$("#total").append('<div id="area'+id+'"><input type="text" name="txtTotal[]" size="20" onBlur="javascript:sumar();"/><a style="cursor:pointer" onclick="javascript:borrar('+id+'); javascript:sumar();"><img src="lib/img/quitar.png" width="16" height="16" /></a></div>');
 }
 function borrar(cual) {
 	$("#area"+cual).remove();
@@ -45,12 +28,9 @@ function sumar(){
 var total = 0;
 var elem = document.getElementsByName('txtTotal[]');
 for (i=0;i<elem.length;i++){
-	if(isNaN(parseInt(elem[i].value))){
-	}else{
-		total += parseInt(elem[i].value);
-		document.form1.txtTotal2.value = total;
-		}
+  total += parseInt(elem[i].value);
 }
+document.form1.txtTotal2.value = total;
 }
 </script>
 </head>
@@ -177,7 +157,7 @@ for (i=0;i<elem.length;i++){
         <td align="center" id="descuento"><label for="txtDescuento"></label>
           <input size="5" type="text" name="txtDescuento[]" id="txtDescuento" /></td>
         <td align="center" id="total"><label for="txtTotal"></label>
-          <input type="text" name="txtTotal[]" id="txtTotal" /><a href="javascript:agregar(); sumar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
+          <input type="text" name="txtTotal[]" id="txtTotal" onChange="javascript:sumar();" /><a href="javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
       </tr>
       </table></td>
   </tr>
@@ -201,7 +181,7 @@ for (i=0;i<elem.length;i++){
     </table></td>
   </tr>
   <tr>
-    <td align="right"><input type="submit" name="btnEnviar" id="btnEnviar" value="Enviar" /><input name="mybutton" type="button" onclick="sumar()" value="Sumar"></td>
+    <td align="right"><input type="submit" name="btnEnviar" id="btnEnviar" value="Enviar" /></td>
   </tr>
 </table>
 </form>
