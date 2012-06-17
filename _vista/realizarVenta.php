@@ -4,6 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Documento sin t&iacute;tulo</title>
 <script src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src='lib/js/jquery.autocomplete.js'></script>
+<link href="lib/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 id=0;
 function agregar() {
@@ -33,6 +35,38 @@ for (i=0;i<elem.length;i++){
 document.form1.txtTotal2.value = total;
 }
 </script>
+<script type="text/javascript">
+  $().ready(function() {
+	$("#txtCliente").autocomplete("lib/ajax/cliente.php", {
+      width: 153,
+      matchContains: true,
+      selectFirst: false
+    });
+  });
+</script>
+<script type="text/javascript">
+function restults(data) {
+	$("#txtDireccion").val(data.direccion_cliente);
+	$("#txtRut").val(data.id_cliente);
+	$("#txtComuna").val(data.comuna_id_comuna);
+	$("#txtGiro").val(data.giro_cliente);
+	$("#txtTelefono").val(data.telefono_cliente);
+	}
+	$(document).ready(function(){
+		$("#btnCargar").click(function(){
+			var search_term = $("#txtCliente").val();
+			$.ajax({
+				data: "id="+search_term,
+				type: "POST",
+				dataType: "json",
+				url: "lib/ajax/cliente_factura.php",
+				success: function(data){
+					restults(data);
+				}
+			});
+		});
+	});
+</script>
 </head>
 
 <body>
@@ -51,7 +85,7 @@ document.form1.txtTotal2.value = total;
         <h1>FACTURA</h1>
         <h1>N&deg;
           <label for="txtFactura"></label>
-  <input type="text" name="txtFactura" id="txtFactura" />
+  <input name="txtFactura" type="text" id="txtFactura" readonly="readonly" />
         </h1></td>
       </tr>
     </table></td>
@@ -59,7 +93,7 @@ document.form1.txtTotal2.value = total;
   <tr>
     <td><table width="675" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td colspan="2" align="right"><p>Santiago
+        <td colspan="4" align="right"><p>Santiago
           <label for="txtDia"></label>
           <input size="5" type="text" name="txtDia" id="txtDia" />
           de 
@@ -72,42 +106,43 @@ document.form1.txtTotal2.value = total;
         </td>
         </tr>
       <tr>
-        <td colspan="2"><p>Se&ntilde;or(es) 
+        <td width="80"><p>Se&ntilde;or(es) 
           <label for="txtCliente"></label>
-          <input type="text" name="txtCliente" id="txtCliente" />
         </p></td>
+        <td width="260"><input name="txtCliente" type="text" id="txtCliente" />  <input type="button" name="btnCargar" id="btnCargar" value="Cargar Datos" /></td>
+        <td colspan="2">&nbsp;</td>
         </tr>
       <tr>
         <td><p>Direcci&oacute;n 
           <label for="txtDireccion"></label>
-          <input type="text" name="txtDireccion" id="txtDireccion" />
         </p></td>
-        <td><p>Ciudad 
-            <label for="cboComuna"></label>
-          <select name="cboCiudad" id="cboCiudad">
-          </select>
+        <td><input name="txtDireccion" type="text" id="txtDireccion" readonly="readonly" /></td>
+        <td width="80"><p>Ciudad 
+          <label for="cboComuna"></label>
+          <label for="txtCiudad"></label>
         </p></td>
+        <td width="255"><input name="txtCiudad" type="text" id="txtCiudad" readonly="readonly" /></td>
       </tr>
       <tr>
         <td><p>RUT 
           <label for="txtRut"></label>
-          <input type="text" name="txtRut" id="txtRut" />
         </p></td>
+        <td><input name="txtRut" type="text" id="txtRut" readonly="readonly" /></td>
         <td><p>Comuna 
-            <label for="cboCiudad"></label>
-          <select name="cboComuna" id="cboComuna">
-          </select>
+          <label for="cboCiudad"></label>
+          <label for="txtComuna"></label>
         </p></td>
+        <td><input name="txtComuna" type="text" id="txtComuna" readonly="readonly" /></td>
       </tr>
       <tr>
         <td><p>Giro 
           <label for="txtGiro"></label>
-          <input type="text" name="txtGiro" id="txtGiro" />
         </p></td>
+        <td><input name="txtGiro" type="text" id="txtGiro" readonly="readonly" /></td>
         <td><p>Fono 
           <label for="txtTelefono"></label>
-          <input type="text" name="txtTelefono" id="txtTelefono" />
         </p></td>
+        <td><input name="txtTelefono" type="text" id="txtTelefono" readonly="readonly" /></td>
       </tr>
     </table></td>
   </tr>
@@ -153,11 +188,11 @@ document.form1.txtTotal2.value = total;
         <td align="center" id="detalle"><label for="txtDetalle"></label>
           <input type="text" name="txtDetalle[]" id="txtDetalle" /></td>
         <td align="center" id="unitario"><label for="txtUnitario"></label>
-          <input size="5" type="text" name="txtUnitario[]" id="txtUnitario" /></td>
+          <input name="txtUnitario[]" type="text" id="txtUnitario" size="5" readonly="readonly" /></td>
         <td align="center" id="descuento"><label for="txtDescuento"></label>
           <input size="5" type="text" name="txtDescuento[]" id="txtDescuento" /></td>
         <td align="center" id="total"><label for="txtTotal"></label>
-          <input type="text" name="txtTotal[]" id="txtTotal" onChange="javascript:sumar();" /><a href="javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
+          <input name="txtTotal[]" type="text" id="txtTotal" onChange="javascript:sumar();" /><a href="javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
       </tr>
       </table></td>
   </tr>
@@ -166,22 +201,22 @@ document.form1.txtTotal2.value = total;
       <tr>
         <td width="476" align="right">Neto $</td>
         <td width="199" align="center"><label for="txtNeto"></label>
-          <input type="text" name="txtNeto" id="txtNeto" /></td>
+          <input name="txtNeto" type="text" id="txtNeto" readonly="readonly" /></td>
       </tr>
       <tr>
         <td align="right">IVA $</td>
         <td align="center"><label for="txtIva"></label>
-          <input type="text" name="txtIva" id="txtIva" /></td>
+          <input name="txtIva" type="text" id="txtIva" readonly="readonly" /></td>
       </tr>
       <tr>
         <td align="right">Total $</td>
         <td align="center"><label for="txtTotal"></label>
-          <input type="text" name="txtTotal2" id="txtTotal" /></td>
+          <input name="txtTotal2" type="text" id="txtTotal" readonly="readonly" /></td>
       </tr>
     </table></td>
   </tr>
   <tr>
-    <td align="right"><input type="submit" name="btnEnviar" id="btnEnviar" value="Enviar" /></td>
+    <td align="right"><label for="txtArea"></label>      <input type="submit" name="btnEnviar" id="btnEnviar" value="Enviar" /></td>
   </tr>
 </table>
 </form>
