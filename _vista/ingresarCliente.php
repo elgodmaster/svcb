@@ -40,9 +40,9 @@
   	</td>
    </tr>
    <tr>
-  	<td>Ciudad:</td>
+  	<td>Provincia:</td>
   	<td>
-   	 <select name="cboCiudad">
+   	 <select name="cboProvincia">
       <option value="0">Elegir Ciudad</option>
      </select>
   	</td>
