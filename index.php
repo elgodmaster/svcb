@@ -6,22 +6,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>::: Arte Bismarck :::</title>
+<link href="lib/css/alerta.css" media="screen" rel="stylesheet" type="text/css">
 <link href="lib/css/styles.css" rel="stylesheet" type="text/css" />
 <link href="lib/css/menu.css" rel="stylesheet" type="text/css" />
-<script src="lib/js/jquery-1.7.2.min.js"></script>
-<script src="lib/js/general.js"></script>
+<script type="text/javascript" src="lib/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="lib/js/general.js"></script>
+<script type="text/javascript" src="lib/js/animate.js"></script>
 </head>
 
 <body>
-<div class="contenedor">
-<table width="950" border="0" cellspacing="0" cellpadding="0">
+
+<div class="contenedor" style="z-index: 9999;">
+<table width="950" style="margin-top:10px;" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td>
 <header class="cabecera">
 <table width="950" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td><div class="logo"><img src="lib/img/logo.gif" width="442" height="133" /></div></td>
-        <td valign="bottom"><div class="sesion">
+        <td><div class="logo"></div></td>
+        <td valign="bottom">
+        <div class="sesion">
          <p>Bienvenido <?php echo $_SESSION['tipo_usuario']; ?>: <?php echo $_SESSION['usuario']; ?> | <a href="cerrar.php?cerrar">Cerrar Sesión</a></p></div></td>
       </tr>
     </table>
@@ -75,5 +79,9 @@
   </tr>
 </table>
 </div>
+<?php
+ if($_SESSION['codigo_usuario']==1002)
+ 	include("include/alerta_cobro.php");
+?>
 </body>
 </html>

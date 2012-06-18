@@ -17,10 +17,16 @@ body{
 	}
 /*::::: CSS CABECERA SITIO :::::*/
 .cabecera{
-	background-image:url(../img/bg_header.gif);
 	margin:auto;
+	background-image:url(../img/bg_header.gif);
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
 	}
 .logo{
+	background-image: url(../img/logo.gif);
+	background-repeat:no-repeat;
+	background-position: 40px 8px;
+	height:133px;
 	width:475px;
 	}
 .sesion{

@@ -155,8 +155,36 @@
 		exit;
  }
  
- function alertascobros()
+ function alertacobros()
  {
+	 require("_modelo/Cliente.php");
+	 require("_modelo/Usuario.php");
+	 require("_modelo/Documento_Pago.php");
+	 
+	 $vendedor = new Vendedor();
+	 $documentox = $vendedor->alertaCobros();
+	 
+	 $num_rows = mysql_num_rows($documentox);
+	 
+	if($num_rows != 0)
+	{
+		$out1 = array();
+		$out2 = array();
+		
+		while ($registro = mysql_fetch_assoc($documentox))
+		{
+			$cliente = new Cliente();
+			$cliente->setNombreCliente($registro['nombre_cliente']);
+			$documento = new Documento_Pago();
+			$documento->setIdDocumentoPago($registro['id_documento_pago']);
+			$documento->setFechaVencimientoDocumentoPago($registro['fecha_vencimiento_documento_pago']);
+			$documento->setTotalDocumentoPago($registro['total_documento_pago']);
+			$out1[] = $documento;
+			$out2[] = $cliente;
+		}
+		$fin = $num_rows-1;
+		require("_vista/alertaCobros.php");
+	}
  }
 
 ?>

@@ -296,6 +296,15 @@
 		 return $consulta;
 	 }
 	 
+	 function alertaCobros()
+	 {
+		 $link = conexion();
+		 $sp = "call alertaCobros()";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;		 
+	 }
+	 
 	 //Get de la clase Vendedor
 	 function getTipoUsuario()
 	 {
