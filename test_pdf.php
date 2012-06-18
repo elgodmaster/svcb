@@ -64,40 +64,40 @@
 	$pdf->Cell(20,10,"Fono: $fono",0,0,'L');
 	$pdf->Ln();
 	//Texto orden de compra, guia de despacho, condiciones de venta y vencimiento
-	$pdf->Cell(45,7,"Orden de Compra n°",1,0,'C');
-	$pdf->Cell(45,7,"Guia de despacho n°",1,0,'C');
-	$pdf->Cell(45,7,"Condiciones de Venta",1,0,'C');
-	$pdf->Cell(45,7,"Vencimiento",1,0,'C');
+	$pdf->Cell(45,7,"Orden de Compra n°",0,0,'C');
+	$pdf->Cell(45,7,"Guia de despacho n°",0,0,'C');
+	$pdf->Cell(45,7,"Condiciones de Venta",0,0,'C');
+	$pdf->Cell(45,7,"Vencimiento",0,0,'C');
 	$pdf->Ln();
 	//Datos de orden de compra, guia de despacho, condiciones de venta y vencimiento
-	$pdf->Cell(45,7,$orden,1,0,'C');
-	$pdf->Cell(45,7,$guia,1,0,'C');
-	$pdf->Cell(45,7,$condiciones,1,0,'C');
-	$pdf->Cell(45,7,$vencimiento,1,0,'C');
+	$pdf->Cell(45,7,$orden,0,0,'C');
+	$pdf->Cell(45,7,$guia,0,0,'C');
+	$pdf->Cell(45,7,$condiciones,0,0,'C');
+	$pdf->Cell(45,7,$vencimiento,0,0,'C');
 	$pdf->Ln();
 	//Texto cantidad, detalle, precio unitario, total
-	$pdf->Cell(45,7,'Cantidad',1,0,'C');
-	$pdf->Cell(45,7,'Detalle',1,0,'C');
-	$pdf->Cell(45,7,'Precio Unitario',1,0,'C');
-	$pdf->Cell(45,7,'Total',1,0,'C');
+	$pdf->Cell(45,7,'Cantidad',0,0,'C');
+	$pdf->Cell(45,7,'Detalle',0,0,'C');
+	$pdf->Cell(45,7,'Precio Unitario',0,0,'C');
+	$pdf->Cell(45,7,'Total',0,0,'C');
 	$pdf->Ln();
 	//Detalle de los productos adquiridos
 	for($i=0;$i<count($cantidad);$i++){
-		$pdf->Cell(45,7,$cantidad[$i],1,0,'C');
-		$pdf->Cell(45,7,$detalle[$i],1,0,'C');
-		$pdf->Cell(45,7,$preunitario[$i],1,0,'C');
-		$pdf->Cell(45,7,$total[$i],1,0,'C');
+		$pdf->Cell(45,7,$cantidad[$i],0,0,'C');
+		$pdf->Cell(45,7,$detalle[$i],0,0,'C');
+		$pdf->Cell(45,7,$preunitario[$i],0,0,'C');
+		$pdf->Cell(45,7,$total[$i],0,0,'C');
 		$pdf->Ln();
 	}
 	//Datos de neto,iva,total
-	$pdf->Cell(135,7,'Neto $',1,0,'R');
-	$pdf->Cell(45,7,$neto,1,0,'C');
+	$pdf->Cell(135,7,'Neto $',0,0,'R');
+	$pdf->Cell(45,7,$neto,0,0,'C');
 	$pdf->Ln();
-	$pdf->Cell(135,7,'IVA $',1,0,'R');
-	$pdf->Cell(45,7,$iva,1,0,'C');
+	$pdf->Cell(135,7,'IVA $',0,0,'R');
+	$pdf->Cell(45,7,$iva,0,0,'C');
 	$pdf->Ln();
-	$pdf->Cell(135,7,'Total $',1,0,'R');
-	$pdf->Cell(45,7,$total2,1,0,'C');
+	$pdf->Cell(135,7,'Total $',0,0,'R');
+	$pdf->Cell(45,7,$total2,0,0,'C');
 	$pdf->Ln();
 	//Guardamos la factura
 	$pdf->Output('facturas_pdf/' . $numfactura.'.pdf', 'F');
