@@ -24,8 +24,8 @@
    <tr align="center">
     <td><?php echo $documento->getIdDocumentoPago()?></td>
     <td><?php echo $cliente_name?></td>
-    <td><?php echo $documento->getFechaEmisionDocumentoPago()?></td>
-    <td><?php echo $documento->getFechaVencimientoDocumentoPago()?></td>
+    <td><?php echo date("d-m-Y",strtotime($documento->getFechaEmisionDocumentoPago()))?></td>
+    <td><?php echo date("d-m-Y",strtotime($documento->getFechaVencimientoDocumentoPago()))?></td>
     <td>$<?php echo number_format($documento->getTotalDocumentoPago(),0, ",", ".")?></td>
     <td><?php echo $documento->getEstadoDocumentoPago()?></td>
    </tr>

@@ -25,8 +25,8 @@
     <td><?php echo $out2[$i]->getIdCliente()?></td>
     <td><?php echo $out2[$i]->getNombreCliente()?></td>
     <td><?php echo $out1[$i]->getIdDocumentoPago()?></td>    
-    <td><?php echo $out1[$i]->getFechaEmisionDocumentoPago()?></td>
-    <td><?php echo $out1[$i]->getFechaVencimientoDocumentoPago()?></td>
+    <td><?php echo date("d-m-Y",strtotime($out1[$i]->getFechaEmisionDocumentoPago()))?></td>
+    <td><?php echo date("d-m-Y",strtotime($out1[$i]->getFechaVencimientoDocumentoPago()))?></td>
     <td>$<?php echo number_format($out1[$i]->getTotalDocumentoPago(),0, ",", ".")?></td>
    </tr>
    <?php
