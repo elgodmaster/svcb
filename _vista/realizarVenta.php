@@ -57,6 +57,7 @@ document.form1.txtTotal2.value = total;
 function restults(data) {
 	$("#txtDireccion").val(data.direccion_cliente);
 	$("#txtRut").val(data.id_cliente);
+	$("#txtCiudad").val(data.nombre_comuna);
 	$("#txtComuna").val(data.comuna_id_comuna);
 	$("#txtGiro").val(data.giro_cliente);
 	$("#txtTelefono").val(data.telefono_cliente);
@@ -127,10 +128,9 @@ function restults(data) {
         </p></td>
         <td><input name="txtDireccion" type="text" id="txtDireccion" readonly="readonly" /></td>
         <td width="80"><p>Ciudad 
-          <label for="cboComuna"></label>
           <label for="txtCiudad"></label>
         </p></td>
-        <td width="255"><input name="txtCiudad" type="text" id="txtCiudad" /></td>
+        <td width="255"><input name="txtCiudad" type="text" id="txtCiudad" readonly="readonly"/></td>
       </tr>
       <tr>
         <td><p>RUT 
@@ -138,7 +138,6 @@ function restults(data) {
         </p></td>
         <td><input name="txtRut" type="text" id="txtRut" readonly="readonly" /></td>
         <td><p>Comuna 
-          <label for="cboCiudad"></label>
           <label for="txtComuna"></label>
         </p></td>
         <td><input name="txtComuna" type="text" id="txtComuna" readonly="readonly" /></td>

@@ -20,7 +20,7 @@
 <script type="text/javascript">
   $().ready(function() {
 	$("#txtNombre").autocomplete("lib/ajax/producto.php", {
-      width: 260,
+      width: 273,
       matchContains: true,
       selectFirst: false
     });
@@ -51,7 +51,7 @@
    <table>
  	<tr>
   	 <td>Nombre:</td>
-  	 <td><input type="text" name="txtNombre" id="txtNombre" /></td>
+  	 <td><input type="text" name="txtNombre" id="txtNombre" size="40"/></td>
      <td>
 	 <?php
 	   if($accion == 'eliminar')

@@ -9,7 +9,7 @@
 <script type="text/javascript">
   $().ready(function() {
 	$("#txtNombre").autocomplete("lib/ajax/cliente.php", {
-      width: 260,
+      width: 273,
       matchContains: true,
       selectFirst: false
     });
@@ -33,7 +33,7 @@
    <table>
  	<tr>
   	 <td>Nombre:</td>
-  	 <td><input type="text" name="txtNombre" id="txtNombre"/></td>
+  	 <td><input type="text" name="txtNombre" id="txtNombre" size="40"/></td>
   	 <td><input type="button" name="btnConsultar" value="Buscar" onClick="get();" /></td>
  	</tr>
    </table>
