@@ -11,10 +11,10 @@ id=0;
 function agregar() {
 	id=id+1;
 	$("#cantidad").append('<div id="area'+id+'"><input type="text" name="txtCantidad[]" size="5" /></div>');
-	$("#detalle").append('<div id="area'+id+'"><input type="text" name="txtDetalle[]" size="20" /></div>');
+	$("#detalle").append('<div id="area'+id+'"><input type="text" name="txtDetalle[]" size="35" /></div>');
 	$("#unitario").append('<div id="area'+id+'"><input type="text" name="txtUnitario[]" size="5" /></div>');
 	$("#descuento").append('<div id="area'+id+'"><input type="text" name="txtDescuento[]" size="5" /></div>');
-	$("#total").append('<div id="area'+id+'"><input type="text" name="txtTotal[]" size="20" onBlur="javascript:sumar();"/><a style="cursor:pointer" onclick="javascript:borrar('+id+'); javascript:sumar();"><img src="lib/img/quitar.png" width="16" height="16" /></a></div>');
+	$("#total").append('<div id="area'+id+'"><input type="text" name="txtTotal[]" size="15" onBlur="javascript:sumar();"/><a style="cursor:pointer" onclick="javascript:borrar('+id+'); javascript:sumar();"><img src="lib/img/quitar.png" width="16" height="16" /></a></div>');
 }
 function borrar(cual) {
 	$("#area"+cual).remove();
@@ -39,6 +39,15 @@ document.form1.txtTotal2.value = total;
   $().ready(function() {
 	$("#txtCliente").autocomplete("lib/ajax/cliente.php", {
       width: 153,
+      matchContains: true,
+      selectFirst: false
+    });
+  });
+</script>
+<script type="text/javascript">
+  $().ready(function() {
+	$("#txtDetalle").autocomplete("lib/ajax/producto.php", {
+      width: 243,
       matchContains: true,
       selectFirst: false
     });
@@ -85,7 +94,7 @@ function restults(data) {
         <h1>FACTURA</h1>
         <h1>N&deg;
           <label for="txtFactura"></label>
-  <input name="txtFactura" type="text" id="txtFactura" readonly="readonly" />
+  <input name="txtFactura" type="text" id="txtFactura" />
         </h1></td>
       </tr>
     </table></td>
@@ -121,7 +130,7 @@ function restults(data) {
           <label for="cboComuna"></label>
           <label for="txtCiudad"></label>
         </p></td>
-        <td width="255"><input name="txtCiudad" type="text" id="txtCiudad" readonly="readonly" /></td>
+        <td width="255"><input name="txtCiudad" type="text" id="txtCiudad" /></td>
       </tr>
       <tr>
         <td><p>RUT 
@@ -176,42 +185,42 @@ function restults(data) {
         </table></td>
         </tr>
       <tr>
-        <td width="70" align="center"><p>Cantidad</p></td>
-        <td width="189" align="center"><p>Detalle</p></td>
-        <td width="122" align="center"><p>Precio Unitario</p></td>
-        <td width="111" align="center"><p>Descuento</p></td>
-        <td width="183" align="center"><p>Total</p></td>
+        <td width="97" align="center"><p>Cantidad</p></td>
+        <td width="224" align="center"><p>Detalle</p></td>
+        <td width="104" align="center"><p>Precio Unitario</p></td>
+        <td width="83" align="center"><p>Descuento</p></td>
+        <td width="167" align="center"><p>Total</p></td>
         </tr>
       <tr>
         <td align="center" id="cantidad"><label for="txtCantidad"></label>
           <input size="5" type="text" name="txtCantidad[]" id="txtCantidad" /></td>
         <td align="center" id="detalle"><label for="txtDetalle"></label>
-          <input type="text" name="txtDetalle[]" id="txtDetalle" /></td>
+          <input name="txtDetalle[]" type="text" id="txtDetalle" size="35" /></td>
         <td align="center" id="unitario"><label for="txtUnitario"></label>
-          <input name="txtUnitario[]" type="text" id="txtUnitario" size="5" readonly="readonly" /></td>
+          <input name="txtUnitario[]" type="text" id="txtUnitario" size="5" /></td>
         <td align="center" id="descuento"><label for="txtDescuento"></label>
           <input size="5" type="text" name="txtDescuento[]" id="txtDescuento" /></td>
         <td align="center" id="total"><label for="txtTotal"></label>
-          <input name="txtTotal[]" type="text" id="txtTotal" onChange="javascript:sumar();" /><a href="javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
+          <input name="txtTotal[]" type="text" id="txtTotal" onChange="javascript:sumar();" size="15" /><a href="javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
       </tr>
       </table></td>
   </tr>
   <tr>
     <td><table width="675" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="476" align="right">Neto $</td>
-        <td width="199" align="center"><label for="txtNeto"></label>
-          <input name="txtNeto" type="text" id="txtNeto" readonly="readonly" /></td>
+        <td width="504" align="right">Neto $</td>
+        <td width="171" align="center"><label for="txtNeto"></label>
+          <input name="txtNeto" type="text" id="txtNeto" size="15" /></td>
       </tr>
       <tr>
         <td align="right">IVA $</td>
         <td align="center"><label for="txtIva"></label>
-          <input name="txtIva" type="text" id="txtIva" readonly="readonly" /></td>
+          <input name="txtIva" type="text" id="txtIva" size="15" /></td>
       </tr>
       <tr>
         <td align="right">Total $</td>
         <td align="center"><label for="txtTotal"></label>
-          <input name="txtTotal2" type="text" id="txtTotal" readonly="readonly" /></td>
+          <input name="txtTotal2" type="text" id="txtTotal" size="15" readonly="readonly" /></td>
       </tr>
     </table></td>
   </tr>
