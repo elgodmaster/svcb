@@ -59,9 +59,9 @@
   <!--<div id="logo"></div>-->
   <div class="container">
    <section id="content" name="content">
-    <form name="form1" action="validar.php" method="post">
+    <form name="form" action="validar.php" method="post">
      <div>
-      <input type="text" placeholder="Usuario (RUN)" name="txtNombre" onblur="javascript:return Rut(document.form1.txtNombre.value)"/>
+      <input type="text" placeholder="Usuario (RUN)" name="txtNombre" onblur="javascript:return Rut(document.form.txtNombre.value)"/>
      </div>
      <div>
       <input type="password" placeholder="Contraseña" name="txtClave" />
