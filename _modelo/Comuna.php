@@ -5,6 +5,19 @@
 	 private $id_comuna;
 	 private $nombre_comuna;
 	 
+	 function listarComuna($codigo)
+	 {
+		 $link = conexion();
+		 $query = "SELECT id_comuna, nombre_comuna FROM comuna WHERE provincia_id_provincia = '$codigo'";
+		 $consulta = mysql_query($query,$link);
+		 close($link);
+		 $num_total_registros = mysql_num_rows($consulta);
+		 if($num_total_registros>0)
+			 return $consulta;
+		 else
+			 return false;
+	 }
+	 
 	 //Get de la clase Comuna
 	 function getIdComuna()
 	 {

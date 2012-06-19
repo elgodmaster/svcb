@@ -5,6 +5,19 @@
 	 private $id_provincia;
 	 private $nombre_provincia;
 	 
+	 function listarProvincia($codigo)
+	 {
+		 $link = conexion();
+		 $query = "SELECT id_provincia, nombre_provincia FROM provincia WHERE region_id_region = '$codigo'";
+		 $consulta = mysql_query($query,$link);
+		 close($link);
+		 $num_total_registros = mysql_num_rows($consulta);
+		 if($num_total_registros>0)
+			 return $consulta;
+		 else
+			 return false;
+	 }
+	 
 	 //Get de la clase Ciudad
 	 function getIdProvincia()
 	 {
