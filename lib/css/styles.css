@@ -63,7 +63,8 @@ body{
 	}
 /*::::: CSS SECCION SITIO :::::*/
 .seccion{
-	background-color:#FFF;
+	background-color:#F3F7FF;
+	border: 1px solid #CCC;
 	border-radius:5px;
 	margin: 5px 5px 5px 5px;
 	padding: 15px 15px 15px 15px;

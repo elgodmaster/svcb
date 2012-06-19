@@ -1,7 +1,63 @@
 @charset "utf-8";
 /* CSS Document */
-#content form input[type="text"]:focus,
+/*#content form input[type="text"]:focus,
 #content form input[type="password"]:focus {
 	border: 1px solid #4cdae0;
 	outline: none;
+}*/
+
+#formulario, #busqueda {
+	font-family: "Tahoma", Geneva, sans-serif;
+	font-size: 0.85em;
+	height: 100%;
+	line-height: 1.5;
+	color: #0E0E0E;
+	margin-bottom:40px;
+	}
+	
+#busqueda {margin-bottom:-1px;}
+	
+#formulario label, #busqueda label {display: block;font-size: 14px;line-height: 2em;}
+
+#busqueda label {display: inline;}
+
+#formulario h2 {margin: 10px 0 15px 40px;}
+	
+#formulario .button {		
+	-moz-border-radius: 3px 3px 3px 3px;
+	-moz-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+	background-color: #C72D2D;
+	border: 1px solid #CF1010;
+	border-radius: 4px;
+	color: white !important;
+	cursor: pointer;
+	display: block;
+	font-weight: bold;
+	line-height: 18px;
+	min-width: 40px;
+	padding: 4px 15px 6px;
+	text-align: center;
+	text-shadow: 0 -1px 0 #333;
+	float: left;
+	margin-right: 10px;
+	margin-top: 10px;
 }
+
+#busqueda .button{		
+	-moz-border-radius: 3px 3px 3px 3px;
+	-moz-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+	background-color: #C72D2D;
+	border: 1px solid #CF1010;
+	border-radius: 4px;
+	color: white !important;
+	cursor: pointer;
+	font-weight: bold;
+	line-height: 18px;
+	min-width: 40px;
+	padding: 4px 15px 6px;
+	text-align: center;
+	text-shadow: 0 -1px 0 #333;
+	margin-right: 10px;
+}
+
+#formulario .button:hover, #busqueda .button:hover {background-color: #CF1010;}

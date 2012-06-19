@@ -1,7 +1,8 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <ul class="top-level">
 	<li><a href="administrador">Inicio</a></li>    
     <li>
-    	<a href="#">Gestión de Usuarios</a>
+    	<a href="#">GestiÃ³n de Usuarios</a>
     	<ul class="sub-level">
         	<li><a href="indexx.php?controlador=usuario&accion=ingresar">Ingresar Usuario</a></li>
             <li><a href="indexx.php?controlador=usuario&accion=listar">Listar Usuario</a></li>
@@ -16,7 +17,7 @@
         </ul>
     </li>
     <li>    
-    	<a href="#">Gestión de Clientes</a>
+    	<a href="#">GestiÃ³n de Clientes</a>
         <ul class="sub-level">
         	<li><a href="indexx.php?controlador=cliente&accion=ingresar">Ingresar Cliente</a></li>
            	<li><a href="indexx.php?controlador=cliente&accion=listar">Listar Cliente</a></li>
@@ -25,15 +26,15 @@
         </ul>
     </li>
     <li>
-    	<a href="#">Gestión de Productos</a>
+    	<a href="#">GestiÃ³n de Productos</a>
         <ul class="sub-level">
         	<li>
-            	<a href="#">Categoría de Productos</a>
+            	<a href="#">CategorÃ­a de Productos</a>
                 <ul class="sub-level">
-                	<li><a href="indexx.php?controlador=categoriaproducto&accion=ingresar">Ingresar Categoría Producto</a></li>
-                    <li><a href="indexx.php?controlador=categoriaproducto&accion=listar">Listar Categoría Producto</a></li>
-                    <li><a href="indexx.php?controlador=categoriaproducto&accion=modificar">Modificar Categoría Producto</a></li>
-                    <li><a href="indexx.php?controlador=categoriaproducto&accion=eliminar">Eliminar Categoría Producto</a></li>
+                	<li><a href="indexx.php?controlador=categoriaproducto&accion=ingresar">Ingresar CategorÃ­a Producto</a></li>
+                    <li><a href="indexx.php?controlador=categoriaproducto&accion=listar">Listar CategorÃ­a Producto</a></li>
+                    <li><a href="indexx.php?controlador=categoriaproducto&accion=modificar">Modificar CategorÃ­a Producto</a></li>
+                    <li><a href="indexx.php?controlador=categoriaproducto&accion=eliminar">Eliminar CategorÃ­a Producto</a></li>
                 </ul>
             </li>
             <li>
