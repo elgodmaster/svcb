@@ -25,7 +25,7 @@
 														 
 		 while ($registro = mysql_fetch_array($categoriax))
 		 {
-			 $existe = $registro['v_existe'];	
+			 $existe = $registro['v_existe'];
 			 break;		 
 		 }
 		 
