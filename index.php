@@ -2,9 +2,9 @@
   include("seguridad.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="es-ES">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>::: Arte Bismarck :::</title>
 <link href="lib/css/alerta.css" media="screen" rel="stylesheet" type="text/css">
 <link href="lib/css/styles.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@
         <td><div class="logo"></div></td>
         <td valign="bottom">
         <div class="sesion">
-         <p>Bienvenido <?php echo $_SESSION['tipo_usuario']; ?>: <?php echo $_SESSION['usuario']; ?> | <a href="cerrar.php?cerrar">Cerrar Sesión</a></p></div></td>
+         <p>Bienvenido <?php echo $_SESSION['tipo_usuario']; ?>: <?php echo $_SESSION['usuario']; ?> | <a href="cerrar.php?cerrar">Cerrar SesiÃ³n</a></p></div></td>
       </tr>
     </table>
 </header></td>
@@ -75,7 +75,7 @@
     </table></td>
   </tr>
   <tr>
-    <td><footer class="pie"><p>Copyright © 2012 Arte Bismarck | Todos los derechos reservados.</p></footer></td>
+    <td><footer class="pie"><p>Copyright Â© 2012 Arte Bismarck | Todos los derechos reservados.</p></footer></td>
   </tr>
 </table>
 </div>
