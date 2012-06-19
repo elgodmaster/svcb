@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="es-ES">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Ingresar Producto</title>
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
@@ -24,10 +24,10 @@
   <form id="form" name="form" method="post">
    <table>
     <tr>
-     <td>Categoría:</td>
+     <td>CategorÃ­a:</td>
      <td>
      <select style="width:305px;margin-left:2px" name="cboCategoria">
-      <option>Elige una Categoría</option>
+      <option>Elige una CategorÃ­a</option>
       <?php
        while ($reg = mysql_fetch_array($productos))
 	   {
@@ -42,7 +42,7 @@
      <td><input type="text" name="txtNombre" size="45" id="txtNombre" /></td>
     </tr>
     <tr>
-     <td>Descripción:</td>
+     <td>DescripciÃ³n:</td>
      <td><textarea name="txtaDescripcion" style="width:298px;min-height:100px;margin-left:2px"></textarea></td>
     </tr>
     <tr>
