@@ -1,7 +1,8 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <ul class="top-level">
 	<li><a href="vendedor">Inicio</a></li>
     <li>
-    	<a href="#">Gestión de Clientes</a>
+    	<a href="#">GestiÃ³n de Clientes</a>
         <ul class="sub-level">
         	<li><a href="indexx.php?controlador=cliente&accion=ingresar">Ingresar Cliente</a></li>
             <li><a href="indexx.php?controlador=cliente&accion=listar">Listar Cliente</a></li>
