@@ -3,7 +3,8 @@
     left:0px;
 	top:0px;
 	width:300px;
-	border: 1px solid #CFCFCF;
+	/*border: 1px solid #CFCFCF;*/
+	border: 1px solid black;
 	background-Color:white;
 	-moz-box-shadow: 0 0 6px #000;
 	-webkit-box-shadow: 0 0 6px black;
@@ -13,12 +14,15 @@
 	z-index: 10;
 	}
 
-.but {/*Imagen AE*/
-  position:absolute;
-  left:-63px;
-  top:-1px;
-  width:62px;
-  z-index: 1;
+.but { /*Imagen AE*/	
+	position:absolute;
+	left:-64px;
+	top:-1px;
+	width:62px;
+	z-index: 1;
+	border: 1px solid black;
+	border-right: none;
+	box-shadow: 0 0 6px 0 black;
 }
 
 .tstparent {/*Porte del marco completo*/

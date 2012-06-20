@@ -1,10 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
+
 /*#content form input[type="text"]:focus,
 #content form input[type="password"]:focus {
 	border: 1px solid #4cdae0;
 	outline: none;
 }*/
+
+label {display: block;font-size: 14px;line-height: 2em;}
 
 #formulario, #busqueda {
 	font-family: "Tahoma", Geneva, sans-serif;
@@ -16,8 +19,6 @@
 	}
 	
 #busqueda {margin-bottom:-1px;}
-	
-#formulario label, #busqueda label {display: block;font-size: 14px;line-height: 2em;}
 
 #busqueda label {display: inline;}
 
