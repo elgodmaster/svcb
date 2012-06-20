@@ -23,7 +23,7 @@
 <script type="text/javascript">
   $().ready(function() {
 	$("#txtNombre").autocomplete("lib/ajax/usuario.php", {
-      width: 260,
+      width: 105,
       matchContains: true,
       selectFirst: false
     });

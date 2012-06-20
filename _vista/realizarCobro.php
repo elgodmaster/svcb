@@ -21,7 +21,7 @@
   <h2>Realizar Cobro:</h2>
   <form id="form" name="form" method="post">
    <label for="nFactura">N° Factura:</label>
-   <input type="text" size="40" name="txtNombre" id="txtNombre"/>
+   <input type="text" size="40" name="txtNombre" id="txtNombre" autocomplete="off"/>
    <input type="button" class="button" name="btnConsultar" value="Buscar" onClick="get();" />
   </form>
  </div>

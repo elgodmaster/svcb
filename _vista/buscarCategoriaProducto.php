@@ -21,7 +21,7 @@
 <script type="text/javascript">
   $().ready(function() {
 	$("#txtNombre").autocomplete("lib/ajax/categoria_producto.php", {
-      width: 260,
+      width: 273,
       matchContains: true,
       selectFirst: false
     });

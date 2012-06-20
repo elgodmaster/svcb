@@ -10,7 +10,7 @@
 <script type="text/javascript">
   $().ready(function() {
 	$("#txtNombre").autocomplete("lib/ajax/cliente.php", {
-      width: 260,
+      width: 273,
       matchContains: true,
       selectFirst: false
     });
