@@ -2,7 +2,7 @@
 
  function ingresar()
  {
-	 if (isset($_REQUEST['txtRun']) && isset($_REQUEST['txtPassword']) && isset($_REQUEST['txtNombre']) && isset($_REQUEST['txtApat']) 
+	 if (isset($_REQUEST['txtRUN']) && isset($_REQUEST['txtPassword']) && isset($_REQUEST['txtNombre']) && isset($_REQUEST['txtApat']) 
 	     && isset($_REQUEST['txtAmat']) && isset($_REQUEST['cboUsuario']))
 	 {		 
 		 require("_modelo/Usuario.php");
@@ -14,7 +14,7 @@
 		 elseif ($_REQUEST['cboUsuario'] == 1003)
 		 	 $usuario = new Bodeguero();
 			 
-		 $usuario->setIdUsuario(addslashes($_REQUEST['txtRun']));
+		 $usuario->setIdUsuario(addslashes($_REQUEST['txtRUN']));
 		 $usuario->setPasswordUsuario(addslashes(md5($_REQUEST['txtPassword'])));
 		 $usuario->setNombreUsuario(addslashes(strtoupper($_REQUEST['txtNombre'])));
 		 $usuario->setApatUsuario(addslashes(strtoupper($_REQUEST['txtApat'])));

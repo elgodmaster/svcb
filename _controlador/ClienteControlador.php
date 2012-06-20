@@ -61,16 +61,16 @@
 			 {
 				 $cliente = new Cliente();
 			 	 $cliente->setIdCliente($registro['id_cliente']);
-			 	 $cliente->setNombreCliente($registro['nombre_cliente']);
-			 	 $cliente->setDireccionCliente($registro['direccion_cliente']);
-		 		 $cliente->setTelefonoCliente($registro['telefono_cliente']);
-		 	 	 $cliente->setEmailCliente($registro['mail_cliente']);
-		 	 	 $cliente->setGiroCliente($registro['giro_cliente']);
+			 	 $cliente->setNombreCliente(utf8_encode($registro['nombre_cliente']));
+			 	 $cliente->setDireccionCliente(utf8_encode($registro['direccion_cliente']));
+		 		 $cliente->setTelefonoCliente(utf8_encode($registro['telefono_cliente']));
+		 	 	 $cliente->setEmailCliente(utf8_encode($registro['mail_cliente']));
+		 	 	 $cliente->setGiroCliente(utf8_encode($registro['giro_cliente']));
 		 	 	 $cliente->setIndiceConfiabilidadCliente($registro['indice_confiabilidad']);
 				 $cliente->setEstadoCliente($registro['estado_cliente']);
 		 	 	 $comuna = new Comuna();
 			 	 $comuna->setIdComuna($registro['comuna_id_comuna']);
-			 	 $comuna->setNombreComuna($registro['nombre_comuna']);
+			 	 $comuna->setNombreComuna(utf8_encode($registro['nombre_comuna']));
 				 break;
 			 }
 			 
@@ -105,16 +105,16 @@
 			 {
 				 $cliente = new Cliente();
 			 	 $cliente->setIdCliente($registro['id_cliente']);
-			 	 $cliente->setNombreCliente($registro['nombre_cliente']);
-			 	 $cliente->setDireccionCliente($registro['direccion_cliente']);
-		 		 $cliente->setTelefonoCliente($registro['telefono_cliente']);
-		 	 	 $cliente->setEmailCliente($registro['mail_cliente']);
-		 	 	 $cliente->setGiroCliente($registro['giro_cliente']);
+			 	 $cliente->setNombreCliente(utf8_encode($registro['nombre_cliente']));
+			 	 $cliente->setDireccionCliente(utf8_encode($registro['direccion_cliente']));
+		 		 $cliente->setTelefonoCliente(utf8_encode($registro['telefono_cliente']));
+		 	 	 $cliente->setEmailCliente(utf8_encode($registro['mail_cliente']));
+		 	 	 $cliente->setGiroCliente(utf8_encode($registro['giro_cliente']));
 		 	 	 $cliente->setIndiceConfiabilidadCliente($registro['indice_confiabilidad']);
 				 $cliente->setEstadoCliente($registro['estado_cliente']);
 		 	 	 $comuna = new Comuna();
 			 	 $comuna->setIdComuna($registro['comuna_id_comuna']);
-			 	 $comuna->setNombreComuna($registro['nombre_comuna']);
+			 	 $comuna->setNombreComuna(utf8_encode($registro['nombre_comuna']));
 				 break;
 			 }
 			 require("_vista/modificarCliente.php");
