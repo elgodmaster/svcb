@@ -22,7 +22,7 @@
    <table border="1" width="100%">
  	<tr align="center">
      <td>N° Factura</td>
-     <td>Cliente</td>
+     <td>RUN Cliente</td>
   	 <td>Fecha Emisión</td>
      <td>Fecha Vencimiento</td>
      <td>Monto Total</td>

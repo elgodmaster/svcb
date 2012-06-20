@@ -5,14 +5,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php
  if($accion == 'ingresarstock')
  	 echo '<title>Ingresar Stock Producto</title>';
  elseif($accion == 'consultarproducto')
  	 echo '<title>Consultar Producto</title>';
 ?>
-<title></title>
+<link href="lib/css/formularios.css" rel="stylesheet" type="text/css" />
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src='lib/js/jquery.autocomplete.js'></script>
 <link href="lib/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
@@ -37,7 +37,7 @@
 
 <body>
 
- <div id="formulario">
+ <div id="busqueda">
   <?php
   if($accion == 'ingresarstock')
   	 echo '<h2>Ingresar Stock Producto</h2>';
@@ -45,13 +45,9 @@
   	 echo '<h2>Consultar Producto</h2>';
   ?>  
   <form id="form" name="form" method="post">
-   <table>
- 	<tr>
-  	 <td>Nombre:</td>
-  	 <td><input type="text" name="txtNombre" id="txtNombre" /></td>
-     <td><input type="button" name="btnConsultar" value="Buscar" onClick="get();" /></td>
- 	</tr>
-   </table>
+   <label for="nombreCliente">Nombre:</label>
+   <input type="text" size="40" name="txtNombre" id="txtNombre" />
+   <input type="button" class="button" name="btnConsultar" value="Buscar" onClick="get();" />
   </form>
  </div>
  
