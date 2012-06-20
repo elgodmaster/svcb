@@ -14,9 +14,9 @@
 <script type="text/javascript" src="lib/js/animate.js"></script>
 </head>
 
-<body>
+<body oncontextmenu="return false">
 
-<div class="contenedor" style="z-index: 9999;">
+<div class="contenedor">
 <table width="950" style="margin-top:10px;" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td>
