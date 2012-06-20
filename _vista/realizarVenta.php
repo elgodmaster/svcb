@@ -38,7 +38,7 @@ function restults(data) {
 	$("#txtTelefono").val(data.telefono_cliente);
 	}
 	$(document).ready(function(){
-		$("#btnCargar").click(function(){
+		$("#txtCliente").blur(function(){
 			var search_term = $("#txtCliente").val();
 			$.ajax({
 				data: "id="+search_term,
@@ -51,17 +51,23 @@ function restults(data) {
 			});
 		});
 	});
-$(document).ready(function(){
-	$("#btnCargar").click(function(){
-	var productos = new Array();
-	for(i=0;i<=id;i++){
-		prod = $("#txtDetalle"+i).val();
-		if(prod != ""){
-		productos[i] = i+prod;
-		alert(productos[i]);
-		}
-	}
-	});
+
+	
+	$(document).ready(function(){
+		$("#btnCargar").click(function(){
+			var search_term = document.getElementsByName('txtDetalle[]');
+				alert(search_term[0].value);
+			$.ajax({
+				data: search_term,
+				type: "POST",
+				dataType: "json",
+				url: "lib/ajax/precio_factura.php",
+				success: function(data){
+					alert('work');
+					alert(data[0].value);
+				}
+			});
+		});
 	});
 </script>
 <script language="javascript">
