@@ -10,12 +10,17 @@
 id=0;
 function agregar() {
 	id=id+1;
-	$("#cantidad").append('<div id="area'+id+'"><input type="text" name="txtCantidad[]" size="5" /></div>');
-	$("#detalle").append('<div id="area'+id+'"><input type="text" name="txtDetalle[]" size="35" /></div>');
-	$("#unitario").append('<div id="area'+id+'"><input type="text" name="txtUnitario[]" size="5" /></div>');
-	$("#descuento").append('<div id="area'+id+'"><input type="text" name="txtDescuento[]" size="5" /></div>');
-	$("#total").append('<div id="area'+id+'"><input type="text" name="txtTotal[]" size="15" onBlur="javascript:sumar();"/><a style="cursor:pointer" onclick="javascript:borrar('+id+'); javascript:sumar();"><img src="lib/img/quitar.png" width="16" height="16" /></a></div>');
-}
+	$("#cantidad").append('<div id="area'+id+'"><input type="text" name="txtCantidad[]" id="txtCantidad'+id+'" size="5" value="1" /></div>');
+	$("#detalle").append('<div id="area'+id+'"><input type="text" name="txtDetalle[]" id="txtDetalle'+id+'" size="35" /></div>');
+	$("#unitario").append('<div id="area'+id+'"><input type="text" name="txtUnitario[]" id="txtUnitario'+id+'" size="5" /></div>');
+	$("#descuento").append('<div id="area'+id+'"><input type="text" name="txtDescuento[]" id="txtDescuento'+id+'" size="5" value="0" /></div>');
+	$("#total").append('<div id="area'+id+'"><input type="text" name="txtTotal[]" id="txtTotal'+id+'" size="15" onBlur="javascript:sumar();"/><a style="cursor:pointer" onclick="javascript:borrar('+id+'); javascript:sumar();"><img src="lib/img/quitar.png" width="16" height="16" /></a></div>');
+	$('input[name^="txtDetalle"]').autocomplete("lib/ajax/producto.php", {
+                 width: 243,
+                 matchContains: true,
+                 selectFirst: false
+         });
+	}
 function borrar(cual) {
 	$("#area"+cual).remove();
 	$("#area"+cual).remove();
@@ -24,36 +29,6 @@ function borrar(cual) {
 	$("#area"+cual).remove();
 	return false;
 }
-</script>
-<script language="javascript">
-function sumar(){
-var total = 0;
-var elem = document.getElementsByName('txtTotal[]');
-for (i=0;i<elem.length;i++){
-  total += parseInt(elem[i].value);
-}
-document.form1.txtTotal2.value = total;
-}
-</script>
-<script type="text/javascript">
-  $().ready(function() {
-	$("#txtCliente").autocomplete("lib/ajax/cliente.php", {
-      width: 153,
-      matchContains: true,
-      selectFirst: false
-    });
-  });
-</script>
-<script type="text/javascript">
-  $().ready(function() {
-	$("#txtDetalle").autocomplete("lib/ajax/producto.php", {
-      width: 243,
-      matchContains: true,
-      selectFirst: false
-    });
-  });
-</script>
-<script type="text/javascript">
 function restults(data) {
 	$("#txtDireccion").val(data.direccion_cliente);
 	$("#txtRut").val(data.id_cliente);
@@ -76,11 +51,53 @@ function restults(data) {
 			});
 		});
 	});
+$(document).ready(function(){
+	$("#btnCargar").click(function(){
+	var productos = new Array();
+	for(i=0;i<=id;i++){
+		prod = $("#txtDetalle"+i).val();
+		if(prod != ""){
+		productos[i] = i+prod;
+		alert(productos[i]);
+		}
+	}
+	});
+	});
+</script>
+<script language="javascript">
+function sumar(){
+var total = 0;
+var elem = document.getElementsByName('txtTotal[]');
+for (i=0;i<elem.length;i++){
+  total += parseInt(elem[i].value);
+}
+document.form1.txtTotal2.value = total;
+}
+</script>
+<script type="text/javascript">
+  $().ready(function() {
+	$("#txtCliente").autocomplete("lib/ajax/cliente.php", {
+      width: 153,
+      matchContains: true,
+      selectFirst: false
+    });
+  });
+</script>
+<script type="text/javascript">
+  $().ready(function() {
+	$("#txtDetalle0").autocomplete("lib/ajax/producto.php", {
+      width: 243,
+      matchContains: true,
+      selectFirst: false
+    });
+  });
+</script>
+<script type="text/javascript">
 </script>
 </head>
 
 <body>
-<form id="form1" name="form1" method="post" action="test_pdf.php">
+<form id="form1" name="form1" method="post" action="">
 <table width="675" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><table width="675" border="0" cellspacing="0" cellpadding="0">
@@ -119,8 +136,7 @@ function restults(data) {
         <td width="80"><p>Se&ntilde;or(es) 
           <label for="txtCliente"></label>
         </p></td>
-        <td width="260"><input name="txtCliente" type="text" id="txtCliente" />  <input type="button" name="btnCargar" id="btnCargar" value="Cargar Datos" /></td>
-        <td colspan="2">&nbsp;</td>
+        <td width="260"><input name="txtCliente" type="text" id="txtCliente" /></td>
         </tr>
       <tr>
         <td><p>Direcci&oacute;n 
@@ -192,13 +208,13 @@ function restults(data) {
         </tr>
       <tr>
         <td align="center" id="cantidad"><label for="txtCantidad"></label>
-          <input size="5" type="text" name="txtCantidad[]" id="txtCantidad" /></td>
+          <input size="5" type="text" name="txtCantidad[]" id="txtCantidad" value="1" /></td>
         <td align="center" id="detalle"><label for="txtDetalle"></label>
-          <input name="txtDetalle[]" type="text" id="txtDetalle" size="35" /></td>
+          <input name="txtDetalle[]" type="text" id="txtDetalle0" size="35" /></td>
         <td align="center" id="unitario"><label for="txtUnitario"></label>
-          <input name="txtUnitario[]" type="text" id="txtUnitario" size="5" /></td>
+          <input name="txtUnitario[]" type="text" id="txtUnitario0" size="5" /></td>
         <td align="center" id="descuento"><label for="txtDescuento"></label>
-          <input size="5" type="text" name="txtDescuento[]" id="txtDescuento" /></td>
+          <input size="5" type="text" name="txtDescuento[]" id="txtDescuento" value="0" /></td>
         <td align="center" id="total"><label for="txtTotal"></label>
           <input name="txtTotal[]" type="text" id="txtTotal" onChange="javascript:sumar();" size="15" /><a href="javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
       </tr>
@@ -224,7 +240,7 @@ function restults(data) {
     </table></td>
   </tr>
   <tr>
-    <td align="right"><label for="txtArea"></label>      <input type="submit" name="btnEnviar" id="btnEnviar" value="Enviar" /></td>
+    <td align="center"><input type="button" name="btnCargar" id="btnCargar" value="Cargar Datos"/><input type="button" name="btnEnviar" id="btnEnviar" value="Realizar Venta" /></td>
   </tr>
 </table>
 </form>
