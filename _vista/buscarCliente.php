@@ -50,12 +50,12 @@
   ?>
   <form id="form" name="form" method="post">
    <label for="nombreCliente">Nombre:</label>
-   <input type="text" name="txtNombre" id="txtNombre" />
+   <input type="text" size="40" name="txtNombre" id="txtNombre" />
    <?php
-     if($accion == 'eliminar')
-	 	 echo '<input type="button" class="button" name="btnConsultar" value="Eliminar" onClick="get();" />';
-	 else
-	     echo '<input type="button" class="button" name="btnConsultar" value="Buscar" onClick="get();" />';
+	if($accion == 'eliminar')
+		echo '<input type="button" class="button" name="btnConsultar" value="Eliminar" onClick="get();" />';
+	else
+		echo '<input type="button" class="button" name="btnConsultar" value="Buscar" onClick="get();" />';
    ?>
   </form>
  </div>
