@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Ingresar Producto</title>
+<link href="lib/css/formularios.css" rel="stylesheet" type="text/css" />
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 	function get(){
@@ -19,13 +20,12 @@
 
 <body>
 
- <div>
-  <h2>Ingresar Producto</h2>
+ <div id="formulario">
   <form id="form" name="form" method="post">
-   <table>
-    <tr>
-     <td>Categoría:</td>
-     <td>
+   <dl>
+    <dt><h2>Ingresar Producto</h2></dt>
+    <dd><label for="categoriaProducto">Categoría Producto</label></dd>
+    <dd>
      <select style="width:305px;margin-left:2px" name="cboCategoria">
       <option>Elige una Categoría</option>
       <?php
@@ -35,33 +35,19 @@
 	   }
 	  ?>
      </select>
-     </td>
-    </tr>
-    <tr>
-     <td>Nombre:</td>
-     <td><input type="text" name="txtNombre" size="45" id="txtNombre" /></td>
-    </tr>
-    <tr>
-     <td>Descripción:</td>
-     <td><textarea name="txtaDescripcion" style="width:298px;min-height:100px;margin-left:2px"></textarea></td>
-    </tr>
-    <tr>
-     <td>Precio:</td>
-     <td><input type="text" name="txtPrecio" size="45" /></td>
-    </tr>
-    <tr>
-     <td>Stock Real:</td>
-     <td><input type="text" name="txtStockR" size="45" /></td>
-    </tr>
-    <tr>
-     <td>Stock Minimo:</td>
-     <td><input type="text" name="txtStockM" size="45" /></td>
-    </tr>
-    <tr>
-     <td></td>
-     <td><input type="button" name="btnConsultar" value="Ingresar" onClick="get();" /><input type="reset" /></td>
-    </tr>
-   </table>
+    </dd>
+    <dd><label for="nombreProducto">Nombre Producto</label></dd>
+    <dd><input type="text" name="txtNombre" size="45" id="txtNombre" /></dd>    
+    <dd><label for="descripcionProducto">Descripción Producto</label></dd>
+    <dd><textarea name="txtaDescripcion" style="width:298px;min-height:100px;margin-left:2px"></textarea></dd>
+    <dd><label for="precioProducto">Precio Producto</label></dd>
+    <dd><input type="text" name="txtPrecio" size="45" /></dd>
+    <dd><label for="stockRealProducto">Stock Real</label></dd>
+    <dd><input type="text" name="txtStockR" size="45" /></dd>
+    <dd><label for="stockMinimoProducto">Stock Mínimo</label></dd>
+    <dd><input type="text" name="txtStockM" size="45" /></dd>
+    <dd><input type="button" class="button" value="Ingresar" onClick="get();" /><input class="button" type="reset" /></dd>
+   </dl>
   </form>
  </div>
  
