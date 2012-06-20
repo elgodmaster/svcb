@@ -16,13 +16,14 @@
  elseif($accion == 'modificarpassword')
  	 echo '<title>Modificar Password</title>';
 ?>
+<link href="lib/css/formularios.css" rel="stylesheet" type="text/css" />
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src='lib/js/jquery.autocomplete.js'></script>
 <link href="lib/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
   $().ready(function() {
 	$("#txtNombre").autocomplete("lib/ajax/usuario.php", {
-      width: 153,
+      width: 260,
       matchContains: true,
       selectFirst: false
     });
@@ -40,7 +41,7 @@
 
 <body>
 
- <div id="formulario">
+ <div id="busqueda">
   <?php
    if($accion == 'listar')
    	   echo '<h2>Listar Usuario</h2>';
@@ -52,21 +53,16 @@
    	   echo '<h2>Modificar Password Usuario</h2>';
   ?>
   <form id="form" name="form" method="post">
-   <table>
-    <tr>
-  	 <td>RUN:</td>
-  	 <td><input type="text" name="txtNombre" id="txtNombre" /></td>
-     <td>
-      <?php
-	   if($accion == 'eliminar')
-	   		echo '<input type="button" name="btnConsultar" value="Eliminar" onClick="get();" />';
-	   if($accion == 'modificarpassword')
-	   		echo '<input type="button" name="btnConsultar" value="Modificar Password" onClick="get();" />';
-	   else
-	   		echo '<input type="button" name="btnConsultar" value="Buscar" onClick="get();" />';
-	  ?>
-    </tr>
-   </table>
+   <label for="runCliente">RUN:</label>
+   <input type="text" size="12" name="txtNombre" id="txtNombre" />
+   <?php
+	if($accion == 'eliminar')
+		echo '<input type="button" class="button" name="btnConsultar" value="Eliminar" onClick="get();" />';
+	elseif($accion == 'modificarpassword')
+	   	echo '<input type="button" class="button" name="btnConsultar" value="Modificar Password" onClick="get();" />';
+	else
+		echo '<input type="button" class="button" name="btnConsultar" value="Buscar" onClick="get();" />';
+   ?>
   </form>
  </div>
  
