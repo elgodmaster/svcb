@@ -1,9 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Modificar Cliente</title>
+<link href="lib/css/formularios.css" rel="stylesheet" type="text/css" />
 <script src="lib/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="lib/js/dependencias.js"></script>
 <script type="text/javascript">
 	function get2(){
 		$.post('indexx.php?controlador=cliente&accion=modificar', { 
@@ -21,43 +23,40 @@
 
  <div id="formulario">
   <form id="form1" name="form1" method="post">
-   <table>
- 	<tr>
-  	 <td>RUN:</td>
-  	 <td><input type="text" name="txtRUN" value="<?php echo $cliente->getIdCliente() ?>" readonly="readonly" /></td>
- 	</tr>
- 	<tr>
-  	 <td>Nombre:</td>
-     <td><input type="text" name="txtNombreNuevo" size="50" value="<?php echo $cliente->getNombreCliente() ?>" /></td>
-	 </tr>
-    <tr>
-     <td>Direcci�n:</td>
-     <td><input type="text" name="txtDireccionNueva" size="50" value="<?php echo $cliente->getDireccionCliente() ?>" /></td>
-    </tr>
-    <tr>
-     <td>Comuna:</td>
-     <td>
+   <dl>
+    <dd><label for="runCliente">RUN Cliente</label></dd>
+    <dd><input type="text" name="txtRUN" value="<?php echo $cliente->getIdCliente() ?>" readonly="readonly" /></dd>
+    <dd><label for="nombreCliente">Nombre Cliente</label></dd>
+    <dd><input type="text" name="txtNombreNuevo" size="50" value="<?php echo $cliente->getNombreCliente() ?>" /></dd>
+    <dd><label for="direccionCliente">Dirección Cliente</label></dd>
+    <dd><input type="text" name="txtDireccionNueva" size="50" value="<?php echo $cliente->getDireccionCliente() ?>" /></dd>
+    <dd><label for="regionCliente">Región</label></dd>
+    <dd>
+     <select name="cboRegion" id="cboRegion">
+      <option value="0">Selecciona Uno...</option>
+     </select>
+    </dd>
+    <dd><label for="provinciaCliente">Provincia</label></dd>
+    <dd>
+     <select name="cboProvincia" id="cboProvincia">
+      <option value="0">Selecciona Uno...</option>
+     </select>
+    </dd>
+    <dd><label for="comunaCliente">Comuna</label></dd>
+    <dd>
      <select name="cboComunaNueva">
       <option value="0">Elegir Comuna</option>
       <option value="1001" selected="selected"><?php echo $comuna->getNombreComuna() ?></option>
      </select>
-     </td>
-    </tr>
-    <tr>
-     <td>Telefono:</td>
-     <td><input type="text" name="txtTelefonoNuevo" size="50" value="<?php echo $cliente->getTelefonoCliente() ?>" /></td>
-    </tr>
-    <tr>
-     <td>Email:</td>
-     <td><input type="text" name="txtEmailNuevo" size="50" value="<?php echo $cliente->getEmailCliente() ?>" /></td>
-    </tr>
-    <tr>
-     <td>Giro:</td>
-     <td><input type="text" name="txtGiroNuevo" size="50" value="<?php echo $cliente->getGiroCliente() ?>" /></td>
-    </tr>
- 	<tr>
-  	 <td>Estado:</td>
-  	 <td>
+    </dd>
+    <dd><label for="telefonoCliente">Teléfono Cliente</label></dd>
+    <dd><input type="text" name="txtTelefonoNuevo" size="50" value="<?php echo $cliente->getTelefonoCliente() ?>" /></dd>
+    <dd><label for="emailCliente">Email Cliente</label></dd>
+    <dd><input type="text" name="txtEmailNuevo" size="50" value="<?php echo $cliente->getEmailCliente() ?>" /></dd>
+    <dd><label for="giroCliente">Giro Cliente</label></dd>
+    <dd><input type="text" name="txtGiroNuevo" size="50" value="<?php echo $cliente->getGiroCliente() ?>" /></dd>
+    <dd><label for="estadoCliente">Estado Cliente</label></dd>
+    <dd>
      <select name="cboEstado">
   	 <?php
 	    if($cliente->getEstadoCliente() == 'ACTIVO')
@@ -72,13 +71,12 @@
 		}
   	 ?>
      </select>
-  	 </td>
- 	</tr>
- 	<tr>
-  	 <td></td>
-  	 <td colspan="2"><input type="button" name="btnConsultar" value="Modificar" onClick="get2();" /></td>
- 	</tr>
-   </table>
+    </dd>
+    <dd>
+     <input type="button" class="button" name="btnConsultar" value="Modificar" onClick="get2();" />
+     <input type="button" class="button" value="Restablecer" onClick="get();" />
+    </dd>
+   </dl>
   </form>
  </div>
  
