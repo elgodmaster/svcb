@@ -2,29 +2,38 @@
  class Documento_Pago_PDF
  {
 	 //Variables de la clase Documento_Pago_PDF
-	 private $id_documento;
-	 private $nombre_documento;
+	 private $id_documento_pago_pdf;
+	 private $cliente_id_cliente;
 	 
-	 //Get de la clase Documento_Pago_PDF
-	 function getIdDocumento()
+	 function listarFacturaPDF($id_cliente)
 	 {
-		 return $this->id_documento;
+		 $link = conexion();
+		 $sp = "call listarFacturaPDF('$id_cliente')";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
 	 }
 	 
-	 function getNombreDocumento()
+	 //Get de la clase Documento_Pago_PDF
+	 function getIdDocumentoPagoPDF()
 	 {
-		 return $this->nombre_documento;
+		 return $this->id_documento_pago_pdf;
+	 }
+	 
+	 function getClienteDocumentoPagoPDF()
+	 {
+		 return $this->cliente_id_cliente;
 	 }
 	 
 	 //Set de la clase Documento_Pago_PDF
-	 function setIdDocumento($id_documento)
+	 function setIdDocumentoPagoPDF($id_documento_pago_pdf)
 	 {
-		 $this->id_documento = $id_documento;
+		 $this->id_documento_pago_pdf = $id_documento_pago_pdf;
 	 }
 	 
-	 function setNombreDocumento($nombre_documento)
+	 function setClienteDocumentoPagoPDF($cliente_id_cliente)
 	 {
-		 $this->nombre_documento = $nombre_documento;
+		 $this->cliente_id_cliente = $cliente_id_cliente;
 	 }
  }
 ?>

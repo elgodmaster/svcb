@@ -1,4 +1,4 @@
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <div class="tstparent">
  <div id="tst">
   <img src="lib/img/AE.png" class="but" style="cursor:pointer" onClick="S.Slide();" />
@@ -17,7 +17,7 @@
 		 {
     ?>
     <div class="q_item first">
-     <p class="q q_headline">La factura <?php echo $out1[$i]->getIdDocumentoPago()?> del cliente <?php echo $out2[$i]->getNombreCliente()?> vence el <?php echo date("d-m-Y",strtotime($out1[$i]->getFechaVencimientoDocumentoPago()))?> por un monto $<?php echo number_format($out1[$i]->getTotalDocumentoPago(),0, ",", ".")?></p>
+     <p class="q q_headline">La Factura N° <?php echo $out1[$i]->getIdDocumentoPago()?> asociada al Cliente <?php echo $out2[$i]->getNombreCliente()?> vence el <?php echo date("d-m-Y",strtotime($out1[$i]->getFechaVencimientoDocumentoPago()))?> por un monto $<?php echo number_format($out1[$i]->getTotalDocumentoPago(),0, ",", ".")?>.</p>
      <div style="clear:both"></div>
     </div>
     <?php
@@ -26,7 +26,7 @@
 	 {
 	?>    
     <div class="q_item">
-     <p class="q q_headline">La factura <?php echo $out1[$i]->getIdDocumentoPago()?> del cliente <?php echo $out2[$i]->getNombreCliente()?> vence el <?php echo date("d-m-Y",strtotime($out1[$i]->getFechaVencimientoDocumentoPago()))?> por un monto $<?php echo number_format($out1[$i]->getTotalDocumentoPago(),0, ",", ".")?></p>
+     <p class="q q_headline">La Factura N° <?php echo $out1[$i]->getIdDocumentoPago()?> asociada al Cliente <?php echo $out2[$i]->getNombreCliente()?> vence el <?php echo date("d-m-Y",strtotime($out1[$i]->getFechaVencimientoDocumentoPago()))?> por un monto $<?php echo number_format($out1[$i]->getTotalDocumentoPago(),0, ",", ".")?>.</p>
      <div style="clear:both"></div>
     </div>
     <?php

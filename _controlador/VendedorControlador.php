@@ -42,19 +42,19 @@
 				 }
 				 elseif($registro['v_existe'] == 1)
 				 {
-					 echo("La factura N '$codigo_factura' se encuentra pagada o anulada.");
+					 echo "<label>La factura N '$codigo_factura' se encuentra pagada o anulada.</label>";
 					 exit;
 				 }
 				 else
 				 {
-					 echo("La factura N '$codigo_factura' no existe en el sistema.");
+					 echo "<label>La factura N '$codigo_factura' no existe en el sistema.</label>";
 					 exit;
 				 }				 
 			 }
 			 require("_vista/actualizarEstadoCobro.php");
 		 }
 		 else
-			 echo("La factura N° '$codigo_factura' no existe en el sistema.");
+			 echo "<label>La factura N° '$codigo_factura' no existe en el sistema.</label>";
 	 }
 	 elseif(isset($_REQUEST['txtCodigo']) && isset($_REQUEST['cboEstado']))
 	 {
@@ -87,6 +87,7 @@
 	 {
 		 require("_modelo/Usuario.php");
 		 require("_modelo/Documento_Pago.php");
+		 require("_modelo/Documento_Pago_PDF.php");
 		 
 		 $nombre_cliente = $_REQUEST['txtNombre'];
 		 
@@ -109,10 +110,20 @@
 				 $documento->setEstadoDocumentoPago($registro['estado_documento_pago']);
 				 $out[]= $documento;
 			 }
+			 $pdf = new Documento_Pago_PDF();
+			 $doc_pdfx = $pdf->listarFacturaPDF($cliente_name);			 
+			 			 
+			 $out2 = array();
+			 while ($registro2 = mysql_fetch_assoc($doc_pdfx))
+			 {
+				 $doc_pdf = new Documento_Pago_PDF();
+				 $doc_pdf->setIdDocumentoPagoPDF($registro2['id_documento_pago']);	
+				 $out2[]= $doc_pdf;
+			 }			 
 			 require("_vista/ventasxCliente2.php");
 		 }
 		 else
-		 	 echo "El cliente '$nombre_cliente' no registra ventas en el sistema";
+		 	 echo "<label>El cliente '$nombre_cliente' no registra ventas en el sistema.</label>";
 			 exit;
 	 }
 	 else
@@ -151,7 +162,7 @@
 		require("_vista/clienteMoroso.php");
 	}
 	else
-		echo "¡Felicitaciones! No existen clientes morosos en el sistema.";
+		echo "<label>¡Felicitaciones! No existen clientes morosos en el sistema.</label>";
 		exit;
  }
  
