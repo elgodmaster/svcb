@@ -56,7 +56,6 @@ function restults(data) {
 	$(document).ready(function(){
 		$("#btnCargar").click(function(){
 			var search_term = document.getElementsByName('txtDetalle[]');
-				alert(search_term[0].value);
 			$.ajax({
 				data: search_term,
 				type: "POST",
@@ -64,7 +63,7 @@ function restults(data) {
 				url: "lib/ajax/precio_factura.php",
 				success: function(data){
 					alert('work');
-					alert(data[0].value);
+					//alert(data);
 				}
 			});
 		});
