@@ -165,7 +165,7 @@ function restults(data) {
 </head>
 
 <body>
-<form id="form1" name="form1" method="post" action="">
+<form id="form1" name="form1" method="post" action="test_pdf.php">
 <table width="675" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><table width="675" border="0" cellspacing="0" cellpadding="0">
@@ -308,7 +308,7 @@ function restults(data) {
     </table></td>
   </tr>
   <tr>
-    <td align="center"><input type="button" name="btnEnviar" id="btnEnviar" value="Realizar Venta" /></td>
+    <td align="center"><input type="submit" name="btnEnviar" o id="btnEnviar" value="Realizar Venta" /></td>
   </tr>
 </table>
 </form>
