@@ -14,8 +14,7 @@
 id=0;
 function agregar() {
 	id=id+1;
-	$("#cantidad").append('<div id="area'+id+'"><input type="text" name="txtCantidad[]" id="txtCantidad'+id+'" onChange="calcular('+id+');" dir="rtl" size="5" value="1" /></div>'
-	);
+	$("#cantidad").append('<div id="area'+id+'"><input type="text" name="txtCantidad[]" id="txtCantidad'+id+'" onChange="calcular('+id+');" dir="rtl" size="5" value="1" /></div>');
 	$("#detalle").append('<div id="area'+id+'"><input type="text" name="txtDetalle[]" id="txtDetalle'+id+'" size="35" /></div>');
 	$("#unitario").append('<div id="area'+id+'"><input type="text" name="txtUnitario[]" id="txtUnitario'+id+'" dir="rtl" size="5" onChange="calcular('+id+');" /></div>');
 	$("#descuento").append('<div id="area'+id+'"><input type="text" name="txtDescuento[]" id="txtDescuento'+id+'" onChange="calcular('+id+');" dir="rtl" size="5" value="0" /></div>');
@@ -26,9 +25,8 @@ function agregar() {
                  matchContains: true,
                  selectFirst: false
          });
-	}
 	
-	$('input[name^="txtDetalle"]').blur(function(){
+		$('input[name^="txtDetalle"]').blur(function(){
 			//alert('entra');
 			var search_term = $("#txtDetalle"+id).val();
 			$.ajax({
@@ -43,6 +41,7 @@ function agregar() {
 				}
 		});
 	});
+	}
 	
 	
 function borrar(cual) {
