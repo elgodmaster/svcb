@@ -1,20 +1,26 @@
+<?php
+ date_default_timezone_set("Chile/Continental");
+ setlocale(LC_TIME, 'spanish');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Documento sin t&iacute;tulo</title>
-<script src="jquery-1.7.2.min.js"></script>
+<title>Realizar Venta</title>
+<script src="lib/js/jquery-1.7.2.min.js"></script><!-- -->
 <script type="text/javascript" src='lib/js/jquery.autocomplete.js'></script>
 <link href="lib/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 id=0;
 function agregar() {
 	id=id+1;
-	$("#cantidad").append('<div id="area'+id+'"><input type="text" name="txtCantidad[]" id="txtCantidad'+id+'" size="5" value="1" /></div>');
+	$("#cantidad").append('<div id="area'+id+'"><input type="text" name="txtCantidad[]" id="txtCantidad'+id+'" onChange="calcular('+id+');" size="5" value="1" /></div>'
+	);
 	$("#detalle").append('<div id="area'+id+'"><input type="text" name="txtDetalle[]" id="txtDetalle'+id+'" size="35" /></div>');
-	$("#unitario").append('<div id="area'+id+'"><input type="text" name="txtUnitario[]" id="txtUnitario'+id+'" size="5" /></div>');
-	$("#descuento").append('<div id="area'+id+'"><input type="text" name="txtDescuento[]" id="txtDescuento'+id+'" size="5" value="0" /></div>');
+	$("#unitario").append('<div id="area'+id+'"><input type="text" name="txtUnitario[]" id="txtUnitario'+id+'" size="5" onChange="calcular('+id+');" /></div>');
+	$("#descuento").append('<div id="area'+id+'"><input type="text" name="txtDescuento[]" id="txtDescuento'+id+'" onChange="calcular('+id+');" size="5" value="0" /></div>');
 	$("#total").append('<div id="area'+id+'"><input type="text" name="txtTotal[]" id="txtTotal'+id+'" size="15" onBlur="javascript:sumar();"/><a style="cursor:pointer" onclick="javascript:borrar('+id+'); javascript:sumar();"><img src="lib/img/quitar.png" width="16" height="16" /></a></div>');
+	
 	$('input[name^="txtDetalle"]').autocomplete("lib/ajax/producto.php", {
                  width: 243,
                  matchContains: true,
@@ -29,14 +35,40 @@ function borrar(cual) {
 	$("#area"+cual).remove();
 	return false;
 }
+
 function restults(data) {
 	$("#txtDireccion").val(data.direccion_cliente);
 	$("#txtRut").val(data.id_cliente);
-	$("#txtCiudad").val(data.nombre_comuna);
-	$("#txtComuna").val(data.comuna_id_comuna);
+	$("#txtProvincia").val(data.nombre_provincia);
+	$("#txtComuna").val(data.nombre_comuna);
 	$("#txtGiro").val(data.giro_cliente);
 	$("#txtTelefono").val(data.telefono_cliente);
 	}
+	
+	$(document).ready(function(){
+		$("#txtDetalle"+id).blur(function(){
+			//alert('entra');
+			var search_term = $("#txtDetalle"+id).val();
+			$.ajax({
+				data: "id="+search_term,
+				type: "POST",
+				dataType: "json",
+				url: "lib/ajax/producto_factura.php",
+				success: function(data){
+					$("#txtUnitario"+id).val(data.precio_producto);
+					//alert(data.precio_producto);
+					calcular(id);
+				}
+			});
+		});
+	});
+	
+	function gua()//borrar
+	{
+		//alert('chupa la que cuelga');
+		alert(id);
+	}
+	
 	$(document).ready(function(){
 		$("#txtCliente").blur(function(){
 			var search_term = $("#txtCliente").val();
@@ -51,34 +83,34 @@ function restults(data) {
 			});
 		});
 	});
+</script>
 
-	
-	$(document).ready(function(){
-		$("#btnCargar").click(function(){
-			var search_term = document.getElementsByName('txtDetalle[]');
-			$.ajax({
-				data: search_term,
-				type: "POST",
-				dataType: "json",
-				url: "lib/ajax/precio_factura.php",
-				success: function(data){
-					alert('work');
-					//alert(data);
-				}
-			});
-		});
-	});
-</script>
 <script language="javascript">
-function sumar(){
-var total = 0;
-var elem = document.getElementsByName('txtTotal[]');
-for (i=0;i<elem.length;i++){
-  total += parseInt(elem[i].value);
-}
-document.form1.txtTotal2.value = total;
-}
+	function sumar(){
+		var total = 0;
+		var elem = document.getElementsByName('txtTotal[]');
+		for (i=0;i<elem.length;i++){
+		  total += parseInt(elem[i].value);
+		}
+		document.form1.txtTotal2.value = total;
+	}
+	
+	function calcular(id){ //multiplicar
+		cantidad = document.getElementById("txtCantidad"+id).value;
+		precio = document.getElementById("txtUnitario"+id).value;
+		multiplicacion = cantidad*precio;	
+		document.getElementById("txtTotal"+id).value = multiplicacion;	
+		descuento(id);
+	}
+	
+	function descuento(id){	
+		total = document.getElementById("txtTotal"+id).value;
+		desc = document.getElementById("txtDescuento"+id).value;
+		descuentox = total-desc;
+		document.getElementById("txtTotal"+id).value = descuentox;
+	}
 </script>
+
 <script type="text/javascript">
   $().ready(function() {
 	$("#txtCliente").autocomplete("lib/ajax/cliente.php", {
@@ -88,17 +120,17 @@ document.form1.txtTotal2.value = total;
     });
   });
 </script>
+
 <script type="text/javascript">
   $().ready(function() {
-	$("#txtDetalle0").autocomplete("lib/ajax/producto.php", {
+	$("#txtDetalle"+id).autocomplete("lib/ajax/producto.php", {
       width: 243,
       matchContains: true,
       selectFirst: false
     });
   });
 </script>
-<script type="text/javascript">
-</script>
+
 </head>
 
 <body>
@@ -127,13 +159,13 @@ document.form1.txtTotal2.value = total;
       <tr>
         <td colspan="4" align="right"><p>Santiago
           <label for="txtDia"></label>
-          <input size="5" type="text" name="txtDia" id="txtDia" />
+          <input size="5" type="text" name="txtDia" id="txtDia" readonly="readonly" value="<?php print strftime("%d")?>" />
           de 
           <label for="txtMes"></label>
-          <input type="text" name="txtMes" id="txtMes" />
+          <input type="text" name="txtMes" id="txtMes" readonly="readonly" value="<?php print strftime("%B")?>" />
         del 
         <label for="txtAno"></label>
-        <input size="5" type="text" name="txtAno" id="txtAno" />
+        <input size="5" type="text" name="txtAno" id="txtAno" readonly="readonly" value="<?php print strftime("%Y")?>" />
         </p>
         </td>
         </tr>
@@ -148,10 +180,10 @@ document.form1.txtTotal2.value = total;
           <label for="txtDireccion"></label>
         </p></td>
         <td><input name="txtDireccion" type="text" id="txtDireccion" readonly="readonly" /></td>
-        <td width="80"><p>Ciudad 
-          <label for="txtCiudad"></label>
+        <td width="80"><p>Provincia
+          <label for="txtProvincia"></label>
         </p></td>
-        <td width="255"><input name="txtCiudad" type="text" id="txtCiudad" readonly="readonly"/></td>
+        <td width="255"><input name="txtProvincia" type="text" id="txtProvincia" readonly="readonly"/></td>
       </tr>
       <tr>
         <td><p>RUT 
@@ -213,15 +245,15 @@ document.form1.txtTotal2.value = total;
         </tr>
       <tr>
         <td align="center" id="cantidad"><label for="txtCantidad"></label>
-          <input size="5" type="text" name="txtCantidad[]" id="txtCantidad" value="1" /></td>
+          <input size="5" type="text" name="txtCantidad[]" id="txtCantidad0" value="1" onChange="calcular(0);" /></td>
         <td align="center" id="detalle"><label for="txtDetalle"></label>
           <input name="txtDetalle[]" type="text" id="txtDetalle0" size="35" /></td>
         <td align="center" id="unitario"><label for="txtUnitario"></label>
-          <input name="txtUnitario[]" type="text" id="txtUnitario0" size="5" /></td>
+          <input name="txtUnitario[]" type="text" id="txtUnitario0" onChange="calcular(0);" size="5" /></td>
         <td align="center" id="descuento"><label for="txtDescuento"></label>
-          <input size="5" type="text" name="txtDescuento[]" id="txtDescuento" value="0" /></td>
+          <input size="5" type="text" name="txtDescuento[]" id="txtDescuento0" onChange="calcular(0);" value="0" /></td>
         <td align="center" id="total"><label for="txtTotal"></label>
-          <input name="txtTotal[]" type="text" id="txtTotal" onChange="javascript:sumar();" size="15" /><a href="javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
+          <input name="txtTotal[]" type="text" id="txtTotal0" onChange="javascript:sumar();" readonly="readonly" size="15" /><a href="javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
       </tr>
       </table></td>
   </tr>
@@ -245,7 +277,7 @@ document.form1.txtTotal2.value = total;
     </table></td>
   </tr>
   <tr>
-    <td align="center"><input type="button" name="btnCargar" id="btnCargar" value="Cargar Datos"/><input type="button" name="btnEnviar" id="btnEnviar" value="Realizar Venta" /></td>
+    <td align="center"><input type="button" onclick="gua();" name="btnCargarProducto" id="btnCargarProducto" value="Cargar Producto" /> <input type="button" name="btnEnviar" id="btnEnviar" value="Realizar Venta" /></td>
   </tr>
 </table>
 </form>
