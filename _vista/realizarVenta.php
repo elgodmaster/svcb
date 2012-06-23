@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Realizar Venta</title>
 <script src="lib/js/jquery-1.7.2.min.js"></script><!-- -->
-<script type="text/javascript" src='lib/js/jquery.autocomplete.js'></script>
-<link href="lib/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src='lib/js/jquery.autocomplete.js'></script><!-- -->
+<link href="lib/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" /><!-- -->
 <script type="text/javascript">
 id=0;
 function agregar() {
@@ -18,7 +18,7 @@ function agregar() {
 	$("#detalle").append('<div id="area'+id+'"><input type="text" name="txtDetalle[]" id="txtDetalle'+id+'" size="35" /></div>');
 	$("#unitario").append('<div id="area'+id+'"><input type="text" name="txtUnitario[]" id="txtUnitario'+id+'" dir="rtl" size="5" onChange="calcular('+id+');" /></div>');
 	$("#descuento").append('<div id="area'+id+'"><input type="text" name="txtDescuento[]" id="txtDescuento'+id+'" onChange="calcular('+id+');" dir="rtl" size="5" value="0" /></div>');
-	$("#total").append('<div id="area'+id+'"><input type="text" name="txtTotal[]" id="txtTotal'+id+'" dir="rtl" size="15" /><a style="cursor:pointer" onclick="javascript:borrar('+id+'); javascript:sumar();"><img src="lib/img/quitar.png" width="16" height="16" /></a></div>');
+	$("#total").append('<div id="area'+id+'"><input type="text" name="txtTotal[]" value="0" id="txtTotal'+id+'" dir="rtl" size="15" readonly="readonly" /><a style="cursor:pointer" onclick="javascript:borrar('+id+'); javascript:sumar();"><img src="lib/img/quitar.png" width="16" height="16" /></a></div>');
 	
 	$('input[name^="txtDetalle"]').autocomplete("lib/ajax/producto.php", {
                  width: 243,
@@ -27,7 +27,6 @@ function agregar() {
          });
 	
 		$('input[name^="txtDetalle"]').blur(function(){
-			//alert('entra');
 			var search_term = $("#txtDetalle"+id).val();
 			$.ajax({
 				data: "id="+search_term,
@@ -36,14 +35,13 @@ function agregar() {
 				url: "lib/ajax/producto_factura.php",
 				success: function(data){
 					$("#txtUnitario"+id).val(data.precio_producto);
-					//alert(data.precio_producto);
 					calcular(id);
 				}
 		});
+		
 	});
 	}
-	
-	
+		
 function borrar(cual) {
 	$("#area"+cual).remove();
 	$("#area"+cual).remove();
