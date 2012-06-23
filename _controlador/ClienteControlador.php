@@ -32,9 +32,9 @@
 		 }
 		 
 		 if ($existe == 0)
-			 echo "El cliente '".$cliente->getIdCliente()."' ha sido registrado satisfactoriamente";
+			 echo "<label>El cliente '".$cliente->getIdCliente()."' ha sido registrado satisfactoriamente.</label>";
 		 else
-		 	 echo "El cliente '".$cliente->getIdCliente()."' existe en el sistema";
+		 	 echo "<label>El cliente '".$cliente->getIdCliente()."' existe en el sistema.</label>";
 	 }
 	 else
 		 require("_vista/ingresarCliente.php");
@@ -77,7 +77,7 @@
 		 	 require("_vista/listarCliente.php");
 		 }
 		 else
-		 	 echo "El cliente '$nombre_cliente' no existe en el sistema";
+		 	 echo "<label>El cliente '$nombre_cliente' no existe en el sistema.</label>";
 			 exit;
 	 }
 	 else
@@ -122,7 +122,7 @@
 			 require("_vista/modificarCliente.php");
 		 }
 		 else
-			 echo("El cliente '$nombre_cliente' no existe en el sistema");		 
+			 echo "<label>El cliente '$nombre_cliente' no existe en el sistema.</label>";
 	 }
 	 elseif(isset($_REQUEST['txtRUN']) && isset($_REQUEST['txtNombreNuevo']) && isset($_REQUEST['txtDireccionNueva'])
 	 		&& isset($_REQUEST['cboComuna']) && isset($_REQUEST['txtTelefonoNuevo']) && isset($_REQUEST['txtEmailNuevo']) 
@@ -154,9 +154,9 @@
 		 }
 		 
 		 if ($existe == 1)
-			 echo "El cliente '".$cliente->getIdCliente()."' ha sido modificado satisfactoriamente";
+			 echo "<label>El cliente '".$cliente->getNombreCliente()."' ha sido modificado satisfactoriamente.</label>";
 		 else
-		 	 echo "El cliente '".$cliente->getIdCliente()."' no existe en el sistema";
+		 	 echo "<label>El cliente '".$cliente->getNombreCliente()."' no existe en el sistema.</label>";
 	 }	 
 	 else
 	 	 require("_vista/buscarCliente.php");
@@ -180,9 +180,9 @@
 		 }
 		 
 		 if ($existe != 0)
-			 echo "El cliente '$nombre_cliente' ha sido eliminado satisfactoriamente";
+			 echo "<label>El cliente '$nombre_cliente' ha sido eliminado satisfactoriamente.</label>";
 		 else
-		 	 echo "El cliente '$nombre_cliente' no existe en el sistema";		 
+		 	 echo "<label>El cliente '$nombre_cliente' no existe en el sistema.</label>";
 	 }
 	 else
 	 	 require("_vista/buscarCliente.php");

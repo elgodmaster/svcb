@@ -34,7 +34,7 @@
   <form id="form1" name="form1" method="post">
    <dl>
     <dd><label for="runCliente">RUN Cliente</label></dd>
-    <dd><input type="text" name="txtRUN" value="<?php echo $cliente->getIdCliente() ?>" readonly="readonly" /></dd>
+    <dd><input type="text" name="txtRUN" size="15" value="<?php echo $cliente->getIdCliente() ?>" readonly="readonly" /></dd>
     <dd><label for="nombreCliente">Nombre Cliente</label></dd>
     <dd><input type="text" name="txtNombreNuevo" size="50" value="<?php echo $cliente->getNombreCliente() ?>" /></dd>
     <dd><label for="direccionCliente">Dirección Cliente</label></dd>
@@ -63,21 +63,7 @@
     <dd><input type="text" name="txtEmailNuevo" size="50" value="<?php echo $cliente->getEmailCliente() ?>" /></dd>
     <dd><label for="giroCliente">Giro Cliente</label></dd>
     <dd><input type="text" name="txtGiroNuevo" size="50" value="<?php echo $cliente->getGiroCliente() ?>" /></dd>
-    <!--<dd><label for="estadoCliente">Estado Cliente</label></dd>
-    <dd>
-     <select name="cboEstado">-->
-  	 <?php
-	   /*if($cliente->getEstadoCliente() == 'ACTIVO')
-	   {
-		   echo '<option value="INACTIVO">No Disponible</option>';
-		   echo '<option value="ACTIVO" selected="selected">Disponible</option>';
-	   }
-	   else
-	   {
-		   echo '<option value="INACTIVO" selected="selected">No Disponible</option>';
-		   echo '<option value="ACTIVO">Disponible</option>';
-	   }*/
-	   
+  	 <?php	   
 	   if($cliente->getEstadoCliente() == 'INACTIVO')
 	   {
 		   echo '<dd><label for="estadoCliente">Estado Cliente</label></dd>';
@@ -89,8 +75,6 @@
 		   echo '</dd>';
 	   }
   	 ?>
-     <!--</select>
-    </dd>-->
     <dd>
      <input type="button" class="button" name="btnConsultar" value="Modificar" onClick="get2();" />
      <input type="button" class="button" value="Restablecer" onClick="get();" />
