@@ -88,6 +88,8 @@
  {
 	 require("_modelo/Cliente.php");
 	 require("_modelo/Comuna.php");
+	 require("_modelo/Provincia.php");
+	 require("_modelo/Region.php");
 	 require("_modelo/Usuario.php");
 	 
 	 if (isset($_REQUEST['txtNombre']))
@@ -112,9 +114,9 @@
 		 	 	 $cliente->setGiroCliente(utf8_encode($registro['giro_cliente']));
 		 	 	 $cliente->setIndiceConfiabilidadCliente($registro['indice_confiabilidad']);
 				 $cliente->setEstadoCliente($registro['estado_cliente']);
-		 	 	 $comuna = new Comuna();
-			 	 $comuna->setIdComuna($registro['comuna_id_comuna']);
-			 	 $comuna->setNombreComuna(utf8_encode($registro['nombre_comuna']));
+				 $_SESSION['comuna'] = $registro['comuna_id_comuna'];
+				 $_SESSION['provincia'] = $registro['provincia_id_provincia'];
+				 $_SESSION['region'] = $registro['region_id_region'];
 				 break;
 			 }
 			 require("_vista/modificarCliente.php");

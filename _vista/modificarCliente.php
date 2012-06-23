@@ -5,7 +5,7 @@
 <title>Modificar Cliente</title>
 <link href="lib/css/formularios.css" rel="stylesheet" type="text/css" />
 <script src="lib/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="lib/js/dependencias.js"></script>
+<script type="text/javascript" src="lib/js/dependencias2.js"></script>
 <script type="text/javascript">
 	function get2(){
 		$.post('indexx.php?controlador=cliente&accion=modificar', { 
@@ -44,9 +44,8 @@
     </dd>
     <dd><label for="comunaCliente">Comuna</label></dd>
     <dd>
-     <select name="cboComunaNueva">
+     <select name="cboComuna" id="cboComuna">
       <option value="0">Elegir Comuna</option>
-      <option value="1001" selected="selected"><?php echo $comuna->getNombreComuna() ?></option>
      </select>
     </dd>
     <dd><label for="telefonoCliente">Teléfono Cliente</label></dd>

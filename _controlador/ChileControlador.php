@@ -1,10 +1,10 @@
 <?php
 require("../../_modelo/Conexion.php");
+session_start();
  
  function cargarRegion()
  {
-	 require("../../_modelo/Region.php");
-	 
+	 require("../../_modelo/Region.php");	 
 	 $region = new Region();	 
 	 $regionx = $region->listarRegion();
 	 
@@ -18,9 +18,15 @@ require("../../_modelo/Conexion.php");
 	 }
 	 
 	 foreach ($regiones as $obj_region)
-	 {
-		 echo "<option value=\"".$obj_region->getIdRegion()."\">".$obj_region->getNombreRegion()."</option>";
-	 }	 
+	 {		 
+		 if(isset($_SESSION['region']) && $_SESSION['region'] == $obj_region->getIdRegion())
+		 {
+			 echo "<option selected=\"selected\" value=\"".$obj_region->getIdRegion()."\">".$obj_region->getNombreRegion()."</option>";
+			 unset($_SESSION['region']);
+		 }
+		 else
+		 	 echo "<option value=\"".$obj_region->getIdRegion()."\">".$obj_region->getNombreRegion()."</option>";
+	 }
  }
  
  function cargarProvincia($codigo)
@@ -40,7 +46,14 @@ require("../../_modelo/Conexion.php");
 	 
 	 foreach ($provincias as $obj_provincia)
 	 {
-		 echo "<option value=\"".$obj_provincia->getIdProvincia()."\">".$obj_provincia->getNombreProvincia()."</option>";
+		 if(isset($_SESSION['provincia']) && $_SESSION['provincia'] == $obj_provincia->getIdProvincia())
+		 {
+			 echo "<option selected=\"selected\" value=\"".$obj_provincia->getIdProvincia()."\">".$obj_provincia->getNombreProvincia().
+			 "</option>";
+			 unset($_SESSION['provincia']);
+		 }
+		 else
+		 	 echo "<option value=\"".$obj_provincia->getIdProvincia()."\">".$obj_provincia->getNombreProvincia()."</option>";
 	 }
  }
  
@@ -61,7 +74,13 @@ require("../../_modelo/Conexion.php");
 	 
 	 foreach ($comunas as $obj_comuna)
 	 {
-		 echo "<option value=\"".$obj_comuna->getIdComuna()."\">".$obj_comuna->getNombreComuna()."</option>";
+		 if(isset($_SESSION['comuna']) && $_SESSION['comuna'] == $obj_comuna->getIdComuna())
+		 {
+			 echo "<option selected=\"selected\" value=\"".$obj_comuna->getIdComuna()."\">".$obj_comuna->getNombreComuna()."</option>";
+			 unset($_SESSION['comuna']);
+		 }
+		 else
+		 	 echo "<option value=\"".$obj_comuna->getIdComuna()."\">".$obj_comuna->getNombreComuna()."</option>";
 	 }
  }
  
