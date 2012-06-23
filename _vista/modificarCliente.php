@@ -6,17 +6,26 @@
 <link href="lib/css/formularios.css" rel="stylesheet" type="text/css" />
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="lib/js/dependencias2.js"></script>
+<?php
+ if($cliente->getEstadoCliente() == 'INACTIVO')
+ 	echo '<script type="text/javascript" src="lib/js/mod_cliente.js"></script>';
+ else
+ {
+?>
 <script type="text/javascript">
 	function get2(){
 		$.post('indexx.php?controlador=cliente&accion=modificar', { 
 		txtRUN: form1.txtRUN.value, txtNombreNuevo: form1.txtNombreNuevo.value, txtDireccionNueva: form1.txtDireccionNueva.value, 	
-		cboComunaNueva: form1.cboComunaNueva.value, txtTelefonoNuevo: form1.txtTelefonoNuevo.value, cboEstado: form1.cboEstado.value,
-		txtEmailNuevo: form1.txtEmailNuevo.value, txtGiroNuevo: form1.txtGiroNuevo.value },
+		cboComuna: form1.cboComuna.value, txtTelefonoNuevo: form1.txtTelefonoNuevo.value, txtEmailNuevo: form1.txtEmailNuevo.value, 
+		txtGiroNuevo: form1.txtGiroNuevo.value },
 		function(output){
 			$('#datos2').html(output).show();
 			});
 		}
 </script>
+<?php
+ }
+?>
 </head>
 
 <body>
@@ -54,23 +63,34 @@
     <dd><input type="text" name="txtEmailNuevo" size="50" value="<?php echo $cliente->getEmailCliente() ?>" /></dd>
     <dd><label for="giroCliente">Giro Cliente</label></dd>
     <dd><input type="text" name="txtGiroNuevo" size="50" value="<?php echo $cliente->getGiroCliente() ?>" /></dd>
-    <dd><label for="estadoCliente">Estado Cliente</label></dd>
+    <!--<dd><label for="estadoCliente">Estado Cliente</label></dd>
     <dd>
-     <select name="cboEstado">
+     <select name="cboEstado">-->
   	 <?php
-	    if($cliente->getEstadoCliente() == 'ACTIVO')
-		{
-			echo '<option value="INACTIVO">No Disponible</option>';
-			echo '<option value="ACTIVO" selected="selected">Disponible</option>';
-		}
-		else
-		{
-			echo '<option value="INACTIVO" selected="selected">No Disponible</option>';
-			echo '<option value="ACTIVO">Disponible</option>';
-		}
+	   /*if($cliente->getEstadoCliente() == 'ACTIVO')
+	   {
+		   echo '<option value="INACTIVO">No Disponible</option>';
+		   echo '<option value="ACTIVO" selected="selected">Disponible</option>';
+	   }
+	   else
+	   {
+		   echo '<option value="INACTIVO" selected="selected">No Disponible</option>';
+		   echo '<option value="ACTIVO">Disponible</option>';
+	   }*/
+	   
+	   if($cliente->getEstadoCliente() == 'INACTIVO')
+	   {
+		   echo '<dd><label for="estadoCliente">Estado Cliente</label></dd>';
+		   echo '<dd>';
+		   echo '<select name="cboEstado">';
+		   echo '<option value="INACTIVO" selected="selected">No Disponible</option>';
+		   echo '<option value="ACTIVO">Disponible</option>';
+		   echo '</select>';
+		   echo '</dd>';
+	   }
   	 ?>
-     </select>
-    </dd>
+     <!--</select>
+    </dd>-->
     <dd>
      <input type="button" class="button" name="btnConsultar" value="Modificar" onClick="get2();" />
      <input type="button" class="button" value="Restablecer" onClick="get();" />

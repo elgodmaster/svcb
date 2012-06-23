@@ -125,8 +125,8 @@
 			 echo("El cliente '$nombre_cliente' no existe en el sistema");		 
 	 }
 	 elseif(isset($_REQUEST['txtRUN']) && isset($_REQUEST['txtNombreNuevo']) && isset($_REQUEST['txtDireccionNueva'])
-	 		&& isset($_REQUEST['cboComunaNueva']) && isset($_REQUEST['txtTelefonoNuevo']) && isset($_REQUEST['cboEstado'])
-			&& isset($_REQUEST['txtEmailNuevo']) && isset($_REQUEST['txtGiroNuevo']))
+	 		&& isset($_REQUEST['cboComuna']) && isset($_REQUEST['txtTelefonoNuevo']) && isset($_REQUEST['txtEmailNuevo']) 
+			&& isset($_REQUEST['txtGiroNuevo']))
 	 {
 		 $cliente = new Cliente();
 		 $cliente->setIdCliente(addslashes($_REQUEST['txtRUN']));
@@ -134,10 +134,13 @@
 		 $cliente->setDireccionCliente(addslashes(strtoupper($_REQUEST['txtDireccionNueva'])));
 		 $cliente->setTelefonoCliente($_REQUEST['txtTelefonoNuevo']);
 		 $cliente->setEmailCliente(addslashes(strtoupper($_REQUEST['txtEmailNuevo'])));
-		 $cliente->setEstadoCliente(addslashes(strtoupper($_REQUEST['cboEstado'])));
+		 if (isset($_REQUEST['cboEstado']))
+			 $cliente->setEstadoCliente(addslashes(strtoupper($_REQUEST['cboEstado'])));
+		 else
+		 	 $cliente->setEstadoCliente(addslashes('ACTIVO'));
 		 $cliente->setGiroCliente(addslashes(strtoupper($_REQUEST['txtGiroNuevo'])));
 		 $comuna = new Comuna();
-		 $comuna->setIdComuna($_REQUEST['cboComunaNueva']);
+		 $comuna->setIdComuna($_REQUEST['cboComuna']);
 		 
 		 $admin = new Administrador();
 		 $clientexx = $admin->modificarCliente($cliente->getIdCliente(),$cliente->getNombreCliente(),$cliente->getDireccionCliente(),
