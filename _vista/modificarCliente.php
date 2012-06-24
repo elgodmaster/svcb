@@ -26,6 +26,7 @@
 <?php
  }
 ?>
+<script type="text/javascript" src="lib/js/formulario-cliente2.js"></script>
 </head>
 
 <body>
@@ -37,42 +38,61 @@
     <dd><input type="text" name="txtRUN" size="15" value="<?php echo $cliente->getIdCliente()?>" readonly="readonly" /></dd>
     <dd><label for="nombreCliente">Nombre Cliente</label></dd>
     <dd>
-     <input type="text" autocomplete="off" maxlength="250" name="txtNombreNuevo" size="50" value="<?php echo $cliente->getNombreCliente
-	 ()?>" />
+     <input type="text" autocomplete="off" maxlength="250" name="txtNombreNuevo" id="txtNombreNuevo" size="50" value="<?php echo 
+	 $cliente->getNombreCliente()?>" />
      <span id="req-nombre" class="requisites error">A-z, mínimo 4 caracteres</span>
     </dd>
-    <dd><label for="direccionCliente">Direcci&oacute;n Cliente</label></dd>
-    <dd><input type="text" name="txtDireccionNueva" size="50" value="<?php echo $cliente->getDireccionCliente() ?>" /></dd>
+    <dd><label for="direccionCliente">Dirección Cliente</label></dd>
+    <dd>
+     <input type="text" autocomplete="off" maxlength="250" name="txtDireccionNueva" id="txtDireccionNueva" size="50" value="<?php echo 
+	 $cliente->getDireccionCliente() ?>" />
+     <span id="req-direccion" class="requisites error">[A-z][0-9][,#°.], mínimo 4 caracteres</span>
+    </dd>
     <dd><label for="regionCliente">Regi&oacute;n</label></dd>
     <dd>
      <select name="cboRegion" id="cboRegion">
       <option value="0">Selecciona Uno...</option>
      </select>
+     <span id="req-region" class="requisites error">Seleccione una región</span>
     </dd>
     <dd><label for="provinciaCliente">Provincia</label></dd>
     <dd>
      <select name="cboProvincia" id="cboProvincia">
       <option value="0">Selecciona Uno...</option>
      </select>
+     <span id="req-provincia" class="requisites error">Seleccione una provincia</span>
     </dd>
     <dd><label for="comunaCliente">Comuna</label></dd>
     <dd>
      <select name="cboComuna" id="cboComuna">
       <option value="0">Elegir Comuna</option>
      </select>
+     <span id="req-comuna" class="requisites error">Seleccione una comuna</span>
     </dd>
     <dd><label for="telefonoCliente">Tel&eacute;fono Cliente</label></dd>
-    <dd><input type="text" name="txtTelefonoNuevo" size="50" value="<?php echo $cliente->getTelefonoCliente() ?>" /></dd>
+    <dd>
+     <input type="text" maxlength="45" autocomplete="off" name="txtTelefonoNuevo" id="txtTelefonoNuevo" size="50" value="<?php echo 
+	 $cliente->getTelefonoCliente()?>" />
+     <span id="req-telefono" class="requisites error">[0-9][()-], mínimo 7 caracteres</span>
+    </dd>
     <dd><label for="emailCliente">Email Cliente</label></dd>
-    <dd><input type="text" name="txtEmailNuevo" size="50" value="<?php echo $cliente->getEmailCliente() ?>" /></dd>
+    <dd>
+     <input type="text" maxlength="250" autocomplete="off" name="txtEmailNuevo" id="txtEmailNuevo" size="50" value="<?php echo 
+	 $cliente->getEmailCliente()?>" />
+     <span id="req-email" class="requisites error">Un e-mail válido por favor</span>
+    </dd>
     <dd><label for="giroCliente">Giro Cliente</label></dd>
-    <dd><input type="text" name="txtGiroNuevo" size="50" value="<?php echo $cliente->getGiroCliente() ?>" /></dd>
+    <dd>
+     <input type="text" maxlength="100" autocomplete="off" name="txtGiroNuevo" id="txtGiroNuevo" size="50" value="<?php echo 
+	 $cliente->getGiroCliente()?>" />
+     <span id="req-giro" class="requisites error">[A-z][.], mínimo 4 caracteres</span>
+    </dd>
   	 <?php	   
 	   if($cliente->getEstadoCliente() == 'INACTIVO')
 	   {
 		   echo '<dd><label for="estadoCliente">Estado Cliente</label></dd>';
 		   echo '<dd>';
-		   echo '<select name="cboEstado">';
+		   echo '<select name="cboEstado" id="cboEstado">';
 		   echo '<option value="INACTIVO" selected="selected">No Disponible</option>';
 		   echo '<option value="ACTIVO">Disponible</option>';
 		   echo '</select>';
@@ -80,7 +100,7 @@
 	   }
   	 ?>
     <dd>
-     <input type="button" class="button" name="btnConsultar" value="Modificar" onClick="get2();" />
+     <input type="button" class="button" name="btnConsultar" id="btnConsultar" value="Modificar" />
      <input type="button" class="button" value="Restablecer" onClick="get();" />
     </dd>
    </dl>

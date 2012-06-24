@@ -19,19 +19,6 @@
 			$('#datos').html(output).show();
 			});
 		}
-function gua()
-{
-	//alert('guuua');
-	/*if(validarNombre() == true && validarDireccion() == true && validarRegion() == true && validarProvincia() == true && validarComuna() == true && validarTelefono() == true && validarEmail() == true && validarGiro() == true)
-	{
-		alert('si');
-		//get();
-    }
-    else
-    {
-      alert('no');
-    }		*/
-}
 </script>
 <body>
 
@@ -91,7 +78,7 @@ function gua()
     <span id="req-giro" class="requisites error">[A-z][.], mínimo 4 caracteres</span>
    </dd>
    <dd>
-    <input type="button" class="button" name="botonEnviar" id="botonEnviar" value="Ingresar" onClick="gua();" />
+    <input type="button" class="button" name="botonEnviar" id="botonEnviar" value="Ingresar" />
     <input type="reset" class="button" />
    </dd>
   </dl>
