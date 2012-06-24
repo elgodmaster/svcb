@@ -12,25 +12,37 @@ label
   line-height:2em;
 }
 
+textarea
+{
+    /*width:60%;*/
+	width:330px;
+	margin-left:2px;    
+    min-height:150px;
+    color:#888888;
+}
+
+form input[type="text"]{
+	color:#888888;
+}
+
 #formulario, #busqueda {
 	font-family: "Tahoma", Geneva, sans-serif;
 	font-size: 0.85em;
 	height: 100%;
 	line-height: 1.5;
 	color: #0E0E0E;
-	margin-bottom:40px;
-	}
-	
-#busqueda {margin-bottom:-1px;}
+}
 
-#busqueda label {display: inline;}
+#busqueda label {
+	display: inline;
+}
 
 #formulario h2 {
 	font-size: 1.4em;
 	margin: 10px 0 15px 40px;
 }
 	
-#formulario .button {		
+#formulario .button, #busqueda .button {		
 	-moz-border-radius: 3px 3px 3px 3px;
 	-moz-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
 	background-color: #C72D2D;
@@ -38,33 +50,56 @@ label
 	border-radius: 4px;
 	color: white !important;
 	cursor: pointer;
-	display: block;
+	/*display: block;*/
 	font-weight: bold;
 	line-height: 18px;
 	min-width: 40px;
 	padding: 4px 15px 6px;
 	text-align: center;
 	text-shadow: 0 -1px 0 #333;
-	float: left;
+	/*float: left;*/
 	margin-right: 10px;
 	margin-top: 10px;
 }
 
-#busqueda .button{		
-	-moz-border-radius: 3px 3px 3px 3px;
-	-moz-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
-	background-color: #C72D2D;
-	border: 1px solid #CF1010;
-	border-radius: 4px;
-	color: white !important;
-	cursor: pointer;
-	font-weight: bold;
-	line-height: 18px;
-	min-width: 40px;
-	padding: 4px 15px 6px;
-	text-align: center;
-	text-shadow: 0 -1px 0 #333;
-	margin-right: 10px;
+#formulario .button:hover, #busqueda .button:hover {
+	background-color: #CF1010;
 }
 
-#formulario .button:hover, #busqueda .button:hover {background-color: #CF1010;}
+/*VALIDACIÓN*/
+.requisites {
+	display:none;
+}
+.error {
+	background: #fff8cc;
+    padding:5px;
+   	margin-left:10px;
+    color:#d42323;
+    /*font-weight:bold;  */
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+}
+.messageerror {
+	margin-left:30%;
+	display:none;
+}
+
+#loading {
+  background:url("images/transparent.png") repeat scroll 0 0 transparent;
+  margin:0 auto;
+  color:#FFFFFF;
+  padding:10px;
+  position:relative;
+  text-align:center;
+  top:-250px;
+  width:300px;
+  display:none;
+  font-weight:bold;
+  border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  -khtml-border-radius: 5px 5px 5px 5px;
+}
+/*FIN VALIDACIÓN*/

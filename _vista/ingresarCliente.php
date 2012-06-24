@@ -8,6 +8,7 @@
 <script type="text/javascript" src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="lib/js/dependencias.js"></script>
 <script type="text/javascript" src="lib/js/validarut2.js"></script>
+<script type="text/javascript" src="lib/js/formulario-cliente.js"></script>
 <script type="text/javascript">
 	function get(){
 		$.post('indexx.php?controlador=cliente&accion=ingresar', {
@@ -18,6 +19,19 @@
 			$('#datos').html(output).show();
 			});
 		}
+function gua()
+{
+	//alert('guuua');
+	/*if(validarNombre() == true && validarDireccion() == true && validarRegion() == true && validarProvincia() == true && validarComuna() == true && validarTelefono() == true && validarEmail() == true && validarGiro() == true)
+	{
+		alert('si');
+		//get();
+    }
+    else
+    {
+      alert('no');
+    }		*/
+}
 </script>
 <body>
 
@@ -32,50 +46,53 @@
    </dd>
    <dd><label for="nombreCliente">Nombre Cliente:</label></dd>
    <dd>
-    <input class="inputNormal text" type="text" size="40" name="txtNombre" />
-    <span id="req-username" class="requisites error">A-z, mínimo 4 caracteres</span>
+    <input type="text" maxlength="250" autocomplete="off" size="40" name="txtNombre" id="txtNombre" />
+    <span id="req-nombre" class="requisites error">A-z, mínimo 4 caracteres</span>
    </dd>
    <dd><label for="direccionCliente">Dirección Cliente:</label></dd>
    <dd>
-    <input type="text" size="40" name="txtDireccion"/>
-    <span id="req-direccion" class="requisites error">A-z, mínimo 4 caracteres</span>
+    <input type="text" maxlength="250" autocomplete="off" size="40" name="txtDireccion" id="txtDireccion"/>
+    <span id="req-direccion" class="requisites error">[A-z][0-9][,#°.], mínimo 4 caracteres</span>
    </dd>
    <dd><label for="regionCliente">Región:</label></dd>
    <dd>
     <select name="cboRegion" id="cboRegion">
      <option value="0">Selecciona Uno...</option>
     </select>
+    <span id="req-region" class="requisites error">Seleccione una región</span>
    </dd>
    <dd><label for="provinciaCliente">Provincia:</label></dd>
    <dd>
     <select name="cboProvincia" id="cboProvincia">
      <option value="0">Selecciona Uno...</option>
     </select>
+    <span id="req-provincia" class="requisites error">Seleccione una provincia</span>
    </dd>
    <dd><label for="comunaCliente">Comuna:</label></dd>
    <dd>
     <select name="cboComuna" id="cboComuna">
      <option value="0">Selecciona Uno...</option>
     </select>
+    <span id="req-comuna" class="requisites error">Seleccione una comuna</span>
    </dd>
    <dd><label for="telefonoCliente">Teléfono Cliente:</label></dd>
    <dd>
-    <input type="text" size="40" name="txtTelefono"/>
-    <span id="req-telefono" class="requisites error">A-z, mínimo 4 caracteres</span>
+    <input type="text" maxlength="45" autocomplete="off" size="40" name="txtTelefono" id="txtTelefono"/>
+    <span id="req-telefono" class="requisites error">[0-9][()-], mínimo 7 caracteres</span>
    </dd>
    <dd><label for="emailCliente">Email Cliente:</label></dd>
    <dd>
-    <input type="text" size="40" name="txtEmail"/>
+    <input type="text" maxlength="250" autocomplete="off" size="40" name="txtEmail" id="txtEmail" />
     <span id="req-email" class="requisites error">Un e-mail válido por favor</span>
    </dd>
    <dd><label for="giroCliente">Giro Cliente:</label></dd>
    <dd>
-    <input type="text" size="40" name="txtGiro"/>
-    <span id="req-giro" class="requisites error">A-z, mínimo 4 caracteres</span>
+    <input type="text" maxlength="100" autocomplete="off" size="40" name="txtGiro" id="txtGiro" />
+    <span id="req-giro" class="requisites error">[A-z][.], mínimo 4 caracteres</span>
    </dd>
    <dd>
-    <input type="button" class="button fit" id="botonEnviar" value="Ingresar" onClick="get();" />
-    <input type="reset" class="button fit" />
+    <input type="button" class="button" name="botonEnviar" id="botonEnviar" value="Ingresar" onClick="gua();" />
+    <input type="reset" class="button" />
    </dd>
   </dl>
  </form>

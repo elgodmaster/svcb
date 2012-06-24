@@ -40,7 +40,7 @@
     <dd><label for="nombreProducto">Nombre Producto</label></dd>
     <dd><input type="text" name="txtNombre" size="50" id="txtNombre" /></dd>    
     <dd><label for="descripcionProducto">Descripción Producto</label></dd>
-    <dd><textarea name="txtaDescripcion" style="width:330px;min-height:100px;margin-left:2px"></textarea></dd>
+    <dd><textarea name="txtaDescripcion"></textarea></dd>
     <dd><label for="precioProducto">Precio Producto</label></dd>
     <dd><input type="text" name="txtPrecio" size="50" /></dd>
     <dd><label for="stockRealProducto">Stock Real</label></dd>

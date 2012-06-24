@@ -32,9 +32,9 @@
 		 }
 		 
 		 if ($existe == 0)
-			 echo "<label>El cliente '".$cliente->getIdCliente()."' ha sido registrado satisfactoriamente.</label>";
+			 echo "<label>El cliente '".$cliente->getNombreCliente()."' ha sido registrado satisfactoriamente.</label>";
 		 else
-		 	 echo "<label>El cliente '".$cliente->getIdCliente()."' existe en el sistema.</label>";
+		 	 echo "<label>El cliente '".$cliente->getNombreCliente()."' existe en el sistema.</label>";
 	 }
 	 else
 		 require("_vista/ingresarCliente.php");

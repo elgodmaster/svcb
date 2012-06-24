@@ -37,9 +37,9 @@
     <dd><input type="text" name="txtRUN" size="15" value="<?php echo $cliente->getIdCliente() ?>" readonly="readonly" /></dd>
     <dd><label for="nombreCliente">Nombre Cliente</label></dd>
     <dd><input type="text" name="txtNombreNuevo" size="50" value="<?php echo $cliente->getNombreCliente() ?>" /></dd>
-    <dd><label for="direccionCliente">Dirección Cliente</label></dd>
+    <dd><label for="direccionCliente">Direcci&oacute;n Cliente</label></dd>
     <dd><input type="text" name="txtDireccionNueva" size="50" value="<?php echo $cliente->getDireccionCliente() ?>" /></dd>
-    <dd><label for="regionCliente">Región</label></dd>
+    <dd><label for="regionCliente">Regi&oacute;n</label></dd>
     <dd>
      <select name="cboRegion" id="cboRegion">
       <option value="0">Selecciona Uno...</option>
@@ -57,7 +57,7 @@
       <option value="0">Elegir Comuna</option>
      </select>
     </dd>
-    <dd><label for="telefonoCliente">Teléfono Cliente</label></dd>
+    <dd><label for="telefonoCliente">Tel&eacute;fono Cliente</label></dd>
     <dd><input type="text" name="txtTelefonoNuevo" size="50" value="<?php echo $cliente->getTelefonoCliente() ?>" /></dd>
     <dd><label for="emailCliente">Email Cliente</label></dd>
     <dd><input type="text" name="txtEmailNuevo" size="50" value="<?php echo $cliente->getEmailCliente() ?>" /></dd>
