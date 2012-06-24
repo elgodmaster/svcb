@@ -29,7 +29,7 @@
 				 $producto->setStockReal($registro['stock_real_producto']);
 				 $categoria = new Categoria_Producto();
 				 $categoria->setIdCategoriaProducto($registro['id_categoria_producto']);
-				 $categoria->setNombreCategoriaProducto($registro['nombre_categoria_producto']);
+				 $categoria->setNombreCategoriaProducto(ucwords(strtolower($registro['nombre_categoria_producto'])));
 				 break;
 			 }
 			 require("_vista/ingresarStockProducto.php");

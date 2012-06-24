@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Listar Producto</title>
 </head>
 
@@ -22,10 +22,10 @@
   <td>Nombre: </td><td><?php echo $producto->getNombre() ?></td>
  </tr>
  <tr>
-  <td>Descripción: </td><td><?php echo $producto->getDescripcion() ?></td>
+  <td>DescripciÃ³n: </td><td><?php echo $producto->getDescripcion() ?></td>
  </tr>
  <tr>
-  <td>Precio: </td><td>$<?php echo $producto->getPrecio() ?></td>
+  <td>Precio: </td><td>$<?php echo number_format($producto->getPrecio(),0, ",", ".")?></td>
  </tr>
  <tr>
   <td>Stock Real: </td><td><?php echo $producto->getStockReal() ?></td>

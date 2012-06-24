@@ -23,21 +23,25 @@
    <dl>
     <dd><label for="categoriaProducto">Categoría Producto</label></dd>
     <dd>
-     <select disabled="disabled" style="width:305px;margin-left:2px" name="cboCategoriaNuevo">
+     <select readonly="readonly" name="cboCategoriaNuevo">
       <option value="<?php echo $categoria->getIdCategoriaProducto()?>"><?php echo $categoria->getNombreCategoriaProducto()?></option>
      </select>
     </dd>
     <dd><label for="codigoProducto">Código Producto</label></dd>
-    <dd><input type="text" name="txtCodigo" value="<?php echo $producto->getCodigoProducto() ?>" disabled="disabled" /></dd>
+    <dd><input type="text" name="txtCodigo" value="<?php echo $producto->getCodigoProducto() ?>" readonly="readonly" /></dd>
     <dd><label for="nombreProducto">Nombre Producto</label></dd>
-    <dd><input type="text" name="txtNombreNuevo" size="45" value="<?php echo $producto->getNombre() ?>" disabled="disabled" /></dd>
+    <dd><input type="text" name="txtNombreNuevo" size="50" value="<?php echo $producto->getNombre() ?>" readonly="readonly" /></dd>
     <dd><label for="descripcionProducto">Descripción Producto</label></dd>
     <dd>
-     <textarea disabled="disabled" name="txtaDescripcionNuevo" style="width:298px;min-height:100px;margin-left:2px"><?php echo $producto->getDescripcion() ?></textarea>
+     <textarea readonly="readonly" name="txtaDescripcionNuevo" style="width:330px;min-height:100px;margin-left:2px"><?php echo 
+	 $producto->getDescripcion() ?></textarea>
     </dd>
     <dd><label for="stockRealProducto">Stock Real Producto</label></dd>
-    <dd><input type="text" name="txtStockRNuevo" size="45" value="<?php echo $producto->getStockReal() ?>" /></dd>
-    <dd><input type="button" class="button" value="Modificar" onClick="get2();" /></dd>
+    <dd><input type="text" name="txtStockRNuevo" size="50" value="<?php echo $producto->getStockReal() ?>" /></dd>
+    <dd>
+     <input type="button" class="button" value="Modificar" onClick="get2();" />
+     <input type="button" class="button" value="Restablecer" onClick="get();" />
+    </dd>
    </dl>
   </form>
  </div>

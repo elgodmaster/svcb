@@ -100,13 +100,16 @@
 		 else
 			 echo "<label>La categoria de producto '$nombre_categoria' no existe en el sistema.</label>";		 
 	 }
-	 elseif(isset($_REQUEST['txtCodigo']) && isset($_REQUEST['txtNombreNuevo']) && isset($_REQUEST['cboEstado']))
+	 elseif(isset($_REQUEST['txtCodigo']) && isset($_REQUEST['txtNombreNuevo']))
 	 {
 		 $categoria = new Categoria_Producto();
 		 $categoria->setIdCategoriaProducto($_REQUEST['txtCodigo']);
-		 $categoria->setNombreCategoriaProducto(strtoupper($_REQUEST['txtNombreNuevo']));
-		 $categoria->setEstadoCategoriaProducto($_REQUEST['cboEstado']);
-		 
+		 $categoria->setNombreCategoriaProducto(strtoupper($_REQUEST['txtNombreNuevo']));		 
+		 if (isset($_REQUEST['cboEstado']))
+			 $categoria->setEstadoCategoriaProducto(addslashes(strtoupper($_REQUEST['cboEstado'])));
+		 else
+		 	 $categoria->setEstadoCategoriaProducto(addslashes('ACTIVO'));
+			 		 
 		 $admin = new Administrador();
 		 $categoriaxx = $admin->modificarCategoriaProducto($categoria->getIdCategoriaProducto(), $categoria->getNombreCategoriaProducto
 		 													(),$categoria->getEstadoCategoriaProducto());

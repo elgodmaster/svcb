@@ -26,26 +26,27 @@
     <dt><h2>Ingresar Producto</h2></dt>
     <dd><label for="categoriaProducto">Categoría Producto</label></dd>
     <dd>
-     <select style="width:305px;margin-left:2px" name="cboCategoria">
+     <select name="cboCategoria">
       <option>Elige una Categoría</option>
       <?php
        while ($reg = mysql_fetch_array($productos))
 	   {
-		   echo "<option value=\"".$reg['id_categoria_producto']."\">".$reg['nombre_categoria_producto']."</option>";
+		   $nombre_categoria_producto = ucwords(strtolower($reg['nombre_categoria_producto']));
+		   echo "<option value=\"".$reg['id_categoria_producto']."\">$nombre_categoria_producto</option>";
 	   }
 	  ?>
      </select>
     </dd>
     <dd><label for="nombreProducto">Nombre Producto</label></dd>
-    <dd><input type="text" name="txtNombre" size="45" id="txtNombre" /></dd>    
+    <dd><input type="text" name="txtNombre" size="50" id="txtNombre" /></dd>    
     <dd><label for="descripcionProducto">Descripción Producto</label></dd>
-    <dd><textarea name="txtaDescripcion" style="width:298px;min-height:100px;margin-left:2px"></textarea></dd>
+    <dd><textarea name="txtaDescripcion" style="width:330px;min-height:100px;margin-left:2px"></textarea></dd>
     <dd><label for="precioProducto">Precio Producto</label></dd>
-    <dd><input type="text" name="txtPrecio" size="45" /></dd>
+    <dd><input type="text" name="txtPrecio" size="50" /></dd>
     <dd><label for="stockRealProducto">Stock Real</label></dd>
-    <dd><input type="text" name="txtStockR" size="45" /></dd>
+    <dd><input type="text" name="txtStockR" size="50" /></dd>
     <dd><label for="stockMinimoProducto">Stock Mínimo</label></dd>
-    <dd><input type="text" name="txtStockM" size="45" /></dd>
+    <dd><input type="text" name="txtStockM" size="50" /></dd>
     <dd><input type="button" class="button" value="Ingresar" onClick="get();" /><input class="button" type="reset" /></dd>
    </dl>
   </form>

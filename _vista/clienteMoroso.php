@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Clientes Morosos</title>
 </head>
 
@@ -12,8 +12,8 @@
    <tr align="center">    
     <td>RUN Cliente</td>
     <td>Nombre Cliente</td>
-    <td>N° Factura</td>
-  	<td>Fecha Emisión</td>
+    <td>NÂ° Factura</td>
+  	<td>Fecha EmisiÃ³n</td>
     <td>Fecha Vencimiento</td>
     <td>Monto Total</td>
    </tr>

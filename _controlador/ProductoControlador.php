@@ -5,8 +5,8 @@
 	 require("_modelo/Categoria_Producto.php");
 	 require("_modelo/Usuario.php");
 		 
-	 if (isset($_REQUEST['cboCategoria']) && isset($_REQUEST['txtNombre']) && isset($_REQUEST['txtaDescripcion'])
-	 	 && isset($_REQUEST['txtPrecio']) && isset($_REQUEST['txtStockR']) && isset($_REQUEST['txtStockM']))
+	 if (isset($_REQUEST['cboCategoria']) && isset($_REQUEST['txtNombre']) && isset($_REQUEST['txtaDescripcion']) &&
+	 	 isset($_REQUEST['txtPrecio']) && isset($_REQUEST['txtStockR']) && isset($_REQUEST['txtStockM']))
 	 {
 		 require("_modelo/Producto.php");
 		 		 
@@ -38,9 +38,9 @@
 		 }
 		 
 		 if ($existe == 0)
-			 echo "El producto '".$producto->getNombre()."' ha sido registrado satisfactoriamente";
+			 echo "<label>El producto '".$producto->getNombre()."' ha sido registrado satisfactoriamente.</label>";
 		 else
-		 	 echo "El producto '".$producto->getNombre()."' existe en el sistema";
+		 	 echo "<label>El producto '".$producto->getNombre()."' existe en el sistema.</label>";
 	 }
 	 else
 	 {
@@ -85,7 +85,7 @@
 			 require("_vista/listarProducto.php");
 		 }
 		 else
-		 	 echo("El producto '$nombre_producto' no existe en el sistema");
+		 	 echo "<label>El producto '$nombre_producto' no existe en el sistema.</label>";
 	 }
 	 else
 	 	 require("_vista/buscarProducto.php");
@@ -128,18 +128,21 @@
 			 require("_vista/modificarProducto.php");
 		 }
 		 else
-		 	 echo("El producto '$nombre_producto' no existe en el sistema");	 
+		 	 echo "<label>El producto '$nombre_producto' no existe en el sistema.</label>";	 
 	 }
 	 elseif(isset($_REQUEST['txtCodigo']) && isset($_REQUEST['txtNombreNuevo']) && isset($_REQUEST['txtPrecioNuevo'])
 	 		&& isset($_REQUEST['cboCategoriaNuevo']) && isset($_REQUEST['txtaDescripcionNuevo'])
-			&& isset($_REQUEST['txtStockRNuevo']) && isset($_REQUEST['txtStockMNuevo']) && isset($_REQUEST['cboEstado']))
+			&& isset($_REQUEST['txtStockRNuevo']) && isset($_REQUEST['txtStockMNuevo']))
 	 {
 	 	 $producto = new Producto();
 		 $producto->setCodigoProducto($_REQUEST['txtCodigo']);
 		 $producto->setNombre(addslashes(strtoupper($_REQUEST['txtNombreNuevo'])));
 		 $producto->setDescripcion(addslashes(strtoupper($_REQUEST['txtaDescripcionNuevo'])));
-		 $producto->setPrecio($_REQUEST['txtPrecioNuevo']);
-		 $producto->setEstado(strtoupper($_REQUEST['cboEstado']));
+		 $producto->setPrecio($_REQUEST['txtPrecioNuevo']);		 
+		 if (isset($_REQUEST['cboEstado']))
+			 $producto->setEstado(addslashes(strtoupper($_REQUEST['cboEstado'])));
+		 else
+		 	 $producto->setEstado(addslashes('ACTIVO'));		 
 		 $producto->setStockMinimo($_REQUEST['txtStockMNuevo']);
 		 $producto->setStockReal($_REQUEST['txtStockRNuevo']);
 		 $categoria = new Categoria_Producto();
@@ -157,9 +160,9 @@
 		 }
 		 
 		 if ($existe == 1)
-			 echo "El producto '".$producto->getNombre()."' ha sido modificado satisfactoriamente";
+			 echo "<label>El producto '".$producto->getNombre()."' ha sido modificado satisfactoriamente.</label>";
 		 else
-		 	 echo "El producto '".$producto->getNombre()."' no existe en el sistema";
+		 	 echo "<label>El producto '".$producto->getNombre()."' no existe en el sistema.</label>";
 	 }	 
 	 else
 	 	 require("_vista/buscarProducto.php");
@@ -183,9 +186,9 @@
 		 }
 		 
 		 if ($existe != 0)
-			 echo "El producto '$nombre_producto' ha sido eliminado satisfactoriamente";
+			 echo "<label>El producto '$nombre_producto' ha sido eliminado satisfactoriamente.</label>";
 		 else
-		 	 echo "El producto '$nombre_producto' no existe en el sistema";
+		 	 echo "<label>El producto '$nombre_producto' no existe en el sistema.</label>";
 	 }
 	 else
 		 require("_vista/buscarProducto.php");

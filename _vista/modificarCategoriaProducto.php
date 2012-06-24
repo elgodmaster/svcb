@@ -3,55 +3,53 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Modificar Categoría Producto</title>
-<script src="lib/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="lib/js/jquery-1.7.2.min.js"></script>
+<?php
+ if($categoria->getEstadoCategoriaProducto() == 'INACTIVO')
+ 	echo '<script type="text/javascript" src="lib/js/mod_caproducto.js"></script>';
+ else
+ {
+?>
 <script type="text/javascript">
 	function get2(){
 		$.post('indexx.php?controlador=categoriaproducto&accion=modificar', { 
-		txtNombreNuevo: form1.txtNombreNuevo.value, txtCodigo: form1.txtCodigo.value , cboEstado: form1.cboEstado.value },
+		txtNombreNuevo: form1.txtNombreNuevo.value, txtCodigo: form1.txtCodigo.value },
 		function(output){
 			$('#datos2').html(output).show();
 			});
 		}
 </script>
+<?php
+ }
+?>
 </head>
 
 <body>
 
  <div id="formulario">
   <form id="form1" name="form1" method="post">
-   <table>
- 	<tr>
-  	 <td>Codigo: </td>
-  	 <td><input type="text" name="txtCodigo" value="<?php echo $categoria->getIdCategoriaProducto() ?>" readonly="readonly" /></td>
- 	</tr>
- 	<tr>
-  	 <td>Nombre: </td>
-     <td><input type="text" name="txtNombreNuevo" value="<?php echo $categoria->getNombreCategoriaProducto() ?>" /></td>
-	 </tr>
- 	<tr>
-  	 <td>Estado</td>
-  	 <td>
-     <select name="cboEstado">
-  	 <?php
-   	 	if($categoria->getEstadoCategoriaProducto() == 'ACTIVO')
-		{
-			echo '<option value="INACTIVO">No Disponible</option>';
-			echo '<option value="ACTIVO" selected="selected">Disponible</option>';
-		}
-		else
-		{
-			echo '<option value="INACTIVO" selected="selected">No Disponible</option>';
-			echo '<option value="ACTIVO">Disponible</option>';
-		}
-  	 ?>
-  	 </select>
-  	 </td>
- 	</tr>
- 	<tr>
-  	 <td></td>
-  	 <td colspan="2"><input type="button" name="btnConsultar" value="Modificar" onClick="get2();" /></td>
- 	</tr>
-   </table>
+   <dl>
+    <dd><label for="codigoCategoriaProducto">Código Categoría Producto</label></dd>
+    <dd><input type="text" name="txtCodigo" value="<?php echo $categoria->getIdCategoriaProducto() ?>" readonly="readonly" /></dd>
+    <dd><label for="nombreCategoriaProducto">Nombre Categoría Producto</label></dd>
+    <dd><input type="text" name="txtNombreNuevo" size="50" value="<?php echo $categoria->getNombreCategoriaProducto() ?>" /></dd>    
+    <?php	   
+	  if($categoria->getEstadoCategoriaProducto() == 'INACTIVO')
+	  {
+		  echo '<dd><label for="estadoCategoriaProducto">Estado Categoría Producto</label></dd>';
+		  echo '<dd>';
+		  echo '<select name="cboEstado">';
+		  echo '<option value="INACTIVO" selected="selected">No Disponible</option>';
+		  echo '<option value="ACTIVO">Disponible</option>';
+		  echo '</select>';
+		  echo '</dd>';
+	  }
+  	?>
+    <dd>
+     <input type="button" class="button" name="btnConsultar" value="Modificar" onClick="get2();" />
+     <input type="button" class="button" value="Restablecer" onClick="get();" />
+    </dd>
+   </dl>
   </form>
  </div>
  
