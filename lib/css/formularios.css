@@ -1,13 +1,16 @@
 @charset "utf-8";
 /* CSS Document */
 
-/*#content form input[type="text"]:focus,
-#content form input[type="password"]:focus {
-	border: 1px solid #4cdae0;
-	outline: none;
-}*/
+h1,h2,h3{
+  font-weight:bold;
+}
 
-label {display: block;font-size: 14px;line-height: 2em;}
+label
+{
+  display:block;
+  font-size:14px;
+  line-height:2em;
+}
 
 #formulario, #busqueda {
 	font-family: "Tahoma", Geneva, sans-serif;
@@ -22,7 +25,10 @@ label {display: block;font-size: 14px;line-height: 2em;}
 
 #busqueda label {display: inline;}
 
-#formulario h2 {margin: 10px 0 15px 40px;}
+#formulario h2 {
+	font-size: 1.4em;
+	margin: 10px 0 15px 40px;
+}
 	
 #formulario .button {		
 	-moz-border-radius: 3px 3px 3px 3px;
