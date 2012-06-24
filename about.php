@@ -10,18 +10,18 @@
 <p>Copyright © 2012 Informática Arte Bismarck.</p>
 <p>Arte Bismarck es una marca registrada.</p>
 <p>Tecnologías usadas en el desarrollo de este sistema:</p>
+<br />
+<br />
 <table width="100" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><img src="lib/img/logos/html5.png" width="110" height="110" /></td>
     <td><img src="lib/img/logos/css3.jpg" width="110" height="55" /></td>
     <td><img src="lib/img/logos/php.png" width="110" height="58" /></td>
-  </tr>
-  <tr>
     <td><img src="lib/img/logos/mysql.png" width="110" height="57" /></td>
     <td><img src="lib/img/logos/jquery.png" width="110" height="27" /></td>
     <td><img src="lib/img/logos/ajax.jpg" width="110" height="73" /></td>
   </tr>
 </table>
-<p>&nbsp;</p>
+<br />
 </body>
 </html>

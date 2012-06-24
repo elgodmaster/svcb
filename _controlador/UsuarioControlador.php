@@ -31,9 +31,9 @@
 		 }
 		 
 		 if ($existe == 0)
-			 echo "El usuario '".$usuario->getIdUsuario()."' ha sido registrado satisfactoriamente";
+			 echo "<label>El usuario '".$usuario->getIdUsuario()."' ha sido registrado satisfactoriamente.</label>";
 		 else
-		 	 echo "El usuario '".$usuario->getIdUsuario()."' existe en el sistema";
+		 	 echo "<label>El usuario '".$usuario->getIdUsuario()."' existe en el sistema.</label>";
 	 }
 	 else
 		 require("_vista/ingresarUsuario.php");
@@ -82,7 +82,7 @@
 			 require("_vista/listarUsuario.php");
 		 }
 		 else
-		 	 echo("El usuario '$id_usuario' no existe en el sistema");
+		 	 echo "<label>El usuario '$id_usuario' no existe en el sistema.</label>";
 	 }
 	 else
 	 	 require("_vista/buscarUsuario.php");
@@ -106,20 +106,11 @@
 			 while ($registro=mysql_fetch_assoc($usuariox))
 			 {
 				 if ($registro['tipo_usuario_id_tipo_usuario'] == 1001)
-				 {
-					 $usuario = new Administrador();
-					 $tipo_usuario='ADMINISTRADOR';
-				 }
+					 $usuario = new Administrador();					 
 			 	 elseif ($registro['tipo_usuario_id_tipo_usuario'] == 1002)
-				 {
 					 $usuario = new Vendedor();
-					 $tipo_usuario='VENDEDOR';
-				 }
 		 	 	 elseif ($registro['tipo_usuario_id_tipo_usuario'] == 1003)
-				 {
 					 $usuario = new Bodeguero();
-					 $tipo_usuario='BODEGUERO';
-				 }
 					
 				 $usuario->setIdUsuario($registro['id_usuario']);
 				 $usuario->setNombreUsuario($registro['nombre_usuario']);
@@ -131,14 +122,12 @@
 			 require("_vista/modificarUsuario.php");
 		 }
 		 else
-			 echo("El usuario '$id_usuario' no existe en el sistema");		 
+			 echo "<label>El usuario '$id_usuario' no existe en el sistema.</label>";
 	 }
 	 elseif(isset($_REQUEST['txtRunNuevo']) && isset($_REQUEST['txtNombreNuevo']) && isset($_REQUEST['txtApatNuevo']) 
-	 		&& isset($_REQUEST['txtAmatNuevo']) && isset($_REQUEST['cboUsuarioNuevo']) && isset($_REQUEST['cboEstado']))
+	 		&& isset($_REQUEST['txtAmatNuevo']) && isset($_REQUEST['cboUsuarioNuevo']))
 	 {
-		 
-		 $usuario = new Usuario();
-		 
+		 $usuario = new Usuario();		 
 		 if ($_REQUEST['cboUsuarioNuevo'] == 1001)
 			 $usuario = new Administrador();
 		 elseif ($_REQUEST['cboUsuarioNuevo'] == 1002)
@@ -150,7 +139,10 @@
 		 $usuario->setNombreUsuario(addslashes(strtoupper($_REQUEST['txtNombreNuevo'])));
 		 $usuario->setApatUsuario(addslashes(strtoupper($_REQUEST['txtApatNuevo'])));
 		 $usuario->setAmatUsuario(addslashes(strtoupper($_REQUEST['txtAmatNuevo'])));
-		 $usuario->setEstadoUsuario(strtoupper($_REQUEST['cboEstado']));
+		 if (isset($_REQUEST['cboEstado']))
+			 $usuario->setEstadoUsuario(addslashes(strtoupper($_REQUEST['cboEstado'])));
+		 else
+		 	 $usuario->setEstadoUsuario(addslashes('ACTIVO'));
 		 
 		 $admin = new Administrador();
 		 $usuarioxx = $admin->modificarUsuario($usuario->getIdUsuario(),$usuario->getNombreUsuario(),$usuario->getApatUsuario(),
@@ -163,9 +155,9 @@
 		 }
 		 
 		 if ($existe == 1)
-			 echo "El usuario '".$usuario->getIdUsuario()."' ha sido modificado satisfactoriamente";
+			 echo "<label>El usuario '".$usuario->getIdUsuario()."' ha sido modificado satisfactoriamente.</label>";
 		 else
-		 	 echo "El usuario '".$usuario->getIdUsuario()."' no existe en el sistema";
+		 	 echo "<label>El usuario '".$usuario->getIdUsuario()."' no existe en el sistema.</label>";
 	 }	 
 	 else
 	 	 require("_vista/buscarUsuario.php");
@@ -189,9 +181,9 @@
 		 }
 		 
 		 if ($existe != 0)
-			 echo "El usuario '$id_usuario' ha sido eliminado satisfactoriamente";
+			 echo "<label>El usuario '$id_usuario' ha sido eliminado satisfactoriamente.</label>";
 		 else
-		 	 echo "El usuario '$id_usuario' no existe en el sistema";
+		 	 echo "<label>El usuario '$id_usuario' no existe en el sistema.</label>";
 	 }
 	 else
 		 require("_vista/buscarUsuario.php");
@@ -224,9 +216,9 @@
 		 }
 		 
 		 if ($existe != 0)
-			 echo "La nueva password del usuario '$id_usuario' es: '$cad'";
+			 echo "<label>La nueva password del usuario '$id_usuario' es: '$cad'.</|label>";
 		 else
-		 	 echo "El usuario '$id_usuario' no existe en el sistema";
+		 	 echo "<label>El usuario '$id_usuario' no existe en el sistema.</label>";
 	 }
 	 else
 		 require("_vista/buscarUsuario.php");

@@ -30,9 +30,9 @@
 		 }
 		 
 		 if ($existe == 0)
-			 echo "La categoria producto '$nombre_categoria' ha sido registrado satisfactoriamente";
+			 echo "<label>La categoria producto '$nombre_categoria' ha sido registrado satisfactoriamente.</label>";
 		 else
-		 	 echo "La categoria producto '$nombre_categoria' existe en el sistema";
+		 	 echo "<label>La categoria producto '$nombre_categoria' existe en el sistema.</label>";
 	 }
 	 else
 		 require("_vista/ingresarCategoriaProducto.php");
@@ -65,7 +65,7 @@
 			 require("_vista/listarCategoriaProducto.php");
 		 }
 		 else
-			 echo("La categoria de producto '$nombre_categoria' no existe en el sistema");
+			 echo "<label>La categoria de producto '$nombre_categoria' no existe en el sistema.</label>";
 	 }
 	 else
 		 require("_vista/buscarCategoriaProducto.php");
@@ -98,7 +98,7 @@
 			 require("_vista/modificarCategoriaProducto.php");
 		 }
 		 else
-			 echo("La categoria de producto '$nombre_categoria' no existe en el sistema");		 
+			 echo "<label>La categoria de producto '$nombre_categoria' no existe en el sistema.</label>";		 
 	 }
 	 elseif(isset($_REQUEST['txtCodigo']) && isset($_REQUEST['txtNombreNuevo']) && isset($_REQUEST['cboEstado']))
 	 {
@@ -118,9 +118,10 @@
 		 }
 		 
 		 if ($existe == 1)
-			 echo "La categoria producto '".$categoria->getNombreCategoriaProducto()."' ha sido modificada satisfactoriamente";
+			 echo "<label>La categoria producto '".$categoria->getNombreCategoriaProducto()."' ha sido modificada satisfactoriamente.
+			 </label>";
 		 else
-		 	 echo "La categoria producto '".$categoria->getNombreCategoriaProducto()."' no existe en el sistema";
+		 	 echo "<label>La categoria producto '".$categoria->getNombreCategoriaProducto()."' no existe en el sistema.</label>";
 	 }	 
 	 else
 	 	 require("_vista/buscarCategoriaProducto.php");
@@ -144,9 +145,9 @@
 		 }
 		 
 		 if ($existe != 0)
-			 echo "La categoria producto '$nombre_categoria' ha sido eliminada satisfactoriamente";
+			 echo "<label>La categoria producto '$nombre_categoria' ha sido eliminada satisfactoriamente.</label>";
 		 else
-		 	 echo "La categoria producto '$nombre_categoria' no existe en el sistema";
+		 	 echo "<label>La categoria producto '$nombre_categoria' no existe en el sistema.</label>";
 	 }
 	 else
 		 require("_vista/buscarCategoriaProducto.php");
