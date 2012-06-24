@@ -8,7 +8,7 @@
 <script type="text/javascript" src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="lib/js/dependencias.js"></script>
 <script type="text/javascript" src="lib/js/validarut2.js"></script>
-<script type="text/javascript" src="lib/js/formulario-cliente.js"></script>
+<script type="text/javascript" src="lib/js/formulario-cliente1.js"></script>
 <script type="text/javascript">
 	function get(){
 		$.post('indexx.php?controlador=cliente&accion=ingresar', {

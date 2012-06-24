@@ -34,9 +34,13 @@
   <form id="form1" name="form1" method="post">
    <dl>
     <dd><label for="runCliente">RUN Cliente</label></dd>
-    <dd><input type="text" name="txtRUN" size="15" value="<?php echo $cliente->getIdCliente() ?>" readonly="readonly" /></dd>
+    <dd><input type="text" name="txtRUN" size="15" value="<?php echo $cliente->getIdCliente()?>" readonly="readonly" /></dd>
     <dd><label for="nombreCliente">Nombre Cliente</label></dd>
-    <dd><input type="text" name="txtNombreNuevo" size="50" value="<?php echo $cliente->getNombreCliente() ?>" /></dd>
+    <dd>
+     <input type="text" autocomplete="off" maxlength="250" name="txtNombreNuevo" size="50" value="<?php echo $cliente->getNombreCliente
+	 ()?>" />
+     <span id="req-nombre" class="requisites error">A-z, mínimo 4 caracteres</span>
+    </dd>
     <dd><label for="direccionCliente">Direcci&oacute;n Cliente</label></dd>
     <dd><input type="text" name="txtDireccionNueva" size="50" value="<?php echo $cliente->getDireccionCliente() ?>" /></dd>
     <dd><label for="regionCliente">Regi&oacute;n</label></dd>
