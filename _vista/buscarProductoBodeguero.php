@@ -46,7 +46,7 @@
   ?>  
   <form id="form" name="form" method="post">
    <label for="nombreCliente">Nombre:</label>
-   <input type="text" size="40" name="txtNombre" id="txtNombre" />
+   <input type="text" maxlength="250" size="40" name="txtNombre" id="txtNombre" />
    <input type="button" class="button" name="btnConsultar" value="Buscar" onClick="get();" />
   </form>
  </div>

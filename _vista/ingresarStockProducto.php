@@ -5,6 +5,7 @@
 <title>Ingresar Stock Producto</title>
 <link href="lib/css/formularios.css" rel="stylesheet" type="text/css" />
 <script src="lib/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="lib/js/formulario-stock.js"></script>
 <script type="text/javascript">
 	function get2(){
 		$.post('indexx.php?controlador=bodeguero&accion=ingresarstock', {
@@ -37,9 +38,13 @@
 	 $producto->getDescripcion() ?></textarea>
     </dd>
     <dd><label for="stockRealProducto">Stock Real Producto</label></dd>
-    <dd><input type="text" name="txtStockRNuevo" size="50" value="<?php echo $producto->getStockReal() ?>" /></dd>
     <dd>
-     <input type="button" class="button" value="Modificar" onClick="get2();" />
+     <input type="text" autocomplete="off" name="txtStockRNuevo" id="txtStockRNuevo" size="50" 
+     value="<?php echo $producto->getStockReal()?>" />
+     <span id="req-stockr" class="requisites error">0-9, el stock tiene que ser mayor al actual</span>
+    </dd>
+    <dd>
+     <input type="button" class="button" value="Modificar" id="btnConsultar" />
      <input type="button" class="button" value="Restablecer" onClick="get();" />
     </dd>
    </dl>

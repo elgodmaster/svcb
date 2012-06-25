@@ -35,7 +35,7 @@
 			 require("_vista/ingresarStockProducto.php");
 		 }
 		 else
-		 	 echo("El producto '$nombre_producto' no existe en el sistema");	 
+		 	 echo "<label>El producto '$nombre_producto' no existe en el sistema.</label>";
 	 }
 	 elseif(isset($_REQUEST['txtCodigo']) && isset($_REQUEST['txtNombreNuevo']) && isset($_REQUEST['txtStockRNuevo']))
 	 {
@@ -54,9 +54,9 @@
 		 }
 		 
 		 if ($existe == 1)
-			 echo "El stock del producto '".$producto->getNombre()."' ha sido actualizado satisfactoriamente";
+			 echo "<label>El stock del producto '".$producto->getNombre()."' ha sido actualizado satisfactoriamente.</label>";
 		 else
-		 	 echo "El producto '".$producto->getNombre()."' no existe en el sistema";
+		 	 echo "<label>El producto '".$producto->getNombre()."' no existe en el sistema.</label>";
 	 }	 
 	 else
 	 	 require("_vista/buscarProductoBodeguero.php");
@@ -97,7 +97,7 @@
 			 require("_vista/listarProductoBodeguero.php");
 		 }
 		 else
-		 	 echo("El producto '$nombre_producto' no existe en el sistema");
+		 	 echo"<label>El producto '$nombre_producto' no existe en el sistema.</label>";
 	 }
 	 else
 	 	 require("_vista/buscarProductoBodeguero.php");
