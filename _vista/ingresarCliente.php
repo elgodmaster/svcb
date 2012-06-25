@@ -28,7 +28,7 @@
    <dt><h2>Ingresar Cliente:</h2></dt>
    <dd><label for="runCliente">RUN Cliente:</label></dd>
    <dd>
-    <input type="text" size="15" name="txtRUN" onblur="javascript:return Rut(document.form.txtRUN.value)"/>
+    <input type="text" size="15" maxlength="15" name="txtRUN" id="txtRUN" onblur="javascript:return Rut(document.form.txtRUN.value)"/>
     
    </dd>
    <dd><label for="nombreCliente">Nombre Cliente:</label></dd>

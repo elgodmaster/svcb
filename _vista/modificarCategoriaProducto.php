@@ -22,6 +22,7 @@
 <?php
  }
 ?>
+<script type="text/javascript" src="lib/js/formulario-categoria2.js"></script>
 </head>
 
 <body>
@@ -32,7 +33,11 @@
     <dd><label for="codigoCategoriaProducto">Código Categoría Producto</label></dd>
     <dd><input type="text" name="txtCodigo" value="<?php echo $categoria->getIdCategoriaProducto() ?>" readonly="readonly" /></dd>
     <dd><label for="nombreCategoriaProducto">Nombre Categoría Producto</label></dd>
-    <dd><input type="text" name="txtNombreNuevo" size="50" value="<?php echo $categoria->getNombreCategoriaProducto() ?>" /></dd>    
+    <dd>
+     <input type="text" maxlength="200" autocomplete="off" name="txtNombreNuevo" id="txtNombreNuevo" size="50" 
+     value="<?php echo $categoria->getNombreCategoriaProducto()?>" />
+     <span id="req-nombre" class="requisites error">A-z, mínimo 4 caracteres</span>
+    </dd>    
     <?php	   
 	  if($categoria->getEstadoCategoriaProducto() == 'INACTIVO')
 	  {
@@ -46,7 +51,7 @@
 	  }
   	?>
     <dd>
-     <input type="button" class="button" name="btnConsultar" value="Modificar" onClick="get2();" />
+     <input type="button" class="button" name="btnConsultar" id="btnConsultar" value="Modificar" />
      <input type="button" class="button" value="Restablecer" onClick="get();" />
     </dd>
    </dl>

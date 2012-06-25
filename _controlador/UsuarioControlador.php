@@ -4,7 +4,7 @@
  {
 	 if (isset($_REQUEST['txtRUN']) && isset($_REQUEST['txtPassword']) && isset($_REQUEST['txtNombre']) && isset($_REQUEST['txtApat']) 
 	     && isset($_REQUEST['txtAmat']) && isset($_REQUEST['cboUsuario']))
-	 {		 
+	 {
 		 require("_modelo/Usuario.php");
 		 
 		 if ($_REQUEST['cboUsuario'] == 1001)

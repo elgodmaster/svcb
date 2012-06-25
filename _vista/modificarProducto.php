@@ -24,6 +24,7 @@
 <?php
  }
 ?>
+<script type="text/javascript" src="lib/js/formulario-producto2.js"></script>
 </head>
 
 <body>
@@ -35,8 +36,8 @@
     <dd><input type="text" name="txtCodigo" value="<?php echo $producto->getCodigoProducto()?>" readonly="readonly" /></dd>
     <dd><label for="categoriaProducto">Categoría Producto</label></dd>
     <dd>
-     <select name="cboCategoriaNuevo">
-      <option>Elige una Categoría</option>
+     <select name="cboCategoriaNuevo" id="cboCategoriaNuevo">
+      <option value="0">Elige una Categoría</option>
       <?php
         while ($reg = mysql_fetch_array($lista))
 	    {
@@ -48,18 +49,37 @@
 	    }
 	  ?>
      </select>
+     <span id="req-categoria" class="requisites error">Seleccione una categoría producto</span>
     </dd>    
     <dd><label for="nombreProducto">Nombre Producto</label></dd>
-    <dd><input type="text" name="txtNombreNuevo" size="50" value="<?php echo $producto->getNombre()?>" /></dd>
+    <dd>
+     <input type="text" name="txtNombreNuevo" id="txtNombreNuevo" autocomplete="off" maxlength="250" size="50" 
+     value="<?php echo $producto->getNombre()?>" />
+     <span id="req-nombre" class="requisites error">A-z, mínimo 4 caracteres</span>
+     </dd>
     <dd><label for="descripcionProducto">Descripción Producto</label></dd>
-    <dd><textarea name="txtaDescripcionNuevo" style="width:330px;min-height:100px;margin-left:2px"><?php echo $producto->getDescripcion
-	()?></textarea></dd>
+    <dd>
+     <textarea name="txtaDescripcionNuevo" id="txtaDescripcionNuevo"><?php echo $producto->getDescripcion()?></textarea>
+     <span id="req-descripcion" class="requisites error">[A-z][0-9], mínimo 5 caracteres, máximo 250 caracteres</span>
+    </dd>
     <dd><label for="precioProducto">Precio Producto</label></dd>
-    <dd><input type="text" name="txtPrecioNuevo" size="50" value="<?php echo $producto->getPrecio()?>" /></dd>
+    <dd>
+     <input type="text" autocomplete="off" name="txtPrecioNuevo" id="txtPrecioNuevo" size="50" 
+     value="<?php echo $producto->getPrecio()?>" />
+     <span id="req-precio" class="requisites error">Un precio válido por favor</span>
+     </dd>
     <dd><label for="stockRealProducto">Stock Real</label></dd>
-    <dd><input type="text" name="txtStockRNuevo" size="50" value="<?php echo $producto->getStockReal()?>" /></dd>
+    <dd>
+     <input type="text" autocomplete="off" name="txtStockRNuevo" id="txtStockRNuevo" size="50" 
+     value="<?php echo $producto->getStockReal()?>" />
+     <span id="req-stockr" class="requisites error">Un stock válido por favor</span>
+    </dd>
     <dd><label for="stockMinimoProducto">Stock Mínimo</label></dd>
-    <dd><input type="text" name="txtStockMNuevo" size="50" value="<?php echo $producto->getStockMinimo()?>" /></dd>
+    <dd>
+     <input type="text" autocomplete="off" name="txtStockMNuevo" id="txtStockMNuevo" size="50" 
+     value="<?php echo $producto->getStockMinimo()?>" />
+     <span id="req-stockm" class="requisites error">Un stock válido por favor</span>
+    </dd>
     <?php	   
 	  if($producto->getEstado() == 'INACTIVO')
 	  {
@@ -73,7 +93,7 @@
 	  }
   	?>
     <dd>
-     <input type="button" class="button" name="btnConsultar" value="Modificar" onClick="get2();" />
+     <input type="button" class="button" name="botonEnviar" id="botonEnviar" value="Modificar" />
      <input type="button" class="button" value="Restablecer" onClick="get();" />
     </dd>
    </dl>

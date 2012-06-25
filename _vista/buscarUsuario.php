@@ -54,7 +54,7 @@
   ?>
   <form id="form" name="form" method="post">
    <label for="runCliente">RUN:</label>
-   <input type="text" size="12" name="txtNombre" id="txtNombre" />
+   <input type="text" size="12" maxlength="15" name="txtNombre" id="txtNombre" />
    <?php
 	if($accion == 'eliminar')
 		echo '<input type="button" class="button" name="btnConsultar" value="Eliminar" onClick="get();" />';

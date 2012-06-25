@@ -23,6 +23,7 @@
 <?php
  }
 ?>
+<script type="text/javascript" src="lib/js/formulario-usuario2.js"></script>
 </head>
 
 <body>
@@ -31,13 +32,26 @@
   <form id="form1" name="form1" method="post">
    <dl>
     <dd><label for="runUsuario">RUN Usuario</label></dd>
-    <dd><input type="text" size="15" name="txtRunNuevo" value="<?php echo  $usuario->getIdUsuario() ?>" readonly="readonly" /></dd>
+    <dd><input type="text" size="15" name="txtRunNuevo" id="txtRunNuevo" value="<?php echo  $usuario->getIdUsuario() ?>" readonly=
+    "readonly" /></dd>
     <dd><label for="nombreUsuario">Nombre Usuario</label></dd>
-    <dd><input type="text" size="40" name="txtNombreNuevo" value="<?php echo $usuario->getNombreUsuario() ?>" /></dd>
+    <dd>
+     <input type="text" size="40" maxlength="100" name="txtNombreNuevo" id="txtNombreNuevo" autocomplete="off" 
+     value="<?php echo $usuario->getNombreUsuario() ?>" />
+     <span id="req-nombre" class="requisites error">A-z, mínimo 4 caracteres</span>
+    </dd>
     <dd><label for="apatUsuario">Apellido Paterno</label></dd>
-    <dd><input type="text" size="40" name="txtApatNuevo" value="<?php echo $usuario->getApatUsuario() ?>" /></dd>
+    <dd>
+     <input type="text" size="40" maxlength="100" name="txtApatNuevo" id="txtApatNuevo" autocomplete="off" 
+     value="<?php echo $usuario->getApatUsuario()?>" />
+     <span id="req-apat" class="requisites error">A-z, mínimo 4 caracteres</span>
+    </dd>
     <dd><label for="amatUsuario">Apellido Materno</label></dd>
-    <dd><input type="text" size="40" name="txtAmatNuevo" value="<?php echo $usuario->getAmatUsuario() ?>" /></dd>
+    <dd>
+     <input type="text" size="40" maxlength="50" name="txtAmatNuevo" id="txtAmatNuevo" autocomplete="off" 
+     value="<?php echo $usuario->getAmatUsuario()?>" />
+     <span id="req-amat" class="requisites error">A-z, mínimo 4 caracteres</span>
+    </dd>
     <dd><label for="tipoUsuario">Tipo Usuario</label></dd>
     <dd>
      <select name="cboUsuarioNuevo">
@@ -76,7 +90,7 @@
 	   }
   	 ?>
     <dd>
-     <input type="button" class="button" name="btnConsultar" value="Modificar" onClick="get2();" />
+     <input type="button" class="button" name="btnConsultar" id="btnConsultar" value="Modificar" />
      <input type="button" class="button" value="Restablecer" onClick="get();" />
     </dd>
    </dl>

@@ -6,10 +6,11 @@
 <link href="lib/css/formularios.css" rel="stylesheet" type="text/css" />
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="lib/js/validarut2.js"></script>
+<script type="text/javascript" src="lib/js/formulario-usuario1.js"></script>
 <script type="text/javascript">
-	function get(){
+	function get(){		
 		$.post('indexx.php?controlador=usuario&accion=ingresar', {
-			txtRUN: form.txtRun.value, txtPassword: form.txtPassword.value, txtNombre: form.txtNombre.value, 
+			txtRUN: form.txtRUN.value, txtPassword: form.txtPassword.value, txtNombre: form.txtNombre.value, 
 			txtApat: form.txtApat.value, txtAmat: form.txtAmat.value, cboUsuario: form.cboUsuario.value },
 		function(output){
 			$('#datos').html(output).show();
@@ -25,25 +26,46 @@
    <dl>
     <dt><h2>Ingresar Usuario</h2></dt>
     <dd><label for="runUsuario">RUN Usuario</label></dd>
-    <dd><input type="text" size="15" name="txtRUN" id="txtRUN" onblur="javascript:return Rut(document.form.txtRUN.value)" /></dd>
+    <dd>
+     <input type="text" size="15" name="txtRUN" id="txtRUN" onblur="javascript:return Rut(document.form.txtRUN.value)" />
+     <span id="req-run" class="requisites error">Un RUN válido por favor</span>
+    </dd>
     <dd><label for="passwordUsuario">Password Usuario</label></dd>
-    <dd><input type="password" size="40" name="txtPassword" id="txtPassword" /></dd>
+    <dd>
+     <input type="password" autocomplete="off" maxlength="30" size="40" name="txtPassword" id="txtPassword" />
+     <span id="req-pass1" class="requisites error">Mínimo 5 caracteres</span>
+    </dd>
+    <dd><label for="passwordUsuario">Repetir Contraseña</label></dd>
+    <dd>
+     <input type="password" autocomplete="off" maxlength="30" size="40" name="txtPassword2" id="txtPassword2" />
+     <span id="req-pass2" class="requisites error">Debe ser igual a la anterior</span>
+    </dd>
     <dd><label for="nombreUsuario">Nombre Usuario</label></dd>
-    <dd><input type="text" name="txtNombre" size="40" id="txtNombre" /></dd>
+    <dd>
+     <input type="text" autocomplete="off" maxlength="100" name="txtNombre" size="40" id="txtNombre" />
+     <span id="req-nombre" class="requisites error">A-z, mínimo 4 caracteres</span>
+    </dd>
     <dd><label for="apatUsuario">Apellido Paterno</label></dd>
-    <dd><input type="text" name="txtApat" size="40" id="txtApat" /></dd>
+    <dd>
+     <input type="text" autocomplete="off" maxlength="50" name="txtApat" size="40" id="txtApat" />
+     <span id="req-apat" class="requisites error">A-z, mínimo 4 caracteres</span>
+    </dd>
     <dd><label for="amatUsuario">Apellido Materno</label></dd>
-    <dd><input type="text" name="txtAmat" size="40" id="txtAmat" /></dd>
+    <dd>
+     <input type="text" autocomplete="off" maxlength="50" name="txtAmat" size="40" id="txtAmat" />
+     <span id="req-amat" class="requisites error">A-z, mínimo 4 caracteres</span>
+    </dd>
     <dd><label for="tipoUsuario">Tipo Usuario</label></dd>
     <dd>
      <select name="cboUsuario" id="cboUsuario">
-      <option>Elegir Tipo Usuario</option>
+      <option value="0">Elegir Tipo Usuario</option>
       <option value="1001">Administrador</option>
       <option value="1002">Vendedor</option>
       <option value="1003">Bodeguero</option>
      </select>
+     <span id="req-tipo" class="requisites error">Seleccione un tipo usuario</span>
     </dd>
-    <dd><input type="button" class="button" value="Ingresar" onClick="get();" /><input class="button" type="reset" /></dd>
+    <dd><input type="button" class="button" id="btnConsultar" value="Ingresar" /><input class="button" type="reset" /></dd>
    </dl>
   </form>
  </div>
