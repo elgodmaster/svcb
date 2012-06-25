@@ -255,9 +255,13 @@
 	 private $tipo_usuario = 1002;
 	 
 	 //Metodos de la clase Vendedor
-	 function realizarVenta()
+	 function realizarVenta($p_codigo,$p_fecha_emision,$p_fecha_vencimiento,$p_total,$p_usuario,$p_cliente)
 	 {
-		 
+		 $link = conexion();
+		 $sp = "call realizarVenta($p_codigo,'$p_fecha_emision','$p_fecha_vencimiento',$p_total,'$p_usuario','$p_cliente')";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
 	 }
 	 
 	 function realizarCobro($p_codigo)

@@ -46,7 +46,7 @@
      <?php 
   //Generar consulta que obtiene el indicie de confiabilidad
 $indice = $cliente->getIndiceConfiabilidadCliente();
-if($indice > 80){
+if($indice >= 80){
 		echo "<table width=72 border=0 cellspacing=0 cellpadding=0>
 		  <tr>
 			<td background=lib/img/grafico/gverdetop.png height=12></td>
@@ -58,7 +58,7 @@ if($indice > 80){
 			<td background=lib/img/grafico/gverdebajo.png height=9></td>
 		  </tr>
 		</table>";
-	}else if($indice >= 50 && $indice <= 80){
+	}else if($indice >= 50 && $indice < 80){
 		echo "<table width=72 border=0 cellspacing=0 cellpadding=0>
 		  <tr>
 			<td background=lib/img/grafico/gamarillotop.png height=12></td>
@@ -90,9 +90,9 @@ if($indice > 80){
   </tr>
   <tr>
    <?php
-    if($cliente->getIndiceConfiabilidadCliente() > 80)
+    if($cliente->getIndiceConfiabilidadCliente() >= 80)
 		echo '<td align="center">Cliente Confiable</td>';
-	elseif($cliente->getIndiceConfiabilidadCliente() >= 50 && $cliente->getIndiceConfiabilidadCliente() <= 80)
+	elseif($cliente->getIndiceConfiabilidadCliente() >= 50 && $cliente->getIndiceConfiabilidadCliente() < 80)
 		echo '<td align="center">Cliente Medianamente Confiable</td>';
 	elseif ($cliente->getIndiceConfiabilidadCliente() < 50)
 		echo '<td align="center">Cliente Riesgoso</td>';

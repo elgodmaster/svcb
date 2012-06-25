@@ -72,13 +72,13 @@
 		 }
 		 
 		 if ($existe == 1)
-			 echo "La Factura '".$documento->getIdDocumentoPago()."' ha sido ".strtolower($documento->getEstadoDocumentoPago())." 
-			 satisfactoriamente.";
+			 echo "<label>La Factura '".$documento->getIdDocumentoPago()."' ha sido ".strtolower($documento->getEstadoDocumentoPago()).
+			 " satisfactoriamente.</label>";
 		 else
-		 	 echo "La Factura '".$documento->getIdDocumentoPago()."' no existe en el sistema.";
+		 	 echo "<label>La Factura '".$documento->getIdDocumentoPago()."' no existe en el sistema.</label>";
 	 }	 
 	 else
-	 	 require("_vista/realizarCobro.php");		 		 
+	 	 require("_vista/realizarCobro.php");
  }
  
  function listarclientes()
