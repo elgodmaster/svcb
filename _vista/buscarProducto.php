@@ -20,7 +20,7 @@
 <link href="lib/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
   $().ready(function() {
-	$("#txtNombre").autocomplete("lib/ajax/producto.php", {
+	$("#txtNombre").autocomplete("lib/ajax/producto_admin.php", {
       width: 273,
       matchContains: true,
       selectFirst: false

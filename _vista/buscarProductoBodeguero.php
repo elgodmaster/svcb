@@ -24,13 +24,13 @@
       matchContains: true,
       selectFirst: false
     });
-  });  
+  });
   function domo(){
 	  jQuery(document).bind('keydown', 'return',function (evt){
 		  get();
 	  });
   }
-  jQuery(document).ready(domo);	  
+  jQuery(document).ready(domo);
 </script>
 <script type="text/javascript">
 	function get(){

@@ -62,7 +62,6 @@ function restults(data) {
 	
 	$(document).ready(function(){
 		$("#txtDetalle"+id).blur(function(){
-			//alert('entra');
 			var search_term = $("#txtDetalle"+id).val();
 			$.ajax({
 				data: "id="+search_term,
@@ -71,7 +70,6 @@ function restults(data) {
 				url: "lib/ajax/producto_factura.php",
 				success: function(data){
 					$("#txtUnitario"+id).val(data.precio_producto);
-					//alert(data.precio_producto);
 					calcular(id);
 				}
 			});
@@ -141,7 +139,7 @@ function restults(data) {
 
 <script type="text/javascript">
   $().ready(function() {
-	$("#txtCliente").autocomplete("lib/ajax/cliente.php", {
+	$("#txtCliente").autocomplete("lib/ajax/cliente_venta.php", {
       width: 153,
       matchContains: true,
       selectFirst: false
@@ -281,7 +279,8 @@ function restults(data) {
         <td align="center" id="descuento"><label for="txtDescuento"></label>
           <input size="5" type="text" name="txtDescuento[]" id="txtDescuento0" onChange="calcular(0);" dir="rtl" value="0" /></td>
         <td align="center" id="total"><label for="txtTotal"></label>
-          <input name="txtTotal[]" type="text" id="txtTotal0" readonly="readonly" dir="rtl" size="15" /><a href="javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
+          <input name="txtTotal[]" type="text" id="txtTotal0" readonly="readonly" value="0" dir="rtl" size="15" /><a href=
+          "javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
       </tr>
       </table></td>
   </tr>

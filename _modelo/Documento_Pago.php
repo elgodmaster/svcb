@@ -15,6 +15,16 @@
 	 private $orden_compra_documento_pago;
 	 private $total_documento_pago;
 	 
+	 //Metodo utilizado para obtener el codigo siguiente de la categoria producto
+	 function codigoSiguiente()
+	 {
+		 $link = conexion();
+		 $query = "SELECT IFNULL(MAX(id_documento_pago),0)+1 as codigo FROM documento_pago";
+		 $consulta = mysql_query($query,$link);
+		 close($link);
+		 return $consulta;
+	 }
+	 
 	 //Get de la clase Documento_Pago
 	 function getIdDocumentoPago()
 	 {

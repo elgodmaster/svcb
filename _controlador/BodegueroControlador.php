@@ -10,8 +10,8 @@
 	 {
 		 $nombre_producto = $_REQUEST['txtNombre'];
 	 
-		 $admin = new Administrador();
-		 $productox = $admin->listarProducto($nombre_producto);
+		 $bodeguero = new Bodeguero();
+		 $productox = $bodeguero->consultarProducto($nombre_producto);
 		 
 		 $num_rows = mysql_num_rows($productox);
 		 
@@ -23,9 +23,6 @@
 				 $producto->setCodigoProducto($registro['id_producto']);
 				 $producto->setNombre($registro['nombre_producto']);
 				 $producto->setDescripcion($registro['descripcion_producto']);
-				 $producto->setPrecio($registro['precio_producto']);
-				 $producto->setEstado($registro['estado_producto']);
-				 $producto->setStockMinimo($registro['stock_minimo_producto']);
 				 $producto->setStockReal($registro['stock_real_producto']);
 				 $categoria = new Categoria_Producto();
 				 $categoria->setIdCategoriaProducto($registro['id_categoria_producto']);
@@ -86,9 +83,6 @@
 				 $producto->setCodigoProducto($registro['id_producto']);
 				 $producto->setNombre($registro['nombre_producto']);
 				 $producto->setDescripcion($registro['descripcion_producto']);
-				 $producto->setPrecio($registro['precio_producto']);
-				 $producto->setEstado($registro['estado_producto']);
-				 $producto->setStockMinimo($registro['stock_minimo_producto']);
 				 $producto->setStockReal($registro['stock_real_producto']);
 				 $categoria->setIdCategoriaProducto($registro['id_categoria_producto']);
 				 $categoria->setNombreCategoriaProducto($registro['nombre_categoria_producto']);
