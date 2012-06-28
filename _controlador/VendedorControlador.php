@@ -2,11 +2,25 @@
 
  function vender()
  {
+	 require("_modelo/Documento_Pago.php");
+	 require("_modelo/Usuario.php");
+	 
 	 if (isset($_REQUEST['txtNombre']))
 	 {
 	 }
 	 else
+	 {
+		 $documento = new Documento_Pago();
+		 $consulta = $documento->codigoSiguiente();
+		 $id_documento;
+		 
+		 while ($reg = mysql_fetch_array($consulta))
+		 {
+			 $id_documento = $reg['codigo'];
+			 break;
+		 }			 
 		 require("_vista/realizarVenta.php");
+	 }
  }
  
  function cobrar()

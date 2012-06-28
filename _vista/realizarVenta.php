@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Realizar Venta</title>
 <script src="lib/js/jquery-1.7.2.min.js"></script><!-- -->
 <script type="text/javascript" src='lib/js/jquery.autocomplete.js'></script><!-- -->
@@ -112,10 +112,11 @@ function restults(data) {
 	}
 	
 	function iva(neto){
-		var iva = 0;
+		var iva,iva2 = 0;
 		var netox = neto;
 		iva = netox*0.19;
-		document.getElementById("txtIva").value = iva;
+		iva2 = redond(iva,0);
+		document.getElementById("txtIva").value = iva2;
 		totalFactura();
 	}
 	
@@ -135,12 +136,35 @@ function restults(data) {
 		document.getElementById("txtTotal"+id).value = descuentox;
 		sumar();
 	}
+	
+	// Redondea el número 'num' a 'ndec' decimales. 
+	function redond(num, ndec) {
+		var fact = Math.pow(10, ndec); // 10 elevado a ndec
+		//Se desplaza el punto decimal ndec posiciones, se redondea el número y se vuelve a colocar el punto decimal en su sitio.
+		return Math.round(num * fact) / fact; 
+	}
 </script>
+
+<script language="javascript" type="text/javascript">
+    //*** Este Codigo permite Validar que sea un campo Numerico
+    function Solo_Numerico(variable){
+        Numer=parseInt(variable);
+        if (isNaN(Numer)){
+            return "";
+        }
+        return Numer;
+    }
+    function ValNumero(Control){
+        Control.value=Solo_Numerico(Control.value);
+    }
+    //*** Fin del Codigo para Validar que sea un campo Numerico
+</script>
+
 
 <script type="text/javascript">
   $().ready(function() {
 	$("#txtCliente").autocomplete("lib/ajax/cliente_venta.php", {
-      width: 153,
+      width: 273,
       matchContains: true,
       selectFirst: false
     });
@@ -175,7 +199,7 @@ function restults(data) {
         <h1>FACTURA</h1>
         <h1>N&deg;
           <label for="txtFactura"></label>
-  <input name="txtFactura" type="text" dir="rtl" id="txtFactura" />
+  <input name="txtFactura" value="<?php echo $id_documento?>" readonly="readonly" type="text" dir="rtl" id="txtFactura" />
         </h1></td>
       </tr>
     </table></td>
@@ -199,45 +223,45 @@ function restults(data) {
         <td width="80"><p>Se&ntilde;or(es) 
           <label for="txtCliente"></label>
         </p></td>
-        <td width="260"><input name="txtCliente" type="text" id="txtCliente" /></td>
+        <td colspan="3" width="260"><input name="txtCliente" type="text" size="40" id="txtCliente" /></td>
         </tr>
       <tr>
         <td><p>Direcci&oacute;n 
           <label for="txtDireccion"></label>
         </p></td>
-        <td><input name="txtDireccion" type="text" id="txtDireccion" readonly="readonly" /></td>
-        <td width="80"><p>Provincia
+        <td><input name="txtDireccion" type="text" size="40" id="txtDireccion" readonly="readonly" /></td>
+        <td width="100"><p style="margin-left:20px">Provincia
           <label for="txtProvincia"></label>
         </p></td>
-        <td width="255"><input name="txtProvincia" type="text" id="txtProvincia" readonly="readonly"/></td>
+        <td width="255"><input name="txtProvincia" size="30" type="text" id="txtProvincia" readonly="readonly"/></td>
       </tr>
       <tr>
         <td><p>RUT 
           <label for="txtRut"></label>
         </p></td>
-        <td><input name="txtRut" type="text" id="txtRut" readonly="readonly" /></td>
-        <td><p>Comuna 
+        <td><input name="txtRut" size="12" type="text" id="txtRut" readonly="readonly" /></td>
+        <td><p style="margin-left:20px">Comuna 
           <label for="txtComuna"></label>
         </p></td>
-        <td><input name="txtComuna" type="text" id="txtComuna" readonly="readonly" /></td>
+        <td><input name="txtComuna" size="30" type="text" id="txtComuna" readonly="readonly" /></td>
       </tr>
       <tr>
         <td><p>Giro 
           <label for="txtGiro"></label>
         </p></td>
-        <td><input name="txtGiro" type="text" id="txtGiro" readonly="readonly" /></td>
-        <td><p>Fono 
+        <td><input name="txtGiro" type="text" id="txtGiro" size="40" readonly="readonly" /></td>
+        <td><p style="margin-left:20px">Fono 
           <label for="txtTelefono"></label>
         </p></td>
-        <td><input name="txtTelefono" type="text" id="txtTelefono" readonly="readonly" /></td>
+        <td><input name="txtTelefono" size="30" type="text" id="txtTelefono" readonly="readonly" /></td>
       </tr>
     </table></td>
   </tr>
   <tr>
-    <td><table width="675" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="168" align="center">Orden de Compra n&deg;</td>
-        <td width="168" align="center">Guia de Despacho n&deg;</td>
+    <td><table width="675" style="margin-top:10px" border="0" cellspacing="0" cellpadding="0">
+      <tr>        
+        <td width="168" align="center">Orden de Compra N&deg;</td>
+        <td width="168" align="center">Guia de Despacho N&deg;</td>
         <td width="168" align="center">Condiciones de Venta</td>
         <td width="171" align="center">Vencimiento</td>
       </tr>
@@ -253,8 +277,9 @@ function restults(data) {
       </tr>
     </table></td>
   </tr>
+  
   <tr>
-    <td><table width="675" border="0" cellspacing="0" cellpadding="0">
+    <td><table width="675" style="margin-top:10px" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td colspan="5"><table width="675" border="0" cellspacing="0" cellpadding="0">
           <tr>
@@ -271,13 +296,16 @@ function restults(data) {
         </tr>
       <tr>
         <td align="center" id="cantidad"><label for="txtCantidad"></label>
-          <input size="5" type="text" name="txtCantidad[]" id="txtCantidad0" dir="rtl" value="1" onChange="calcular(0);" /></td>
+          <input size="5" type="text" onkeyUp="return ValNumero(this);" name="txtCantidad[]" id="txtCantidad0" dir="rtl" value="1"
+          onChange="calcular(0);" /></td>
         <td align="center" id="detalle"><label for="txtDetalle"></label>
           <input name="txtDetalle[]" type="text" id="txtDetalle0" size="35" /></td>
         <td align="center" id="unitario"><label for="txtUnitario"></label>
-          <input name="txtUnitario[]" type="text" id="txtUnitario0" onChange="calcular(0);" dir="rtl" size="5" /></td>
+          <input name="txtUnitario[]" value="0" onkeyUp="return ValNumero(this);" type="text" id="txtUnitario0" 
+          onChange="calcular(0);" dir="rtl" size="5" /></td>
         <td align="center" id="descuento"><label for="txtDescuento"></label>
-          <input size="5" type="text" name="txtDescuento[]" id="txtDescuento0" onChange="calcular(0);" dir="rtl" value="0" /></td>
+          <input size="5" type="text"  name="txtDescuento[]" id="txtDescuento0" onChange="calcular(0);" dir="rtl" value="0" 
+          onkeyUp="return ValNumero(this);" /></td>
         <td align="center" id="total"><label for="txtTotal"></label>
           <input name="txtTotal[]" type="text" id="txtTotal0" readonly="readonly" value="0" dir="rtl" size="15" /><a href=
           "javascript:agregar();"><img src="lib/img/agregar.png" width="16" height="16" /></a></td>
@@ -289,22 +317,26 @@ function restults(data) {
       <tr>
         <td width="504" align="right">Neto $</td>
         <td width="171" align="center"><label for="txtNeto"></label>
-          <input name="txtNeto" type="text" id="txtNeto" dir="rtl" size="15" readonly="readonly" /></td>
+          <input name="txtNeto" type="text" value="0" id="txtNeto" dir="rtl" size="15" readonly="readonly" /></td>
       </tr>
       <tr>
         <td align="right">IVA $</td>
         <td align="center"><label for="txtIva"></label>
-          <input name="txtIva" type="text" id="txtIva" dir="rtl" size="15" readonly="readonly" /></td>
+          <input name="txtIva" type="text" value="0" id="txtIva" dir="rtl" size="15" readonly="readonly" /></td>
       </tr>
       <tr>
         <td align="right">Total $</td>
         <td align="center"><label for="txtTotal"></label>
-          <input name="txtTotal2" type="text" id="txtTotal" dir="rtl" size="15" readonly="readonly" /></td>
+          <input name="txtTotal2" type="text" value="0" id="txtTotal" dir="rtl" size="15" readonly="readonly" /></td>
       </tr>
     </table></td>
   </tr>
   <tr>
-    <td align="center"><input type="submit" name="btnEnviar" o id="btnEnviar" value="Realizar Venta" /></td>
+    <td align="center">
+     <br />
+     <input type="submit" name="btnEnviar" o id="btnEnviar" value="Realizar Venta" />
+     <input type="reset" />
+    </td>
   </tr>
 </table>
 </form>
