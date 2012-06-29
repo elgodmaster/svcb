@@ -101,16 +101,16 @@
 	$pdf->Cell(45,7,$total2,0,0,'C');
 	$pdf->Ln();
 	//Guardamos la factura
-	$pdf->Output('facturas_pdf/' . $numfactura.'.pdf', 'F');
+	$pdf->Output('facturas_pdf/'.$numfactura.'.pdf', 'F');
 	
 	/*_______________________________________________________*/
 	// 				CREACION IMAGEN JPG						 //
 	/*_______________________________________________________*/
 	
-	$image = imagecreatefromjpeg('notaventa.jpg');
+	$image = imagecreatefromjpeg('lib/img/notaventa.jpg');
 	$background = imagecolorallocate($image,0,0,0);
 	$color= imagecolorallocate($image,0,0,0);
-	$fuente = 'arial.ttf';
+	$fuente = 'lib/font/arial.ttf';
 	
 	imagettftext($image, 15,0,679,61,$color,$fuente, $numfactura);
 	imagettftext($image, 10,0,166,189,$color,$fuente, $cliente);
@@ -136,7 +136,6 @@
 	imagettftext($image, 10,0,646,834,$color,$fuente, $iva);
 	imagettftext($image, 10,0,646,855,$color,$fuente, $total2);
 	
-	//header('Location: index.php');
 	imagejpeg($image,'facturas_imagen/'.$numfactura.'.jpg');
 	
 ?>
