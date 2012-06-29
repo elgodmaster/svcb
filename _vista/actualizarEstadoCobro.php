@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Realizar Cobro</title>
+<title>Actualizar Estado Cobro</title>
 <script src="lib/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 	function get2(){

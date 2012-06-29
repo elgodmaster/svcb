@@ -5,8 +5,66 @@
 	 require("_modelo/Documento_Pago.php");
 	 require("_modelo/Usuario.php");
 	 
-	 if (isset($_REQUEST['txtNombre']))
+	 if (isset($_REQUEST['txtCliente']) && isset($_REQUEST['txtFactura']))
 	 {
+		 //require('lib/fpdf/fpdf.php');
+		 require("_modelo/Cliente.php");
+		 require("_modelo/Provincia.php");
+		 require("_modelo/Comuna.php");
+		 require("_controlador/Fecha.php");		 
+		 
+		 $dia = $_REQUEST['txtDia'];
+		 $mes = strtolower($_REQUEST['txtMes']);
+		 $año = $_REQUEST['txtAno'];		
+		 $mes2 = nombreMes($mes);		 
+		 $fecha = "$año-$mes2-$dia";
+		 		 
+		 $cliente = new Cliente();
+		 $cliente->setIdCliente(addslashes($_REQUEST['txtRut']));
+		 $cliente->setNombreCliente(addslashes(strtoupper($_REQUEST['txtCliente'])));
+		 $cliente->setDireccionCliente(addslashes(strtoupper($_REQUEST['txtDireccion'])));
+		 $cliente->setTelefonoCliente($_REQUEST['txtTelefono']);
+		 $cliente->setGiroCliente(addslashes(strtoupper($_REQUEST['txtGiro'])));
+		 $provincia = new Provincia();
+		 $provincia->setNombreProvincia(addslashes(strtoupper($_REQUEST['txtProvincia'])));
+		 $comuna = new Comuna();
+		 $comuna->setNombreComuna(addslashes(strtoupper($_REQUEST['txtComuna'])));
+		 $documento = new Documento_Pago();
+		 $documento->setIdDocumentoPago($_REQUEST['txtFactura']);
+		 $documento->setFechaEmisionDocumentoPago(addslashes($fecha));
+		 $documento->setCondicionesVentaDocumentoPago(addslashes(strtoupper($_REQUEST['txtCondiciones'])));
+		 $documento->setOrdenCompraDocumentoPago($_REQUEST['txtOrden']);
+		 $documento->setGuiaDespachoDocumentoPago($_REQUEST['txtGuia']);
+		 $documento->setFechaVencimientoDocumentoPago(date("Y-m-d",strtotime(addslashes($_REQUEST['txtVencimiento']))));
+		 $documento->setNetoDocumentoPago($_REQUEST['txtNeto']);
+		 $documento->setIvaDocumentoPago($_REQUEST['txtIva']);
+		 $documento->setTotalDocumentoPago($_REQUEST['txtTotal2']);
+		 
+		 //Obtenemos el contenido de la factura en arrays
+		  /*$cantidad = $_POST['txtCantidad'];
+		  $detalle = $_POST['txtDetalle'];
+		  $preunitario = $_POST['txtUnitario'];
+		  $descuento = $_POST['txtDescuento'];
+		  $total = $_POST['txtTotal'];*/
+		 
+		 $vendedor = new Vendedor();
+		 $documentox = $vendedor->realizarVenta($documento->getIdDocumentoPago(),$documento->getFechaEmisionDocumentoPago(),
+		 			$documento->getFechaVencimientoDocumentoPago(),$documento->getTotalDocumentoPago(),$_SESSION['usuario'],
+					$cliente->getIdCliente());
+		 
+		 while ($registro = mysql_fetch_array($documentox))
+		 {
+			 $existe = $registro['v_existe'];	
+			 break;
+		 }
+		 
+		 if ($existe == 0)
+		 {
+			 require("test_pdf.php");
+			 require("_vista/imprimirFactura.php");
+		 }
+		 else
+		 	 echo "<label>Ha ocurrido un error al realizar la venta. Favor de realizarla nuevamente.</label>";
 	 }
 	 else
 	 {

@@ -4,7 +4,6 @@
 	 //Variables de la clase Detalle_Documento_Pago
 	 private $id_producto;
 	 private $nombre_producto;
-	 private $descripcion_producto;
 	 private $precio_producto;
 	 private $cantidad_producto;
 	 
@@ -17,11 +16,6 @@
 	 function getNombreProducto()
 	 {
 		 return $this->nombre_producto;
-	 }
-	 
-	 function getDescripcionProducto()
-	 {
-		 return $this->descripcion_producto;
 	 }
 	 
 	 function getPrecioProducto()
@@ -43,11 +37,6 @@
 	 function setNombreProducto($nombre_producto)
 	 {
 		 $this->nombre_producto = $nombre_producto;
-	 }
-	 
-	 function setDescripcionProducto($descripcion_producto)
-	 {
-		 $this->descripcion_producto = $descripcion_producto;
 	 }
 	 
 	 function setPrecioProducto($precio_producto)

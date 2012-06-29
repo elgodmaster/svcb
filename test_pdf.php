@@ -5,13 +5,14 @@
 	//Obtenemos los datos que identifican a la factura
 	$numfactura = strtoupper($_REQUEST['txtFactura']);
 	$dia = strtoupper($_REQUEST['txtDia']);
-	$mes = strtoupper($_REQUEST['txtMes']);
+	$mes = strtolower($_REQUEST['txtMes']);
+	$mes = ucwords($mes);
 	$año = strtoupper($_REQUEST['txtAno']);
 	$cliente = strtoupper($_REQUEST['txtCliente']);
 	$direccion = strtoupper($_REQUEST['txtDireccion']);
 	$rut = strtoupper($_REQUEST['txtRut']);
 	$giro = strtoupper($_REQUEST['txtGiro']);
-	$ciudad = strtoupper($_REQUEST['txtCiudad']);
+	$ciudad = strtoupper($_REQUEST['txtProvincia']);
 	$comuna = strtoupper($_REQUEST['txtComuna']);
 	$fono = strtoupper($_REQUEST['txtTelefono']);
 	$orden = strtoupper($_REQUEST['txtOrden']);
@@ -55,7 +56,7 @@
 	$pdf->Cell(20,10,"RUT: $rut",0,0,'L');
 	//Ciudad
 	$pdf->Cell(80);
-	$pdf->Cell(20,10,"Ciudad: Santiago",0,0,'L');
+	$pdf->Cell(20,10,"Provincia: $ciudad",0,0,'L');
 	$pdf->Ln();
 	//Giro
 	$pdf->Cell(20,10,"Giro: $giro",0,0,'L');
@@ -119,6 +120,7 @@
 	imagettftext($image, 10,0,555,205,$color,$fuente, $fono);
 	imagettftext($image, 10,0,106,220,$color,$fuente, $fecha);
 	imagettftext($image, 10,0,568,220,$color,$fuente, $ciudad);
+	imagettftext($image, 10,0,585,235,$color,$fuente, $_SESSION['usuario']);
 	//imagettftext($image, 10,0,585,235,$color,$fuente, $vendedor);
 	
 	$lugar = 330;
@@ -134,7 +136,7 @@
 	imagettftext($image, 10,0,646,834,$color,$fuente, $iva);
 	imagettftext($image, 10,0,646,855,$color,$fuente, $total2);
 	
-	header('Location: index.php');
+	//header('Location: index.php');
 	imagejpeg($image,'facturas_imagen/' . $numfactura.'.jpg');
 	
 ?>
