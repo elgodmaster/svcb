@@ -76,7 +76,8 @@
 a:link{
   font-family:arial, monospace;
   text-decoration: none;
-  color: teal;
+  /*color: teal;*/
+  color: black;
 }
 
 a:hover{

@@ -21,8 +21,10 @@
    <tr>
     <td align="center">
      <label>La venta N°'<?php echo $documento->getIdDocumentoPago()?>' ha sido realizada satisfactoriamente.</label>
-     <input type="button" class="button" value="Imprimir Nota Venta" />
+     <input type="button" class="button" value="Imprimir Nota Venta" onclick="javascript:CargarFoto('facturas_imagen/<?php echo 
+	 $documento->getIdDocumentoPago()?>.jpg','533','690')" />
      <input type="button" class="button" value="Imprimir Factura" />
+     <!-- onclick="javascript:window.print();"-->
     </td>
    </tr>
   </table>

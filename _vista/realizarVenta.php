@@ -127,7 +127,10 @@
         <td align="center"><label for="txtCondiciones"></label>
           <input type="text" name="txtCondiciones" id="txtCondiciones" autocomplete="off" /></td>
         <td align="center"><label for="txtVencimiento"></label>
-          <input type="text" name="txtVencimiento" id="txtVencimiento" autocomplete="off" /></td>
+          <input type="text" name="txtVencimiento" id="txtVencimiento" autocomplete="off" />
+        </td>
+        <tr align="center"><td colspan="3"></td>
+        <td><span id="req-fecha" class="requisites error">[dd-mm-YYYY]</span></td></tr>
       </tr>
     </table></td>
   </tr>
@@ -188,7 +191,7 @@
   <tr>
     <td align="center">
      <br />
-     <input type="submit" class="button" name="btnEnviar" o id="btnEnviar" value="Realizar Venta" />
+     <input type="submit" class="button" name="btnEnviar" id="btnEnviar" value="Realizar Venta" />
      <input type="reset" class="button" />
     </td>
   </tr>
