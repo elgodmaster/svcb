@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+
+#formulariox {
+	font-family: "Tahoma", Geneva, sans-serif;
+	font-size: 0.85em;
+	height: 100%;
+	line-height: 1.5;
+	color: #0E0E0E;
+}
+
+#formulariox h2 {
+	font-size: 1.4em;
+	margin: 10px 0 15px 40px;
+}
+
+#formulariox .button {
+	-moz-border-radius: 3px 3px 3px 3px;
+	-moz-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+	background-color: #C72D2D;
+	border: 1px solid #CF1010;
+	border-radius: 4px;
+	color: white !important;
+	cursor: pointer;
+	/*display: block;*/
+	font-weight: bold;
+	line-height: 18px;
+	min-width: 40px;
+	padding: 4px 15px 6px;
+	text-align: center;
+	text-shadow: 0 -1px 0 #333;
+	/*float: left;*/
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+#formulariox .button:hover {
+	background-color: #CF1010;
+}
+
+
+#formulariox table{
+  border: 0px solid black;
+  border-spacing: 0px;
+}
+
+#formulariox table thead tr{
+  font-family: Arial, monospace;
+  font-size: 14px;
+}
+
+#formulariox table thead tr th{
+  border-bottom: 2px solid black;
+  border-top: 1px solid black;
+  margin: 0px;
+  padding: 2px;
+  background-color: #cccccc;
+}
+
+#formulariox table tr {
+  font-family: arial, monospace;
+  color: black;
+  font-size:12px;
+  background-color: white;
+}
+
+#formulariox table tr.odd {
+  background-color: #AAAAAA;
+}
+
+#formulariox table tr td, th{
+  border-bottom: 1px solid black;
+  padding: 2px;
+}
+
+a:link{
+  font-family:arial, monospace;
+  text-decoration: none;
+  color: teal;
+}
+
+a:hover{
+  text-decoration: underline;
+}
