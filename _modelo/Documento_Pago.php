@@ -5,7 +5,6 @@
 	 //Variables de la clase Documento_Pago
 	 private $id_documento_pago;
 	 private $condiciones_venta_documento_pago;
-	 private $descuento_documento_pago;
 	 private $estado_documento_pago;
 	 private $fecha_emision_documento_pago;
 	 private $fecha_vencimiento_documento_pago;
@@ -34,11 +33,6 @@
 	 function getCondicionesVentaDocumentoPago()
 	 {
 		 return $this->condiciones_venta_documento_pago;
-	 }
-	 
-	 function getDescuentoDocumentoPago()
-	 {
-		 return $this->descuento_documento_pago;
 	 }
 	 
 	 function getEstadoDocumentoPago()
@@ -90,11 +84,6 @@
 	 function setCondicionesVentaDocumentoPago($condiciones_venta_documento_pago)
 	 {
 		 $this->condiciones_venta_documento_pago = $condiciones_venta_documento_pago;
-	 }
-	 
-	 function setDescuentoDocumentoPago($descuento_documento_pago)
-	 {
-		 $this->descuento_documento_pago = $descuento_documento_pago;
 	 }
 	 
 	 function setEstadoDocumentoPago($estado_documento_pago)

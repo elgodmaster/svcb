@@ -83,3 +83,7 @@ a:link{
 a:hover{
   text-decoration: underline;
 }
+
+#formulariox label {
+	display: inline;
+}
