@@ -7,7 +7,6 @@
 	 
 	 if (isset($_REQUEST['txtCliente']) && isset($_REQUEST['txtFactura']))
 	 {
-		 //require('lib/fpdf/fpdf.php');
 		 require("_modelo/Cliente.php");
 		 require("_modelo/Provincia.php");
 		 require("_modelo/Comuna.php");
@@ -183,7 +182,7 @@
 				 $out[]= $documento;
 			 }
 			 $pdf = new Documento_Pago_PDF();
-			 $doc_pdfx = $pdf->listarFacturaPDF($cliente_name);			 
+			 $doc_pdfx = $pdf->listarFacturaPDF($cliente_name);
 			 			 
 			 $out2 = array();
 			 while ($registro2 = mysql_fetch_assoc($doc_pdfx))

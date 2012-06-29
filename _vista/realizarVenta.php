@@ -13,31 +13,25 @@
 <script type="text/javascript" src="lib/js/jquery.form.js"></script>
 <link href="lib/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
 <link href="lib/css/formularios.css" rel="stylesheet" type="text/css" />
-
-<script type="text/javascript"> 
-        // esperamos que el DOM cargue
-        $(document).ready(function() { 
-            // definimos las opciones del plugin AJAX FORM
-            var opciones= {
-                               beforeSubmit: mostrarLoader, //funcion que se ejecuta antes de enviar el form
-                               success: mostrarRespuesta, //funcion que se ejecuta una vez enviado el formulario
+<script type="text/javascript">
+	$(document).ready(function() {
+		var opciones= {
+			beforeSubmit: mostrarLoader,
+			success: mostrarRespuesta,
 							   
-            };
-             //asignamos el plugin ajaxForm al formulario myForm y le pasamos las opciones
-            $('#form1').ajaxForm(opciones) ; 
-            
-             //lugar donde defino las funciones que utilizo dentro de "opciones"
-             function mostrarLoader(){
-                      $("#loader_gif").fadeIn("slow");
-             };
-             function mostrarRespuesta (responseText){
-						   $("#form1").remove();
-                          $("#loader_gif").fadeOut("slow");
-                          $("#ajax_loader").append(responseText);
-             };
+		};
+		$('#form1').ajaxForm(opciones);
+		function mostrarLoader(){
+			$("#loader_gif").fadeIn("slow");
+		};
+		function mostrarRespuesta (responseText){
+			$("#form1").remove();
+			$("#loader_gif").fadeOut("slow");
+			$("#ajax_loader").append(responseText);
+		};
    
-        }); 
-    </script>
+	});
+</script>
 
 </head>
 
@@ -201,6 +195,6 @@
 </table>
 </form>
 </div>
-<div id="ajax_loader"><img id="loader_gif" src="lib/img/loader.gif" style=" display:none;"/></div>
+<div id="ajax_loader" align="center"><img id="loader_gif" src="lib/img/loader.gif" style=" display:none;"/></div>
 </body>
 </html>

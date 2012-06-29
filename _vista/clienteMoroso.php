@@ -3,25 +3,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Clientes Morosos</title>
+<link href="lib/css/tablas.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
  <h2>Clientes Morosos</h2>
- <div id="formulario">
-  <table border="1" width="100%">
-   <tr align="center">    
-    <td>RUN Cliente</td>
-    <td>Nombre Cliente</td>
-    <td>N° Factura</td>
-  	<td>Fecha Emisión</td>
-    <td>Fecha Vencimiento</td>
-    <td>Monto Total</td>
-   </tr>
+ <div id="formulariox">
+  <table border="0" width="100%">
+   <thead>
+    <tr>
+     <th scope="col">RUN Cliente</th>
+     <th scope="col">Nombre Cliente</th>
+     <th scope="col">N° Factura</th>
+     <th scope="col">Fecha Emisión</th>
+     <th scope="col">Fecha Vencimiento</th>
+     <th scope="col">Monto Total</th>
+    </tr>
+   </thead>
+   <tbody>
    <?php
    for($i=0;$i<count($out1);$i++)
    {
+	    if ($i%2==0){
+		   echo '<tr align="center">';
+		}else{
+			echo '<tr class="odd" align="center">';
+		}
    ?>
-   <tr align="center">
     <td><?php echo $out2[$i]->getIdCliente()?></td>
     <td><?php echo $out2[$i]->getNombreCliente()?></td>
     <td><?php echo $out1[$i]->getIdDocumentoPago()?></td>    
@@ -32,6 +40,7 @@
    <?php
    }
    ?>
+   </tbody>
   </table>
  </div>
  

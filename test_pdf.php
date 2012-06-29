@@ -137,6 +137,6 @@
 	imagettftext($image, 10,0,646,855,$color,$fuente, $total2);
 	
 	//header('Location: index.php');
-	imagejpeg($image,'facturas_imagen/' . $numfactura.'.jpg');
+	imagejpeg($image,'facturas_imagen/'.$numfactura.'.jpg');
 	
 ?>
