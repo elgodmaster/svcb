@@ -1,8 +1,8 @@
 <?php
 	interface InterfazUsuario
 	{
-		public function autentificarUsuario($usuario,$tipo);
-		public function crearUsuario();
+		static public function autentificarUsuario($id_usuario,$nombre_usuario,$apat_usuario,$amat_usuario,$tipo);
+		//static public function crearUsuario();
 	}
 
 ?>
