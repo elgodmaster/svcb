@@ -1,16 +1,17 @@
 <?php
+ 
+ require("_modelo/Categoria_Producto.php");
+ require("_modelo/Producto.php");
+ require("_modelo/Usuario.php");
+ require("_modelo/FabricaUsuario.php");
 
  function ingresarstock()
  {
-	 require("_modelo/Categoria_Producto.php");
-	 require("_modelo/Producto.php");
-	 require("_modelo/Usuario.php");
-	 
 	 if (isset($_REQUEST['txtNombre']))
 	 {
 		 $nombre_producto = $_REQUEST['txtNombre'];
 	 
-		 $bodeguero = new Bodeguero();
+		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 		 $productox = $bodeguero->consultarProducto($nombre_producto);
 		 
 		 $num_rows = mysql_num_rows($productox);
@@ -41,7 +42,7 @@
 		 $producto->setNombre($_REQUEST['txtNombreNuevo']);
 		 $producto->setStockReal($_REQUEST['txtStockRNuevo']);
 		 		 
-		 $bodeguero = new Bodeguero();
+		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 		 $productoxx = $bodeguero->ingresarStockProducto($producto->getCodigoProducto(),$producto->getStockReal());
 		 
 		 while ($registro = mysql_fetch_array($productoxx))
@@ -63,13 +64,9 @@
  {
 	 if (isset($_REQUEST['txtNombre']))
 	 {
-		 require("_modelo/Categoria_Producto.php");
-		 require("_modelo/Producto.php");
-	 	 require("_modelo/Usuario.php");
-	 	 	 	 
-	 	 $nombre_producto = $_REQUEST['txtNombre'];
+		 $nombre_producto = $_REQUEST['txtNombre'];
 	 
-		 $bodeguero = new Bodeguero();
+		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 		 $productox = $bodeguero->consultarProducto($nombre_producto);
 		 
 		 $num_rows = mysql_num_rows($productox);
