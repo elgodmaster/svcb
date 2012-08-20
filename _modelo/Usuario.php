@@ -2,13 +2,22 @@
  include("Conexion.php");
  class Usuario
  {
-	 //Variables de la clase Usuario
-	 private $id_usuario;
-	 private $password_usuario;
-	 private $nombre_usuario;
-	 private $apat_usuario;
-	 private $amat_usuario;
-	 private $estado_usuario;
+	//Variables de la clase Usuario
+	private $id_usuario;
+	private $password_usuario;
+	private $nombre_usuario;
+	private $apat_usuario;
+	private $amat_usuario;
+	private $estado_usuario;
+	 
+	//Constructor de la clase Usuario 
+	public function __construct($id_usuario,$nombre_usuario,$apat_usuario,$amat_usuario)
+	{
+		$this->id_usuario = $id_usuario;
+		$this->nombre_usuario = $nombre_usuario;
+		$this->apat_usuario = $apat_usuario;
+		$this->amat_usuario = $amat_usuario;
+	}
 	 
 	 //Metodos de la clase Usuario
 	 function autentificarUsuario($v_nombre)
