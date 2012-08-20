@@ -7,7 +7,7 @@
 		$v_id = $_POST['txtNombre'];
 		$v_tipo = $_POST['cboTipo'];
 		$v_pass = $_POST['txtClave'];
-		$contrasena = md5($v_pass);		
+		$contrasena = md5($v_pass);
 		
 		$usuariox = Usuario::autentificarUsuario($v_id);		
 		$row = mysql_fetch_assoc($usuariox);
@@ -18,17 +18,14 @@
 			{
 				$usuario_login = FabricaUsuario::autentificarUsuario($v_id,$row['nombre_usuario'],$row['apat_usuario'],$row['amat_usuario'],$v_tipo);
 				
-				header("location:index.php");
+				if ($usuario_login == true)
+					header("location:index.php");
 			}
 			else
-			{
-				echo "<script language='javascript'>alert('La sesión no se encuentra disponible');this.location ='validar.php';</script>";			 
-			}
+				echo "<script language='javascript'>alert('La sesión no se encuentra disponible');this.location ='validar.php';</script>";			
 		}
 		else
-		{
 			echo "<script language='javascript'>alert('Datos Incorrectos'); this.location ='validar.php';</script>";
-		}
 	}
 	else
 	{

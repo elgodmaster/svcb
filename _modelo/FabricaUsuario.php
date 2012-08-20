@@ -20,6 +20,8 @@
 				$_SESSION['tipo_usuario'] = "Vendedor";
 			elseif ($tipo == 1003)
 				$_SESSION['tipo_usuario'] = "Bodeguero";
+			
+			return true;
 		}
 		
 		static public function crearUsuario($id_usuario,$nombre_usuario,$apat_usuario,$amat_usuario,$tipo)
