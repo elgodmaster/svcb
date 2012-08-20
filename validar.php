@@ -1,42 +1,49 @@
 <?php
- if (isset($_POST['txtNombre']) && isset($_POST['txtClave']))
- {
-	 include("_modelo/Conexion.php");	  
-	 $link=conexion();
-	 $query = mysql_query("SELECT us.* FROM usuario us WHERE us.id_usuario='".$_POST['txtNombre']."'");
-	 $row = mysql_fetch_assoc($query);
-	 
-	 $pass = $_POST['txtClave'];
-	 $contrasena = md5($pass);
-	  
-	 if (($contrasena == $row['password_usuario']) && ($_POST['cboTipo'] == $row['tipo_usuario_id_tipo_usuario']))
-	 {
-		 if($row['estado_usuario'] == 'ACTIVO')
-		 {
-			 session_start();
-			 $_SESSION['usuario'] = $_POST['txtNombre'];
-			 $_SESSION['codigo_usuario'] = $_POST['cboTipo'];
-			 
-			 if ($_POST['cboTipo'] == 1001)
-			 	$_SESSION['tipo_usuario'] = "Administrador";
-			 elseif ($_POST['cboTipo'] == 1002)
-			 	$_SESSION['tipo_usuario'] = "Vendedor";
-			 elseif ($_POST['cboTipo'] == 1003)
-			 	$_SESSION['tipo_usuario'] = "Bodeguero";
-			 header("location:index.php");
-		 }
-		 else
-		 {
-			 echo "<script language='javascript'>alert('La sesión no se encuentra disponible');this.location ='validar.php';</script>";			 
-		 }			 
-	 }
-	 else
-	 {
-		 echo "<script language='javascript'>alert('Datos Incorrectos'); this.location ='validar.php';</script>";
-	 }
- }
- else
- {
+	if (isset($_POST['txtNombre']) && isset($_POST['txtClave']))
+	{
+		include("_modelo/FabricaUsuario.php");
+		include("_modelo/Usuario.php");
+		
+		$v_id = $_POST['txtNombre'];
+		$v_tipo = $_POST['cboTipo'];
+		$v_pass = $_POST['txtClave'];
+		$contrasena = md5($v_pass);		
+		
+		$usuariox = Usuario::autentificarUsuario($v_id);		
+		$row = mysql_fetch_assoc($usuariox);
+		
+		if(($contrasena == $row['password_usuario']) && ($v_tipo == $row['tipo_usuario_id_tipo_usuario']))
+		{
+			if($row['estado_usuario'] == 'ACTIVO')
+			{
+				$usuario_login = FabricaUsuario::autentificarUsuario($v_id,$row['nombre_usuario'],$row['apat_usuario'],$row['amat_usuario'],$v_tipo);
+				session_start();
+				$_SESSION['usuario'] = $usuario_login->getIdUsuario();
+				$_SESSION['nombre_usuario'] = $usuario_login->getNombreUsuario();
+				$_SESSION['apat_usuario'] = $usuario_login->getApatUsuario();
+				$_SESSION['amat_usuario'] = $usuario_login->getAmatUsuario();
+				$_SESSION['codigo_usuario'] = $v_tipo;
+				 
+				if ($v_tipo == 1001)
+					$_SESSION['tipo_usuario'] = "Administrador";
+				elseif ($v_tipo == 1002)
+					$_SESSION['tipo_usuario'] = "Vendedor";
+				elseif ($v_tipo == 1003)
+					$_SESSION['tipo_usuario'] = "Bodeguero";
+				header("location:index.php");
+			}
+			else
+			{
+				echo "<script language='javascript'>alert('La sesión no se encuentra disponible');this.location ='validar.php';</script>";			 
+			}
+		}
+		else
+		{
+			echo "<script language='javascript'>alert('Datos Incorrectos'); this.location ='validar.php';</script>";
+		}
+	}
+	else
+	{
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -84,5 +91,5 @@
 </body>
 </html>
 <?php
- }
+	}
 ?>
