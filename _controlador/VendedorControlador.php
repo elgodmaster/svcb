@@ -268,5 +268,28 @@
 		require("_vista/alertaCobros.php");
 	}
  }
+ 
+ function listarnotasdeventa(){
+ <?php
+	 $ruta = "../facturas_imagen/notas_venta";
+if (is_dir($ruta))
+    {
+        // Abrimos el directorio y comprobamos que 
+        if ($aux = opendir($ruta))
+        {
+            while (($archivo = readdir($aux)) !== false)
+            {
+			$imagenes[] = $archivo;
+            }
+             
+            closedir($aux);
+        }
+		require("_vista/listarNotaVenta.php");
+    }
+    else
+    {
+        echo "<br />No es ruta valida";
+    }
+ }
 
 ?>
