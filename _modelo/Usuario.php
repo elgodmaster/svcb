@@ -11,9 +11,13 @@
 	 private $estado_usuario;
 	 
 	 //Metodos de la clase Usuario
-	 function autentificarUsuario()
+	 function autentificarUsuario($v_nombre)
 	 {
-		 
+		 $link = conexion();
+		 $sp = "SELECT us.* FROM usuario us WHERE us.id_usuario='$v_nombre'";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
 	 }	 
 	 
 	 //Get de la clase Usuario
