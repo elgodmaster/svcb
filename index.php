@@ -26,7 +26,7 @@
         <td><div class="logo"></div></td>
         <td valign="bottom">
         <div class="sesion">
-         <p>Bienvenido <?php echo $_SESSION['tipo_usuario']; ?>: <?php echo $_SESSION['usuario']; ?> | <a href="cerrar.php?cerrar">Cerrar Sesión</a></p></div></td>
+         <p>Bienvenido <?php echo $_SESSION['tipo_usuario']; ?>: <?php echo $_SESSION['id_usuario']; ?> | <a href="cerrar.php?cerrar">Cerrar Sesión</a></p></div></td>
       </tr>
     </table>
 </header></td>

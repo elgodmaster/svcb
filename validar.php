@@ -18,7 +18,7 @@
 			{
 				$usuario_login = FabricaUsuario::autentificarUsuario($v_id,$row['nombre_usuario'],$row['apat_usuario'],$row['amat_usuario'],$v_tipo);
 				session_start();
-				$_SESSION['usuario'] = $usuario_login->getIdUsuario();
+				$_SESSION['id_usuario'] = $usuario_login->getIdUsuario();
 				$_SESSION['nombre_usuario'] = $usuario_login->getNombreUsuario();
 				$_SESSION['apat_usuario'] = $usuario_login->getApatUsuario();
 				$_SESSION['amat_usuario'] = $usuario_login->getAmatUsuario();
