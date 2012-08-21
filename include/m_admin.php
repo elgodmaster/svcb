@@ -52,7 +52,7 @@
     	<a href="#">Ayuda</a>
         <ul class="sub-level">
         	<li><a href="#">Video Tutorial</a></li>
-            <li><a href="#">Manual de Usuario</a></li>
+            <li><a href="administrador/Manual%20de%20Usuario.pdf" target="_blank">Manual de Usuario</a></li>
             <li><a href="about.php">Acerca de SVCB</a></li>
         </ul>
     </li>
