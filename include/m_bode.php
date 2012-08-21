@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <ul class="top-level">
 	<li><a href="bodeguero">Inicio</a></li>
     <li>
