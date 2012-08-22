@@ -1,15 +1,15 @@
 <?php
-
+ 
+ require("_modelo/Categoria_Producto.php");
+ require("_modelo/Producto.php");
+ require("_modelo/Usuario.php");
+ require("_modelo/FabricaUsuario.php");
+ 
  function ingresar()
  {
-	 require("_modelo/Categoria_Producto.php");
-	 require("_modelo/Usuario.php");
-		 
 	 if (isset($_REQUEST['cboCategoria']) && isset($_REQUEST['txtNombre']) && isset($_REQUEST['txtaDescripcion']) &&
 	 	 isset($_REQUEST['txtPrecio']) && isset($_REQUEST['txtStockR']) && isset($_REQUEST['txtStockM']))
 	 {
-		 require("_modelo/Producto.php");
-		 		 
 		 $producto = new Producto();
 		 $codigo = $producto->codigoSiguiente();
 		 
@@ -26,7 +26,7 @@
 			 break;
 		 }
 		 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 	 	 $productox = $admin->ingresarProducto($producto->getCodigoProducto(),$producto->getNombre(),$producto->getPrecio(),
 		 									   $producto->getStockReal(),$producto->getStockMinimo(),$producto->getDescripcion(),	
 											   $categoria->getIdCategoriaProducto());
@@ -54,13 +54,9 @@
  {
 	 if (isset($_REQUEST['txtNombre']))
 	 {
-		 require("_modelo/Categoria_Producto.php");
-		 require("_modelo/Producto.php");
-	 	 require("_modelo/Usuario.php");
-	 	 	 	 
-	 	 $nombre_producto = $_REQUEST['txtNombre'];
+		 $nombre_producto = $_REQUEST['txtNombre'];
 	 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 		 $productox = $admin->listarProducto($nombre_producto);
 		 
 		 $num_rows = mysql_num_rows($productox);
@@ -93,15 +89,11 @@
  
  function modificar()
  {
-	 require("_modelo/Categoria_Producto.php");
-	 require("_modelo/Producto.php");
-	 require("_modelo/Usuario.php");
-	 
 	 if (isset($_REQUEST['txtNombre']))
 	 {
 		 $nombre_producto = $_REQUEST['txtNombre'];
 	 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 		 $productox = $admin->listarProducto($nombre_producto);
 		 
 		 $num_rows = mysql_num_rows($productox);
@@ -148,7 +140,7 @@
 		 $categoria = new Categoria_Producto();
 		 $categoria->setIdCategoriaProducto($_REQUEST['cboCategoriaNuevo']);
 		 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 		 $productoxx = $admin->modificarProducto($producto->getCodigoProducto(),$producto->getNombre(),$producto->getPrecio(),
 		 										 $producto->getStockReal(),$producto->getStockMinimo(),$producto->getDescripcion(),
 												 $producto->getEstado(),$categoria->getIdCategoriaProducto());
@@ -171,12 +163,10 @@
  function eliminar()
  {
 	 if (isset($_REQUEST['txtNombre']))
-	 {		 
-		 require("_modelo/Usuario.php");
-		 
+	 {
 		 $nombre_producto = $_REQUEST['txtNombre'];
 		 		 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 	 	 $productox = $admin->eliminarProducto($nombre_producto);
 		 
 		 while ($registro = mysql_fetch_array($productox))

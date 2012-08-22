@@ -141,7 +141,7 @@
 	imagettftext($image, 10,0,555,205,$color,$fuente, $fono);
 	imagettftext($image, 10,0,106,220,$color,$fuente, $fecha);
 	imagettftext($image, 10,0,568,220,$color,$fuente, $ciudad);
-	imagettftext($image, 10,0,585,235,$color,$fuente, $_SESSION['usuario']);
+	imagettftext($image, 10,0,585,235,$color,$fuente, $_SESSION['id_usuario']);
 	//imagettftext($image, 10,0,585,235,$color,$fuente, $vendedor);
 	
 	$lugar = 330;

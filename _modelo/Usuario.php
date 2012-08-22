@@ -267,6 +267,45 @@
 	 //Variables de la clase Vendedor
 	 private $tipo_usuario = 1002;
 	 
+	 function ingresarCliente($id_cliente,$nombre_cliente,$direccion_cliente,$telefono_cliente,$email_cliente,$giro_cliente,$id_comuna)
+	 {
+		 $link = conexion();
+		 $sp = "call ingresarCliente('$id_cliente','$nombre_cliente','$direccion_cliente','$telefono_cliente','$email_cliente',"; 	
+		 $sp .= "'$giro_cliente',$id_comuna)";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
+	 }
+	 
+	 function listarCliente($nombre_cliente)
+	 {
+		 $link = conexion();
+		 $sp = "call listarCliente('$nombre_cliente')";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
+	 }
+	 
+	 function modificarCliente($id_cliente,$nombre_cliente,$direccion_cliente,$telefono_cliente,$email_cliente,$estado_cliente,
+	 $giro_cliente,$id_comuna)
+	 {
+		 $link = conexion();
+		 $sp = "call modificarCliente('$id_cliente','$nombre_cliente','$direccion_cliente','$telefono_cliente','$email_cliente',";
+		 $sp .= "'$estado_cliente','$giro_cliente',$id_comuna)";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
+	 }
+	 
+	 function eliminarCliente($nombre_cliente)
+	 {
+		 $link = conexion();
+		 $sp = "call eliminarCliente('$nombre_cliente')";
+		 $consulta = mysql_query($sp,$link);
+		 close($link);
+		 return $consulta;
+	 }
+	 
 	 //Metodos de la clase Vendedor
 	 function realizarVenta($p_codigo,$p_fecha_emision,$p_fecha_vencimiento,$p_total,$p_usuario,$p_cliente)
 	 {

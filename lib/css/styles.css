@@ -57,6 +57,7 @@ body{
 	padding-left: 15px;
 	padding-right: 15px;
 	padding-bottom: 15px;
+	min-height: 420px;
 	}
 .back_art{
 	background-color: rgba(255, 255, 255, 0.3);

@@ -1,4 +1,6 @@
 <?php
+ 
+ require("_modelo/FabricaUsuario.php");
 
  function vender()
  {
@@ -46,9 +48,9 @@
 		  $descuento = $_POST['txtDescuento'];
 		  $total = $_POST['txtTotal'];*/
 		 
-		 $vendedor = new Vendedor();
+		 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 		 $documentox = $vendedor->realizarVenta($documento->getIdDocumentoPago(),$documento->getFechaEmisionDocumentoPago(),
-		 			$documento->getFechaVencimientoDocumentoPago(),$documento->getTotalDocumentoPago(),$_SESSION['usuario'],
+		 			$documento->getFechaVencimientoDocumentoPago(),$documento->getTotalDocumentoPago(),$_SESSION['id_usuario'],
 					$cliente->getIdCliente());
 		 
 		 while ($registro = mysql_fetch_array($documentox))
@@ -90,7 +92,7 @@
 	 {
 		 $codigo_factura = $_REQUEST['txtNombre'];
 	 
-	 	 $vendedor = new Vendedor();
+	 	 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 	 	 $documentox = $vendedor->realizarCobro($codigo_factura);
 		
 		 $num_rows = mysql_num_rows($documentox);
@@ -133,7 +135,7 @@
 		 $documento->setIdDocumentoPago($_REQUEST['txtCodigo']);
 		 $documento->setEstadoDocumentoPago($_REQUEST['cboEstado']);
 		 
-		 $vendedor = new Vendedor();
+		 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 		 $documentoxx = $vendedor->cambiarEstadoCobro($documento->getIdDocumentoPago(),$documento->getEstadoDocumentoPago());
 		 
 		 while ($registro = mysql_fetch_array($documentoxx))
@@ -162,7 +164,7 @@
 		 
 		 $nombre_cliente = $_REQUEST['txtNombre'];
 		 
-		 $vendedor = new Vendedor();
+		 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 		 $documentox = $vendedor->listarFactura($nombre_cliente);
 	 
 		 $num_rows = mysql_num_rows($documentox);
@@ -207,7 +209,7 @@
 	 require("_modelo/Usuario.php");
 	 require("_modelo/Documento_Pago.php");
 	 
-	 $vendedor = new Vendedor();
+	 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 	 $documentox = $vendedor->reporteClientesMorosos();
 	 
 	 $num_rows = mysql_num_rows($documentox);
@@ -243,7 +245,7 @@
 	 require("_modelo/Usuario.php");
 	 require("_modelo/Documento_Pago.php");
 	 
-	 $vendedor = new Vendedor();
+	 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 	 $documentox = $vendedor->alertaCobros();
 	 
 	 $num_rows = mysql_num_rows($documentox);
@@ -269,10 +271,10 @@
 	}
  }
  
- function listarnotasdeventa(){
- <?php
-	 $ruta = "../facturas_imagen/notas_venta";
-if (is_dir($ruta))
+ function listarnotasdeventa()
+ {
+	$ruta = "../facturas_imagen/notas_venta";
+	if (is_dir($ruta))
     {
         // Abrimos el directorio y comprobamos que 
         if ($aux = opendir($ruta))
