@@ -11,12 +11,13 @@
 	private $estado_usuario;
 	 
 	//Constructor de la clase Usuario 
-	public function __construct($id_usuario,$nombre_usuario,$apat_usuario,$amat_usuario)
+	public function __construct($id_usuario,$nombre_usuario,$apat_usuario,$amat_usuario,$estado_usuario)
 	{
 		$this->id_usuario = $id_usuario;
 		$this->nombre_usuario = $nombre_usuario;
 		$this->apat_usuario = $apat_usuario;
 		$this->amat_usuario = $amat_usuario;
+		$this->estado_usuario = $estado_usuario;
 	}
 	 
 	 //Metodos de la clase Usuario

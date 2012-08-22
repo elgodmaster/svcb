@@ -1,12 +1,13 @@
 <?php
-
+ 
+ require("_modelo/Usuario.php");
+ require("_modelo/FabricaUsuario.php");
+ 
  function ingresar()
  {
 	 if (isset($_REQUEST['txtRUN']) && isset($_REQUEST['txtPassword']) && isset($_REQUEST['txtNombre']) && isset($_REQUEST['txtApat']) 
 	     && isset($_REQUEST['txtAmat']) && isset($_REQUEST['cboUsuario']))
 	 {
-		 require("_modelo/Usuario.php");
-		 
 		 if ($_REQUEST['cboUsuario'] == 1001)
 			 $usuario = new Administrador();
 		 elseif ($_REQUEST['cboUsuario'] == 1002)
@@ -20,7 +21,7 @@
 		 $usuario->setApatUsuario(addslashes(strtoupper($_REQUEST['txtApat'])));
 		 $usuario->setAmatUsuario(addslashes(strtoupper($_REQUEST['txtAmat'])));
 		 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 	 	 $usuariox = $admin->ingresarUsuario($usuario->getIdUsuario(),$usuario->getPasswordUsuario(),$usuario->getNombreUsuario(),
 		 									 $usuario->getApatUsuario(),$usuario->getAmatUsuario(),$usuario->getTipoUsuario());
 		 
@@ -43,42 +44,26 @@
  {
 	 if (isset($_REQUEST['txtNombre']))
 	 {
-		 require("_modelo/Usuario.php");
-	 	 
 		 $id_usuario = $_REQUEST['txtNombre'];
 	 
-	 	 $admin = new Administrador();
+	 	 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $usuariox = $admin->listarUsuario($id_usuario);
 		 
 		 $num_rows = mysql_num_rows($usuariox);
 		
 		 if($num_rows != 0)
 		 {
-			 while ($registro=mysql_fetch_assoc($usuariox))
-			 {
-				 if ($registro['tipo_usuario_id_tipo_usuario'] == 1001)
-				 {
-					 $usuario = new Administrador();
-					 $tipo_usuario='ADMINISTRADOR';
-				 }
-			 	 elseif ($registro['tipo_usuario_id_tipo_usuario'] == 1002)
-				 {
-					 $usuario = new Vendedor();
-					 $tipo_usuario='VENDEDOR';
-				 }
-		 	 	 elseif ($registro['tipo_usuario_id_tipo_usuario'] == 1003)
-				 {
-					 $usuario = new Bodeguero();
-					 $tipo_usuario='BODEGUERO';
-				 }
-					
-				 $usuario->setIdUsuario($registro['id_usuario']);
-				 $usuario->setNombreUsuario($registro['nombre_usuario']);
-				 $usuario->setApatUsuario($registro['apat_usuario']);
-		 		 $usuario->setAmatUsuario($registro['amat_usuario']);
-				 $usuario->setEstadoUsuario($registro['estado_usuario']);
-				 break;
-			 }
+			 $row = mysql_fetch_assoc($usuariox);
+			 
+			 $usuario = FabricaUsuario::crearUsuario($row['id_usuario'],$row['nombre_usuario'],$row['apat_usuario'],$row['amat_usuario'],$row['estado_usuario'],$row['tipo_usuario_id_tipo_usuario']);
+			 
+			 if ($usuario->getTipoUsuario() == 1001)
+				$tipo_usuario='ADMINISTRADOR';
+			 elseif ($usuario->getTipoUsuario() == 1002)
+				$tipo_usuario='VENDEDOR';
+			 elseif ($usuario->getTipoUsuario() == 1003)
+				$tipo_usuario='BODEGUERO';
+			 			 
 			 require("_vista/listarUsuario.php");
 		 }
 		 else
@@ -90,35 +75,19 @@
  
  function modificar()
  {
-	 require("_modelo/Usuario.php");
-	 
 	 if (isset($_REQUEST['txtNombre']))
 	 {
 		 $id_usuario = $_REQUEST['txtNombre'];
 	 
-	 	 $admin = new Administrador();
+	 	 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $usuariox = $admin->listarUsuario($id_usuario);
 		 
 		 $num_rows = mysql_num_rows($usuariox);
 		
 		 if($num_rows != 0)
 		 {
-			 while ($registro=mysql_fetch_assoc($usuariox))
-			 {
-				 if ($registro['tipo_usuario_id_tipo_usuario'] == 1001)
-					 $usuario = new Administrador();					 
-			 	 elseif ($registro['tipo_usuario_id_tipo_usuario'] == 1002)
-					 $usuario = new Vendedor();
-		 	 	 elseif ($registro['tipo_usuario_id_tipo_usuario'] == 1003)
-					 $usuario = new Bodeguero();
-					
-				 $usuario->setIdUsuario($registro['id_usuario']);
-				 $usuario->setNombreUsuario($registro['nombre_usuario']);
-				 $usuario->setApatUsuario($registro['apat_usuario']);
-		 		 $usuario->setAmatUsuario($registro['amat_usuario']);
-				 $usuario->setEstadoUsuario($registro['estado_usuario']);
-				 break;
-			 }
+			 $row = mysql_fetch_assoc($usuariox);			 
+			 $usuario = FabricaUsuario::crearUsuario($row['id_usuario'],$row['nombre_usuario'],$row['apat_usuario'],$row['amat_usuario'],$row['estado_usuario'],$row['tipo_usuario_id_tipo_usuario']);			 
 			 require("_vista/modificarUsuario.php");
 		 }
 		 else
@@ -144,7 +113,7 @@
 		 else
 		 	 $usuario->setEstadoUsuario(addslashes('ACTIVO'));
 		 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 		 $usuarioxx = $admin->modificarUsuario($usuario->getIdUsuario(),$usuario->getNombreUsuario(),$usuario->getApatUsuario(),
 		 									   $usuario->getAmatUsuario(),$usuario->getEstadoUsuario(),$usuario->getTipoUsuario());
 		 
@@ -167,11 +136,9 @@
  {
 	 if (isset($_REQUEST['txtNombre']))
 	 {		 
-		 require("_modelo/Usuario.php");
-		 
 		 $id_usuario = $_REQUEST['txtNombre'];
 		 		 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $usuariox = $admin->eliminarUsuario($id_usuario);
 		 
 		 while ($registro = mysql_fetch_array($usuariox))
@@ -193,8 +160,6 @@
  {
 	 if (isset($_REQUEST['txtNombre']))
 	 {		 
-		 require("_modelo/Usuario.php");
-		 
 		 $id_usuario = $_REQUEST['txtNombre'];
 		 
 		 $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
@@ -206,7 +171,7 @@
 		 
 		 $password_usuario = md5 ($cad);
 		 		 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $usuariox = $admin->modificarPasswordUsuario($id_usuario,$password_usuario);
 		 
 		 while ($registro = mysql_fetch_array($usuariox))
@@ -216,10 +181,11 @@
 		 }
 		 
 		 if ($existe != 0)
-			 echo "<label>La nueva password del usuario '$id_usuario' es: '$cad'.</|label>";
+			 echo "<label>La nueva password del usuario '$id_usuario' es: '$cad'.</label>";
 		 else
 		 	 echo "<label>El usuario '$id_usuario' no existe en el sistema.</label>";
 	 }
 	 else
 		 require("_vista/buscarUsuario.php");
  }
+?>

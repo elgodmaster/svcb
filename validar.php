@@ -16,7 +16,7 @@
 		{
 			if($row['estado_usuario'] == 'ACTIVO')
 			{
-				$usuario_login = FabricaUsuario::autentificarUsuario($v_id,$row['nombre_usuario'],$row['apat_usuario'],$row['amat_usuario'],$v_tipo);
+				$usuario_login = FabricaUsuario::autentificarUsuario($v_id,$row['nombre_usuario'],$row['apat_usuario'],$row['amat_usuario'],$row['estado_usuario'],$v_tipo);
 				
 				if ($usuario_login == true)
 					header("location:index.php");
