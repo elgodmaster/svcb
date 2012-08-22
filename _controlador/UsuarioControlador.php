@@ -8,22 +8,19 @@
 	 if (isset($_REQUEST['txtRUN']) && isset($_REQUEST['txtPassword']) && isset($_REQUEST['txtNombre']) && isset($_REQUEST['txtApat']) 
 	     && isset($_REQUEST['txtAmat']) && isset($_REQUEST['cboUsuario']))
 	 {
-		 if ($_REQUEST['cboUsuario'] == 1001)
-			 $usuario = new Administrador();
-		 elseif ($_REQUEST['cboUsuario'] == 1002)
-		 	 $usuario = new Vendedor();
-		 elseif ($_REQUEST['cboUsuario'] == 1003)
-		 	 $usuario = new Bodeguero();
-			 
-		 $usuario->setIdUsuario(addslashes($_REQUEST['txtRUN']));
-		 $usuario->setPasswordUsuario(addslashes(md5($_REQUEST['txtPassword'])));
-		 $usuario->setNombreUsuario(addslashes(strtoupper($_REQUEST['txtNombre'])));
-		 $usuario->setApatUsuario(addslashes(strtoupper($_REQUEST['txtApat'])));
-		 $usuario->setAmatUsuario(addslashes(strtoupper($_REQUEST['txtAmat'])));
+		 $id_usuario = (addslashes($_REQUEST['txtRUN']));
+		 $nombre_usuario = (addslashes(strtoupper($_REQUEST['txtNombre'])));
+		 $password_usuario = (addslashes(md5($_REQUEST['txtPassword'])));
+		 $apat_usuario = (addslashes(strtoupper($_REQUEST['txtApat'])));
+		 $amat_usuario = (addslashes(strtoupper($_REQUEST['txtAmat'])));
+		 $tipo_usuario = $_REQUEST['cboUsuario'];		 
+		 $estado_usuario = (addslashes('ACTIVO'));
 		 
-		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
-	 	 $usuariox = $admin->ingresarUsuario($usuario->getIdUsuario(),$usuario->getPasswordUsuario(),$usuario->getNombreUsuario(),
-		 									 $usuario->getApatUsuario(),$usuario->getAmatUsuario(),$usuario->getTipoUsuario());
+		 $usuario = FabricaUsuario::crearUsuario($id_usuario,$nombre_usuario,$apat_usuario,$amat_usuario,$estado_usuario,$tipo_usuario);
+		 $usuario->setPasswordUsuario($password_usuario);
+		 
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
+	 	 $usuariox = $admin->ingresarUsuario($usuario->getIdUsuario(),$usuario->getPasswordUsuario(),$usuario->getNombreUsuario(),$usuario->getApatUsuario(),$usuario->getAmatUsuario(),$usuario->getTipoUsuario());
 		 
 		 while ($registro = mysql_fetch_array($usuariox))
 		 {
@@ -96,22 +93,18 @@
 	 elseif(isset($_REQUEST['txtRunNuevo']) && isset($_REQUEST['txtNombreNuevo']) && isset($_REQUEST['txtApatNuevo']) 
 	 		&& isset($_REQUEST['txtAmatNuevo']) && isset($_REQUEST['cboUsuarioNuevo']))
 	 {
-		 $usuario = new Usuario();		 
-		 if ($_REQUEST['cboUsuarioNuevo'] == 1001)
-			 $usuario = new Administrador();
-		 elseif ($_REQUEST['cboUsuarioNuevo'] == 1002)
-		 	 $usuario = new Vendedor();
-		 elseif ($_REQUEST['cboUsuarioNuevo'] == 1003)
-		 	 $usuario = new Bodeguero();
+		 $id_usuario = (addslashes($_REQUEST['txtRunNuevo']));
+		 $nombre_usuario = (addslashes(strtoupper($_REQUEST['txtNombreNuevo'])));
+		 $apat_usuario = (addslashes(strtoupper($_REQUEST['txtApatNuevo'])));
+		 $amat_usuario = (addslashes(strtoupper($_REQUEST['txtAmatNuevo'])));
+		 $tipo_usuario = $_REQUEST['cboUsuarioNuevo'];
 		 
-		 $usuario->setIdUsuario(addslashes($_REQUEST['txtRunNuevo']));
-		 $usuario->setNombreUsuario(addslashes(strtoupper($_REQUEST['txtNombreNuevo'])));
-		 $usuario->setApatUsuario(addslashes(strtoupper($_REQUEST['txtApatNuevo'])));
-		 $usuario->setAmatUsuario(addslashes(strtoupper($_REQUEST['txtAmatNuevo'])));
 		 if (isset($_REQUEST['cboEstado']))
-			 $usuario->setEstadoUsuario(addslashes(strtoupper($_REQUEST['cboEstado'])));
+			 $estado_usuario = (addslashes(strtoupper($_REQUEST['cboEstado'])));
 		 else
-		 	 $usuario->setEstadoUsuario(addslashes('ACTIVO'));
+		 	 $estado_usuario = (addslashes('ACTIVO'));
+		 
+		 $usuario = FabricaUsuario::crearUsuario($id_usuario,$nombre_usuario,$apat_usuario,$amat_usuario,$estado_usuario,$tipo_usuario);
 		 
 		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 		 $usuarioxx = $admin->modificarUsuario($usuario->getIdUsuario(),$usuario->getNombreUsuario(),$usuario->getApatUsuario(),
