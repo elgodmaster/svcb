@@ -1,12 +1,12 @@
 <?php
  
+ require("_modelo/Usuario.php");
  require("_modelo/FabricaUsuario.php");
 
  function vender()
  {
 	 require("_modelo/Documento_Pago.php");
-	 require("_modelo/Usuario.php");
-	 
+	 	 
 	 if (isset($_REQUEST['txtCliente']) && isset($_REQUEST['txtFactura']))
 	 {
 		 require("_modelo/Cliente.php");
@@ -85,7 +85,6 @@
  function cobrar()
  {
 	 require("_modelo/Cliente.php");
-	 require("_modelo/Usuario.php");
 	 require("_modelo/Documento_Pago.php");
 	 
 	 if (isset($_REQUEST['txtNombre']))
@@ -158,7 +157,6 @@
  {
 	 if (isset($_REQUEST['txtNombre']))
 	 {
-		 require("_modelo/Usuario.php");
 		 require("_modelo/Documento_Pago.php");
 		 require("_modelo/Documento_Pago_PDF.php");
 		 
@@ -206,7 +204,6 @@
  function listarclientesmorosos()
  {
 	 require("_modelo/Cliente.php");
-	 require("_modelo/Usuario.php");
 	 require("_modelo/Documento_Pago.php");
 	 
 	 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
@@ -242,7 +239,6 @@
  function alertacobros()
  {
 	 require("_modelo/Cliente.php");
-	 require("_modelo/Usuario.php");
 	 require("_modelo/Documento_Pago.php");
 	 
 	 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
@@ -273,7 +269,7 @@
  
  function listarnotasdeventa()
  {
-	$ruta = "../facturas_imagen/notas_venta";
+	$ruta = "facturas_imagen/notas_venta";
 	if (is_dir($ruta))
     {
         // Abrimos el directorio y comprobamos que 
@@ -290,7 +286,7 @@
     }
     else
     {
-        echo "<br />No es ruta valida";
+        echo "<br /><label>No es ruta v&aacute;lida.</label>";
     }
  }
 
