@@ -1,4 +1,9 @@
 <?php
+
+ require("_modelo/Cliente.php");
+ require("_modelo/Comuna.php");
+ require("_modelo/Usuario.php");
+ require("_modelo/FabricaUsuario.php");
  
  function ingresar()
  {
@@ -6,10 +11,6 @@
 	 	&& isset($_REQUEST['cboComuna']) && isset($_REQUEST['txtTelefono']) && isset($_REQUEST['txtEmail']) 
 	 	&& isset($_REQUEST['txtGiro']))
 	 {
-		 require("_modelo/Cliente.php");
-		 require("_modelo/Usuario.php");
-		 require("_modelo/Comuna.php");
-		 
 		 $cliente = new Cliente();		 
 		 $cliente->setIdCliente(addslashes($_REQUEST['txtRUN']));
 		 $cliente->setNombreCliente(addslashes(strtoupper($_REQUEST['txtNombre'])));
@@ -20,7 +21,7 @@
 		 $comuna = new Comuna();
 		 $comuna->setIdComuna($_REQUEST['cboComuna']);
 		 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 	 	 $clientex = $admin->ingresarCliente($cliente->getIdCliente(),$cliente->getNombreCliente(),$cliente->getDireccionCliente(),
 		 									 $cliente->getTelefonoCliente(),$cliente->getEmailCliente(),$cliente->getGiroCliente(),
 											 $comuna->getIdComuna());
@@ -43,14 +44,10 @@
  function listar()
  {
 	 if (isset($_REQUEST['txtNombre']))
-	 {
-		 require("_modelo/Cliente.php");
-		 require("_modelo/Usuario.php");
-		 require("_modelo/Comuna.php");
-		 
+	 {		 
 		 $nombre_cliente = $_REQUEST['txtNombre'];
 		 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 	 	 $clientex = $admin->listarCliente($nombre_cliente);
 	 
 		 $num_rows = mysql_num_rows($clientex);
@@ -86,17 +83,14 @@
  
  function modificar()
  {
-	 require("_modelo/Cliente.php");
-	 require("_modelo/Comuna.php");
 	 require("_modelo/Provincia.php");
-	 require("_modelo/Region.php");
-	 require("_modelo/Usuario.php");
+	 require("_modelo/Region.php");	 
 	 
 	 if (isset($_REQUEST['txtNombre']))
 	 {
 		 $nombre_cliente = $_REQUEST['txtNombre'];
 	 
-	 	 $admin = new Administrador();
+	 	 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 	 	 $clientex = $admin->listarCliente($nombre_cliente);
 		
 		 $num_rows = mysql_num_rows($clientex);
@@ -142,7 +136,7 @@
 		 $comuna = new Comuna();
 		 $comuna->setIdComuna($_REQUEST['cboComuna']);
 		 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 		 $clientexx = $admin->modificarCliente($cliente->getIdCliente(),$cliente->getNombreCliente(),$cliente->getDireccionCliente(),
 		 									   $cliente->getTelefonoCliente(),$cliente->getEmailCliente(),$cliente->getEstadoCliente(),
 											   $cliente->getGiroCliente(),$comuna->getIdComuna());
@@ -165,12 +159,10 @@
  function eliminar()
  {
 	 if (isset($_REQUEST['txtNombre']))
-	 {
-		 require("_modelo/Usuario.php");
-		 
+	 {		 
 		 $nombre_cliente = $_REQUEST['txtNombre'];
 		 		 
-		 $admin = new Administrador();
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
 	 	 $clientex = $admin->eliminarCliente($nombre_cliente);
 		 
 		 while ($registro = mysql_fetch_array($clientex))
