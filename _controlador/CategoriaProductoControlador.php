@@ -20,7 +20,7 @@
              break;
 		 }
 		 
-		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $categoriax = $admin->ingresarCategoriaProducto($categoria->getIdCategoriaProducto(),
 		 												 $categoria->getNombreCategoriaProducto());
 														 
@@ -45,7 +45,7 @@
 	 {		 
 		 $nombre_categoria = $_REQUEST['txtNombre'];
 	 
-	 	 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+	 	 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $categoriax = $admin->listarCategoriaProducto($nombre_categoria);
 		
 		 $num_rows = mysql_num_rows($categoriax);
@@ -75,7 +75,7 @@
 	 {
 		 $nombre_categoria = $_REQUEST['txtNombre'];
 	 
-	 	 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+	 	 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $categoriax = $admin->listarCategoriaProducto($nombre_categoria);
 		
 		 $num_rows = mysql_num_rows($categoriax);
@@ -105,7 +105,7 @@
 		 else
 		 	 $categoria->setEstadoCategoriaProducto(addslashes('ACTIVO'));
 			 		 
-		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 		 $categoriaxx = $admin->modificarCategoriaProducto($categoria->getIdCategoriaProducto(), $categoria->getNombreCategoriaProducto
 		 													(),$categoria->getEstadoCategoriaProducto());
 		 
@@ -131,7 +131,7 @@
 	 {
 		 $nombre_categoria = $_REQUEST['txtNombre'];
 		 		 
-		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $categoriax = $admin->eliminarCategoriaProducto($nombre_categoria);
 		 
 		 while ($registro = mysql_fetch_array($categoriax))

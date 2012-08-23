@@ -11,7 +11,7 @@
 	 {
 		 $nombre_producto = $_REQUEST['txtNombre'];
 	 
-		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 		 $productox = $bodeguero->consultarProducto($nombre_producto);
 		 
 		 $num_rows = mysql_num_rows($productox);
@@ -42,7 +42,7 @@
 		 $producto->setNombre($_REQUEST['txtNombreNuevo']);
 		 $producto->setStockReal($_REQUEST['txtStockRNuevo']);
 		 		 
-		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 		 $productoxx = $bodeguero->ingresarStockProducto($producto->getCodigoProducto(),$producto->getStockReal());
 		 
 		 while ($registro = mysql_fetch_array($productoxx))
@@ -66,7 +66,7 @@
 	 {
 		 $nombre_producto = $_REQUEST['txtNombre'];
 	 
-		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 		 $productox = $bodeguero->consultarProducto($nombre_producto);
 		 
 		 $num_rows = mysql_num_rows($productox);

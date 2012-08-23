@@ -21,7 +21,7 @@
 		 $comuna = new Comuna();
 		 $comuna->setIdComuna($_REQUEST['cboComuna']);
 		 
-		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $clientex = $admin->ingresarCliente($cliente->getIdCliente(),$cliente->getNombreCliente(),$cliente->getDireccionCliente(),
 		 									 $cliente->getTelefonoCliente(),$cliente->getEmailCliente(),$cliente->getGiroCliente(),
 											 $comuna->getIdComuna());
@@ -47,7 +47,7 @@
 	 {		 
 		 $nombre_cliente = $_REQUEST['txtNombre'];
 		 
-		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $clientex = $admin->listarCliente($nombre_cliente);
 	 
 		 $num_rows = mysql_num_rows($clientex);
@@ -90,7 +90,7 @@
 	 {
 		 $nombre_cliente = $_REQUEST['txtNombre'];
 	 
-	 	 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+	 	 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $clientex = $admin->listarCliente($nombre_cliente);
 		
 		 $num_rows = mysql_num_rows($clientex);
@@ -136,7 +136,7 @@
 		 $comuna = new Comuna();
 		 $comuna->setIdComuna($_REQUEST['cboComuna']);
 		 
-		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 		 $clientexx = $admin->modificarCliente($cliente->getIdCliente(),$cliente->getNombreCliente(),$cliente->getDireccionCliente(),
 		 									   $cliente->getTelefonoCliente(),$cliente->getEmailCliente(),$cliente->getEstadoCliente(),
 											   $cliente->getGiroCliente(),$comuna->getIdComuna());
@@ -162,7 +162,7 @@
 	 {		 
 		 $nombre_cliente = $_REQUEST['txtNombre'];
 		 		 
-		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['codigo_usuario']);
+		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $clientex = $admin->eliminarCliente($nombre_cliente);
 		 
 		 while ($registro = mysql_fetch_array($clientex))
