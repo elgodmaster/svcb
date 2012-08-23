@@ -11,6 +11,17 @@
 	 private $giro_cliente;
 	 private $estado_cliente;
 	 
+	 //Constructor de la clase Cliente 
+	 public function __construct($id_cliente,$nombre_cliente,$direccion_cliente,$telefono_cliente,$email_cliente,$giro_cliente)
+	 {
+		 $this->id_cliente = $id_cliente;
+		 $this->nombre_cliente = $nombre_cliente;
+		 $this->direccion_cliente = $direccion_cliente;
+		 $this->telefono_cliente = $telefono_cliente;
+		 $this->email_cliente = $email_cliente;
+		 $this->giro_cliente = $giro_cliente;
+	 }
+	 
 	 //Get de la clase Cliente
 	 function getIdCliente()
 	 {
