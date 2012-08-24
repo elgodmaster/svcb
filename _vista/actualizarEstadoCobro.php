@@ -33,7 +33,7 @@
     <tbody>
      <tr align="center">
       <td><?php echo $documento->getIdDocumentoPago()?></td>
-      <td><?php echo $cliente->getIdCliente()?></td>
+      <td><?php echo $id_cliente?></td>
   	  <td><?php echo date("d-m-Y",strtotime($documento->getFechaEmisionDocumentoPago()))?></td>
       <td><?php echo date("d-m-Y",strtotime($documento->getFechaVencimientoDocumentoPago()))?></td>
       <td>$<?php echo number_format($documento->getTotalDocumentoPago(),0, ",", ".")?></td>      
