@@ -1,5 +1,7 @@
 <?php
  
+ require("_modelo/Cliente.php");
+ require("_modelo/FabricaCliente.php");
  require("_modelo/Usuario.php");
  require("_modelo/FabricaUsuario.php");
 
@@ -9,7 +11,6 @@
 	 	 
 	 if (isset($_REQUEST['txtCliente']) && isset($_REQUEST['txtFactura']))
 	 {
-		 require("_modelo/Cliente.php");
 		 require("_modelo/Provincia.php");
 		 require("_modelo/Comuna.php");
 		 require("_controlador/Fecha.php");		 
@@ -20,12 +21,22 @@
 		 $mes2 = nombreMes($mes);		 
 		 $fecha = "$año-$mes2-$dia";
 		 		 
-		 $cliente = new Cliente();
+		 /*$cliente = new Cliente();
 		 $cliente->setIdCliente(addslashes($_REQUEST['txtRut']));
 		 $cliente->setNombreCliente(addslashes(strtoupper($_REQUEST['txtCliente'])));
 		 $cliente->setDireccionCliente(addslashes(strtoupper($_REQUEST['txtDireccion'])));
 		 $cliente->setTelefonoCliente($_REQUEST['txtTelefono']);
-		 $cliente->setGiroCliente(addslashes(strtoupper($_REQUEST['txtGiro'])));
+		 $cliente->setGiroCliente(addslashes(strtoupper($_REQUEST['txtGiro'])));*/
+		 
+		 $id_cliente = addslashes($_REQUEST['txtRut']);
+		 $nombre_cliente = addslashes(strtoupper($_REQUEST['txtCliente']));
+		 $direccion_cliente = addslashes(strtoupper($_REQUEST['txtDireccion']));
+		 $telefono_cliente = addslashes($_REQUEST['txtTelefono']);
+		 $email_cliente = 'N/A';
+		 $giro_cliente = addslashes(strtoupper($_REQUEST['txtGiro']));
+		 
+		 $cliente = FabricaCliente::crearCliente($id_cliente,$nombre_cliente,$direccion_cliente,$telefono_cliente,$email_cliente,$giro_cliente);
+		 
 		 $provincia = new Provincia();
 		 $provincia->setNombreProvincia(addslashes(strtoupper($_REQUEST['txtProvincia'])));
 		 $comuna = new Comuna();
@@ -84,7 +95,6 @@
  
  function cobrar()
  {
-	 require("_modelo/Cliente.php");
 	 require("_modelo/Documento_Pago.php");
 	 
 	 if (isset($_REQUEST['txtNombre']))
@@ -108,8 +118,7 @@
 					 $documento->setFechaVencimientoDocumentoPago($registro['fecha_vencimiento_documento_pago']);
 					 $documento->setTotalDocumentoPago($registro['total_documento_pago']);
 					 $documento->setEstadoDocumentoPago($registro['estado_documento_pago']);
-					 $cliente = new Cliente();
-					 $cliente->setIdCliente($registro['cliente_id_cliente']);
+					 $id_cliente = $registro['cliente_id_cliente'];
 					 break;
 				 }
 				 elseif($registro['v_existe'] == 1)
@@ -203,7 +212,6 @@
  
  function listarclientesmorosos()
  {
-	 require("_modelo/Cliente.php");
 	 require("_modelo/Documento_Pago.php");
 	 
 	 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
@@ -218,9 +226,7 @@
 		
 		while ($registro = mysql_fetch_assoc($documentox))
 		{
-			$cliente = new Cliente();
-			$cliente->setIdCliente($registro['id_cliente']);
-			$cliente->setNombreCliente($registro['nombre_cliente']);
+			$cliente = FabricaCliente::crearCliente($registro['id_cliente'],$registro['nombre_cliente'],'N/A','N/A','N/A','N/A');			
 			$documento = new Documento_Pago();
 			$documento->setIdDocumentoPago($registro['id_documento_pago']);
 			$documento->setFechaEmisionDocumentoPago($registro['fecha_emision_documento_pago']);
@@ -238,7 +244,6 @@
  
  function alertacobros()
  {
-	 require("_modelo/Cliente.php");
 	 require("_modelo/Documento_Pago.php");
 	 
 	 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
@@ -253,8 +258,7 @@
 		
 		while ($registro = mysql_fetch_assoc($documentox))
 		{
-			$cliente = new Cliente();
-			$cliente->setNombreCliente($registro['nombre_cliente']);
+			$cliente = FabricaCliente::crearCliente('N/A',$registro['nombre_cliente'],'N/A','N/A','N/A','N/A');
 			$documento = new Documento_Pago();
 			$documento->setIdDocumentoPago($registro['id_documento_pago']);
 			$documento->setFechaVencimientoDocumentoPago($registro['fecha_vencimiento_documento_pago']);
