@@ -21,13 +21,6 @@
 		 $mes2 = nombreMes($mes);		 
 		 $fecha = "$año-$mes2-$dia";
 		 		 
-		 /*$cliente = new Cliente();
-		 $cliente->setIdCliente(addslashes($_REQUEST['txtRut']));
-		 $cliente->setNombreCliente(addslashes(strtoupper($_REQUEST['txtCliente'])));
-		 $cliente->setDireccionCliente(addslashes(strtoupper($_REQUEST['txtDireccion'])));
-		 $cliente->setTelefonoCliente($_REQUEST['txtTelefono']);
-		 $cliente->setGiroCliente(addslashes(strtoupper($_REQUEST['txtGiro'])));*/
-		 
 		 $id_cliente = addslashes($_REQUEST['txtRut']);
 		 $nombre_cliente = addslashes(strtoupper($_REQUEST['txtCliente']));
 		 $direccion_cliente = addslashes(strtoupper($_REQUEST['txtDireccion']));
@@ -60,9 +53,7 @@
 		  $total = $_POST['txtTotal'];*/
 		 
 		 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
-		 $documentox = $vendedor->realizarVenta($documento->getIdDocumentoPago(),$documento->getFechaEmisionDocumentoPago(),
-		 			$documento->getFechaVencimientoDocumentoPago(),$documento->getTotalDocumentoPago(),$_SESSION['id_usuario'],
-					$cliente->getIdCliente());
+		 $documentox = $vendedor->realizarVenta($documento->getIdDocumentoPago(),$documento->getFechaEmisionDocumentoPago(),$documento->getFechaVencimientoDocumentoPago(),$documento->getTotalDocumentoPago(),$_SESSION['id_usuario'],$cliente->getIdCliente());
 		 
 		 while ($registro = mysql_fetch_array($documentox))
 		 {

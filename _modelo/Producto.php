@@ -10,6 +10,16 @@
 	 private $stock_minimo_producto;
 	 private $stock_real_producto;
 	 
+	//Constructor de la clase Producto
+	public function __construct($id_producto,$nombre_producto,$descripcion_producto,$precio_producto,$stock_real_producto)
+	{
+		$this->id_producto = $id_producto;
+		$this->nombre_producto = $nombre_producto;
+		$this->descripcion_producto = $descripcion_producto;
+		$this->precio_producto = $precio_producto;
+		$this->stock_real_producto = $stock_real_producto;
+	}
+	 
 	//Metodo utilizado para obtener el codigo siguiente del producto
 	function codigoSiguiente()
 	{

@@ -1,7 +1,8 @@
 <?php
  
- require("_modelo/Categoria_Producto.php");
+ require("_modelo/Categoria_Producto.php"); 
  require("_modelo/Producto.php");
+ require("_modelo/FabricaProducto.php");
  require("_modelo/Usuario.php");
  require("_modelo/FabricaUsuario.php");
 
@@ -10,26 +11,15 @@
 	 if (isset($_REQUEST['txtNombre']))
 	 {
 		 $nombre_producto = $_REQUEST['txtNombre'];
-	 
 		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 		 $productox = $bodeguero->consultarProducto($nombre_producto);
-		 
 		 $num_rows = mysql_num_rows($productox);
 		 
 		 if($num_rows != 0)
 		 {
-			 while ($registro=mysql_fetch_assoc($productox))
-			 {				 
-				 $producto = new Producto();
-				 $producto->setCodigoProducto($registro['id_producto']);
-				 $producto->setNombre($registro['nombre_producto']);
-				 $producto->setDescripcion($registro['descripcion_producto']);
-				 $producto->setStockReal($registro['stock_real_producto']);
-				 $categoria = new Categoria_Producto();
-				 $categoria->setIdCategoriaProducto($registro['id_categoria_producto']);
-				 $categoria->setNombreCategoriaProducto(ucwords(strtolower($registro['nombre_categoria_producto'])));
-				 break;
-			 }
+			 $registro=mysql_fetch_assoc($productox);
+			 $producto = FabricaProducto::crearProducto($registro['id_producto'],$registro['nombre_producto'],$registro['descripcion_producto'],$registro['precio_producto'],$registro['stock_real_producto']);
+			 $categoria = FabricaProducto::crearCategoriaProducto($registro['id_categoria_producto'],ucwords(strtolower($registro['nombre_categoria_producto'])));
 			 require("_vista/ingresarStockProducto.php");
 		 }
 		 else
@@ -37,19 +27,11 @@
 	 }
 	 elseif(isset($_REQUEST['txtCodigo']) && isset($_REQUEST['txtNombreNuevo']) && isset($_REQUEST['txtStockRNuevo']))
 	 {
-	 	 $producto = new Producto();
-		 $producto->setCodigoProducto($_REQUEST['txtCodigo']);
-		 $producto->setNombre($_REQUEST['txtNombreNuevo']);
-		 $producto->setStockReal($_REQUEST['txtStockRNuevo']);
-		 		 
+		 $producto = FabricaProducto::crearProducto($_REQUEST['txtCodigo'],$_REQUEST['txtNombreNuevo'],'N/A',0,$_REQUEST['txtStockRNuevo']);
 		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 		 $productoxx = $bodeguero->ingresarStockProducto($producto->getCodigoProducto(),$producto->getStockReal());
-		 
-		 while ($registro = mysql_fetch_array($productoxx))
-		 {
-			 $existe = $registro['v_existe'];	
-			 break;
-		 }
+		 $registro = mysql_fetch_array($productoxx);
+		 $existe = $registro['v_existe'];
 		 
 		 if ($existe == 1)
 			 echo "<label>El stock del producto '".$producto->getNombre()."' ha sido actualizado satisfactoriamente.</label>";
@@ -65,26 +47,15 @@
 	 if (isset($_REQUEST['txtNombre']))
 	 {
 		 $nombre_producto = $_REQUEST['txtNombre'];
-	 
 		 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 		 $productox = $bodeguero->consultarProducto($nombre_producto);
-		 
 		 $num_rows = mysql_num_rows($productox);
 		 
 		 if($num_rows != 0)
 		 {
-			 while ($registro=mysql_fetch_assoc($productox))
-			 {
-				 $categoria = new Categoria_Producto();
-				 $producto = new Producto();
-				 $producto->setCodigoProducto($registro['id_producto']);
-				 $producto->setNombre($registro['nombre_producto']);
-				 $producto->setDescripcion($registro['descripcion_producto']);
-				 $producto->setStockReal($registro['stock_real_producto']);
-				 $categoria->setIdCategoriaProducto($registro['id_categoria_producto']);
-				 $categoria->setNombreCategoriaProducto($registro['nombre_categoria_producto']);
-				 break;
-			 }
+			 $registro=mysql_fetch_assoc($productox);
+			 $categoria = FabricaProducto::crearCategoriaProducto($registro['id_categoria_producto'],$registro['nombre_categoria_producto']);
+			 $producto = FabricaProducto::crearProducto($registro['id_producto'],$registro['nombre_producto'],$registro['descripcion_producto'],$registro['precio_producto'],$registro['stock_real_producto']);
 			 require("_vista/listarProductoBodeguero.php");
 		 }
 		 else

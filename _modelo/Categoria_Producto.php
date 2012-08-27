@@ -6,6 +6,13 @@
 	 private $nombre_categoria_producto;
 	 private $estado_categoria_producto;
 	 
+	 //Constructor de la clase Categoria Producto 
+	 public function __construct($id_categoria_producto,$nombre_categoria_producto)
+	 {
+		 $this->id_categoria_producto = $id_categoria_producto;
+		 $this->nombre_categoria_producto = $nombre_categoria_producto;
+	 }
+	 
 	 //Metodo utilizado para obtener el codigo siguiente de la categoria producto
 	 function codigoSiguiente()
 	 {

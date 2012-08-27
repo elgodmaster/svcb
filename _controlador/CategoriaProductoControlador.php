@@ -1,6 +1,7 @@
 <?php
  
  require("_modelo/Categoria_Producto.php");
+ require("_modelo/FabricaProducto.php");
  require("_modelo/Usuario.php");
  require("_modelo/FabricaUsuario.php");
 
@@ -9,26 +10,16 @@
 	 if (isset($_REQUEST['txtNombre']))
 	 {
 		 $nombre_categoria = strtoupper($_REQUEST['txtNombre']);
-		 
-		 $categoria = new Categoria_Producto();
+		 $categoria = FabricaProducto::crearCategoriaProducto('N/A','N/A');
 		 $codigo = $categoria->codigoSiguiente();
-		 
-		 while ($reg = mysql_fetch_array($codigo))
-		 {
-			 $categoria->setIdCategoriaProducto($reg['codigo']);
-			 $categoria->setNombreCategoriaProducto(addslashes($nombre_categoria));
-             break;
-		 }
+		 $reg = mysql_fetch_array($codigo);
+		 $categoria->setIdCategoriaProducto($reg['codigo']);
+		 $categoria->setNombreCategoriaProducto(addslashes($nombre_categoria));
 		 
 		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
-	 	 $categoriax = $admin->ingresarCategoriaProducto($categoria->getIdCategoriaProducto(),
-		 												 $categoria->getNombreCategoriaProducto());
-														 
-		 while ($registro = mysql_fetch_array($categoriax))
-		 {
-			 $existe = $registro['v_existe'];
-			 break;		 
-		 }
+	 	 $categoriax = $admin->ingresarCategoriaProducto($categoria->getIdCategoriaProducto(),$categoria->getNombreCategoriaProducto());														 
+		 $registro = mysql_fetch_array($categoriax);
+		 $existe = $registro['v_existe'];
 		 
 		 if ($existe == 0)
 			 echo "<label>La categoria producto '$nombre_categoria' ha sido registrado satisfactoriamente.</label>";
@@ -44,22 +35,15 @@
 	 if (isset($_REQUEST['txtNombre']))
 	 {		 
 		 $nombre_categoria = $_REQUEST['txtNombre'];
-	 
 	 	 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $categoriax = $admin->listarCategoriaProducto($nombre_categoria);
-		
 		 $num_rows = mysql_num_rows($categoriax);
 		
 		 if($num_rows != 0)
 		 {
-			 while ($registro=mysql_fetch_assoc($categoriax))
-			 {
-				 $categoria = new Categoria_Producto();
-		 		 $categoria->setIdCategoriaProducto($registro['id_categoria_producto']);
-		 		 $categoria->setNombreCategoriaProducto($registro['nombre_categoria_producto']);
-		 		 $categoria->setEstadoCategoriaProducto($registro['estado_categoria_producto']);
-				 break;
-			 }
+			 $registro = mysql_fetch_assoc($categoriax);
+			 $categoria = FabricaProducto::crearCategoriaProducto($registro['id_categoria_producto'],$registro['nombre_categoria_producto']);
+			 $categoria->setEstadoCategoriaProducto($registro['estado_categoria_producto']);
 			 require("_vista/listarCategoriaProducto.php");
 		 }
 		 else
@@ -74,22 +58,15 @@
 	 if (isset($_REQUEST['txtNombre']))
 	 {
 		 $nombre_categoria = $_REQUEST['txtNombre'];
-	 
 	 	 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $categoriax = $admin->listarCategoriaProducto($nombre_categoria);
-		
 		 $num_rows = mysql_num_rows($categoriax);
 		
 		 if($num_rows != 0)
 		 {
-			 while ($registro=mysql_fetch_assoc($categoriax))
-			 {
-				 $categoria = new Categoria_Producto();
-		 		 $categoria->setIdCategoriaProducto($registro['id_categoria_producto']);
-		 		 $categoria->setNombreCategoriaProducto($registro['nombre_categoria_producto']);
-		 		 $categoria->setEstadoCategoriaProducto($registro['estado_categoria_producto']);
-				 break;
-			 }
+			 $registro=mysql_fetch_assoc($categoriax);
+			 $categoria = FabricaProducto::crearCategoriaProducto($registro['id_categoria_producto'],$registro['nombre_categoria_producto']);
+			 $categoria->setEstadoCategoriaProducto($registro['estado_categoria_producto']);
 			 require("_vista/modificarCategoriaProducto.php");
 		 }
 		 else
@@ -97,23 +74,17 @@
 	 }
 	 elseif(isset($_REQUEST['txtCodigo']) && isset($_REQUEST['txtNombreNuevo']))
 	 {
-		 $categoria = new Categoria_Producto();
-		 $categoria->setIdCategoriaProducto($_REQUEST['txtCodigo']);
-		 $categoria->setNombreCategoriaProducto(strtoupper($_REQUEST['txtNombreNuevo']));		 
+		 $categoria = FabricaProducto::crearCategoriaProducto($_REQUEST['txtCodigo'],strtoupper($_REQUEST['txtNombreNuevo']));
+		 
 		 if (isset($_REQUEST['cboEstado']))
 			 $categoria->setEstadoCategoriaProducto(addslashes(strtoupper($_REQUEST['cboEstado'])));
 		 else
 		 	 $categoria->setEstadoCategoriaProducto(addslashes('ACTIVO'));
 			 		 
 		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
-		 $categoriaxx = $admin->modificarCategoriaProducto($categoria->getIdCategoriaProducto(), $categoria->getNombreCategoriaProducto
-		 													(),$categoria->getEstadoCategoriaProducto());
-		 
-		 while ($registro = mysql_fetch_array($categoriaxx))
-		 {
-			 $existe = $registro['v_existe'];	
-			 break;
-		 }
+		 $categoriaxx = $admin->modificarCategoriaProducto($categoria->getIdCategoriaProducto(),$categoria->getNombreCategoriaProducto(),$categoria->getEstadoCategoriaProducto());		 
+		 $registro = mysql_fetch_array($categoriaxx);
+		 $existe = $registro['v_existe'];
 		 
 		 if ($existe == 1)
 			 echo "<label>La categoria producto '".$categoria->getNombreCategoriaProducto()."' ha sido modificada satisfactoriamente.
@@ -130,15 +101,10 @@
 	 if (isset($_REQUEST['txtNombre']))
 	 {
 		 $nombre_categoria = $_REQUEST['txtNombre'];
-		 		 
 		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 	 	 $categoriax = $admin->eliminarCategoriaProducto($nombre_categoria);
-		 
-		 while ($registro = mysql_fetch_array($categoriax))
-		 {
-			 $existe = $registro['v_existe'];
-			 break;		 
-		 }
+		 $registro = mysql_fetch_array($categoriax);
+		 $existe = $registro['v_existe'];
 		 
 		 if ($existe != 0)
 			 echo "<label>La categoria producto '$nombre_categoria' ha sido eliminada satisfactoriamente.</label>";

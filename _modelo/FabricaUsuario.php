@@ -14,7 +14,7 @@
 			$_SESSION['amat_usuario'] = $usuario_login->getAmatUsuario();
 			$_SESSION['estado_usuario'] = $usuario_login->getEstadoUsuario();
 			$_SESSION['codigo_usuario'] = $usuario_login->getTipoUsuario();
-					 
+			
 			if ($tipo == 1001)
 				$_SESSION['tipo_usuario'] = "Administrador";
 			elseif ($tipo == 1002)
