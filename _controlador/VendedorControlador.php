@@ -13,13 +13,13 @@
 	 {
 		 require("_modelo/Provincia.php");
 		 require("_modelo/Comuna.php");
-		 require("_controlador/Fecha.php");		 
+		 require("_controlador/Fecha.php");
 		 
 		 $dia = $_REQUEST['txtDia'];
 		 $mes = strtolower($_REQUEST['txtMes']);
-		 $año = $_REQUEST['txtAno'];		
+		 $ano = $_REQUEST['txtAno'];		
 		 $mes2 = nombreMes($mes);		 
-		 $fecha = "$año-$mes2-$dia";
+		 $fecha = "$ano-$mes2-$dia";
 		 		 
 		 $id_cliente = addslashes($_REQUEST['txtRut']);
 		 $nombre_cliente = addslashes(strtoupper($_REQUEST['txtCliente']));
@@ -54,12 +54,8 @@
 		 
 		 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
 		 $documentox = $vendedor->realizarVenta($documento->getIdDocumentoPago(),$documento->getFechaEmisionDocumentoPago(),$documento->getFechaVencimientoDocumentoPago(),$documento->getTotalDocumentoPago(),$_SESSION['id_usuario'],$cliente->getIdCliente());
-		 
-		 while ($registro = mysql_fetch_array($documentox))
-		 {
-			 $existe = $registro['v_existe'];	
-			 break;
-		 }
+		 $registro = mysql_fetch_array($documentox);
+		 $existe = $registro['v_existe'];
 		 
 		 if ($existe == 0)
 		 {

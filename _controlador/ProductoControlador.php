@@ -10,32 +10,17 @@
  {
 	 if (isset($_REQUEST['cboCategoria']) && isset($_REQUEST['txtNombre']) && isset($_REQUEST['txtaDescripcion']) && isset($_REQUEST['txtPrecio']) && isset($_REQUEST['txtStockR']) && isset($_REQUEST['txtStockM']))
 	 {
-		 $producto = new Producto();
+		 $categoria = FabricaProducto::crearCategoriaProducto($_REQUEST['cboCategoria'],'N/A');
+		 $producto = FabricaProducto::crearProducto(0,addslashes(strtoupper($_REQUEST['txtNombre'])),addslashes(strtoupper($_REQUEST['txtaDescripcion'])),$_REQUEST['txtPrecio'],$_REQUEST['txtStockR']);
 		 $codigo = $producto->codigoSiguiente();
-		 
-		 while ($reg = mysql_fetch_array($codigo))
-		 {
-			 $producto->setCodigoProducto($reg['codigo']);
-			 $producto->setNombre(addslashes(strtoupper($_REQUEST['txtNombre'])));
-			 $producto->setDescripcion(addslashes(strtoupper($_REQUEST['txtaDescripcion'])));
-			 $producto->setPrecio($_REQUEST['txtPrecio']);
-			 $producto->setStockReal($_REQUEST['txtStockR']);
-			 $producto->setStockMinimo($_REQUEST['txtStockM']);
-			 $categoria = new Categoria_Producto();
-			 $categoria->setIdCategoriaProducto($_REQUEST['cboCategoria']);
-			 break;
-		 }
+		 $reg = mysql_fetch_array($codigo);
+		 $producto->setCodigoProducto($reg['codigo']);
+		 $producto->setStockMinimo($_REQUEST['txtStockM']);
 		 
 		 $admin = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
-	 	 $productox = $admin->ingresarProducto($producto->getCodigoProducto(),$producto->getNombre(),$producto->getPrecio(),
-		 									   $producto->getStockReal(),$producto->getStockMinimo(),$producto->getDescripcion(),	
-											   $categoria->getIdCategoriaProducto());
-														 
-		 while ($registro = mysql_fetch_array($productox))
-		 {
-			 $existe = $registro['v_existe'];	
-			 break;		 
-		 }
+	 	 $productox = $admin->ingresarProducto($producto->getCodigoProducto(),$producto->getNombre(),$producto->getPrecio(),$producto->getStockReal(),$producto->getStockMinimo(),$producto->getDescripcion(),$categoria->getIdCategoriaProducto());
+		 $registro = mysql_fetch_array($productox);
+		 $existe = $registro['v_existe'];
 		 
 		 if ($existe == 0)
 			 echo "<label>El producto '".$producto->getNombre()."' ha sido registrado satisfactoriamente.</label>";
@@ -44,7 +29,7 @@
 	 }
 	 else
 	 {
-		 $categoria = new Categoria_Producto();
+		 $categoria = FabricaProducto::crearCategoriaProducto('N/A','N/A');
 		 $productos = $categoria->todosProductos();
 		 require("_vista/ingresarProducto.php");
 	 }

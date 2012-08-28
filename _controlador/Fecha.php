@@ -2,7 +2,6 @@
  
  function nombreMes($nombre)
  {
-	 //$mes='';
 	 if ($nombre == 'enero')
 	 	 return $mes='01';
 	 elseif($nombre == 'febrero')
