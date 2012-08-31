@@ -129,6 +129,7 @@
 	 if (isset($_REQUEST['txtNombre']))
 	 {
 		 require("_modelo/Documento_Pago_PDF.php");
+		 require("_modelo/FabricaDocumentoPagoPDF.php");
 		 
 		 $nombre_cliente = $_REQUEST['txtNombre'];
 		 $vendedor = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],$_SESSION['codigo_usuario']);
@@ -147,13 +148,12 @@
 				 $out[]= $documento;
 			 }
 			 
-			 $pdf = new Documento_Pago_PDF();
+			 $pdf = FabricaDocumentoPagoPDF::crearDocumentoPagoPDF('N/A','N/A');
 			 $doc_pdfx = $pdf->listarFacturaPDF($cliente_name);
 			 
 			 while ($registro2 = mysql_fetch_assoc($doc_pdfx))
 			 {
-				 $doc_pdf = new Documento_Pago_PDF();
-				 $doc_pdf->setIdDocumentoPagoPDF($registro2['id_documento_pago']);
+				 $doc_pdf = FabricaDocumentoPagoPDF::crearDocumentoPagoPDF($registro2['id_documento_pago'],$registro2['cliente_id_cliente']);
 				 $out2[]= $doc_pdf;
 			 }
 			 
