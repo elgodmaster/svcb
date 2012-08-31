@@ -14,14 +14,14 @@
   <table border="0" width="100%">
    <tr>
     <td align="center">
-     <a href="javascript:CargarFoto('facturas_imagen/<?php echo $documento->getIdDocumentoPago()?>.jpg','533','690')"><img 
+     <a href="javascript:CargarFoto('facturas/imagen/<?php echo $documento->getIdDocumentoPago()?>.jpg','533','690')"><img 
      src="facturas_imagen/<?php echo $documento->getIdDocumentoPago()?>.jpg" width="300" height="388" /></a>
     </td>
    </tr>
    <tr>
     <td align="center">
      <label>La venta N°'<?php echo $documento->getIdDocumentoPago()?>' ha sido realizada satisfactoriamente.</label>
-     <input type="button" class="button" value="Imprimir Nota Venta" onclick="javascript:CargarFoto('facturas_imagen/<?php echo 
+     <input type="button" class="button" value="Imprimir Nota Venta" onclick="javascript:CargarFoto('facturas/imagen/<?php echo 
 	 $documento->getIdDocumentoPago()?>.jpg','533','690')" />
      <input type="button" class="button" value="Imprimir Factura" />
      <!-- onclick="javascript:window.print();"-->

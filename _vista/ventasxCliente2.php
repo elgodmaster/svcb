@@ -32,7 +32,7 @@
 		}
    ?>
      <th scope="row" id="<?php echo $out2[$i]->getIdDocumentoPagoPDF()?>">
-      <a href="javascript:CargarFoto('facturas_imagen/<?php echo $out2[$i]->getIdDocumentoPagoPDF()?>.jpg','533','690')"><?php echo 
+      <a href="javascript:CargarFoto('facturas/imagen/<?php echo $out2[$i]->getIdDocumentoPagoPDF()?>.jpg','533','690')"><?php echo 
 	  $out[$i]->getIdDocumentoPago()?></a>
      </th>
      <td><?php echo $cliente_name?></td>

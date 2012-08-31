@@ -122,7 +122,7 @@
 	$pdf->Cell(45,8,$total2,0,0,'C');
 	$pdf->Ln();
 	//Guardamos la factura
-	$pdf->Output('facturas_pdf/'.$numfactura.'.pdf', 'F');
+	$pdf->Output('facturas/pdf/'.$numfactura.'.pdf', 'F');
 	
 	/*_______________________________________________________*/
 	// 				CREACION IMAGEN JPG						 //
@@ -157,6 +157,6 @@
 	imagettftext($image, 10,0,646,834,$color,$fuente, $iva);
 	imagettftext($image, 10,0,646,855,$color,$fuente, $total2);
 	
-	imagejpeg($image,'facturas_imagen/'.$numfactura.'.jpg');
+	imagejpeg($image,'facturas/imagen/'.$numfactura.'.jpg');
 	
 ?>
