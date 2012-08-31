@@ -14,6 +14,16 @@
 	 private $orden_compra_documento_pago;
 	 private $total_documento_pago;
 	 
+	 //Constructor de la clase Documento_Pago
+	 public function __construct($id_documento_pago,$fecha_emision_documento_pago,$fecha_vencimiento_documento_pago,$total_documento_pago,$estado_documento_pago)
+	 {
+		 $this->id_documento_pago = $id_documento_pago;
+		 $this->fecha_emision_documento_pago = $fecha_emision_documento_pago;
+		 $this->fecha_vencimiento_documento_pago = $fecha_vencimiento_documento_pago;
+		 $this->total_documento_pago = $total_documento_pago;
+		 $this->estado_documento_pago = $estado_documento_pago;
+	}
+	 
 	 //Metodo utilizado para obtener el codigo siguiente de la categoria producto
 	 function codigoSiguiente()
 	 {

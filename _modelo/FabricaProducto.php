@@ -11,7 +11,6 @@
 		static public function crearProducto($id_producto,$nombre_producto,$descripcion_producto,$precio_producto,$stock_real_producto)
 		{
 			return new Producto($id_producto,$nombre_producto,$descripcion_producto,$precio_producto,$stock_real_producto);
-		}
-	
+		}	
 	}
 ?>
