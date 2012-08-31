@@ -5,6 +5,13 @@
 	 private $id_documento_pago_pdf;
 	 private $cliente_id_cliente;
 	 
+	 //Constructor de la clase Documento_Pago_PDF
+	 public function __construct($id_documento_pago_pdf,$cliente_id_cliente)
+	 {
+		 $this->id_documento_pago_pdf = $id_documento_pago_pdf;
+		 $this->cliente_id_cliente = $cliente_id_cliente;
+	 }
+	 
 	 function listarFacturaPDF($id_cliente)
 	 {
 		 $link = conexion();
