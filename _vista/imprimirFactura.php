@@ -15,7 +15,7 @@
    <tr>
     <td align="center">
      <a href="javascript:CargarFoto('facturas/imagen/<?php echo $documento->getIdDocumentoPago()?>.jpg','533','690')"><img 
-     src="facturas_imagen/<?php echo $documento->getIdDocumentoPago()?>.jpg" width="300" height="388" /></a>
+     src="facturas/imagen/<?php echo $documento->getIdDocumentoPago()?>.jpg" width="300" height="388" /></a>
     </td>
    </tr>
    <tr>

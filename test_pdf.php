@@ -122,7 +122,7 @@
 	$pdf->Cell(45,8,$total2,0,0,'C');
 	$pdf->Ln();
 	//Guardamos la factura
-	$pdf->Output('facturas/pdf/'.$numfactura.'.pdf', 'F');
+	$pdf->Output('facturas/impresion/'.$numfactura.'.pdf', 'F');
 	
 	/*_______________________________________________________*/
 	// 				CREACION IMAGEN JPG						 //
