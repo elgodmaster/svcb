@@ -148,12 +148,12 @@
 			 }
 			 
 			 $pdf = new Documento_Pago_PDF();
-			 $doc_pdfx = $pdf->listarFacturaPDF($cliente_name);			 
+			 $doc_pdfx = $pdf->listarFacturaPDF($cliente_name);
 			 
 			 while ($registro2 = mysql_fetch_assoc($doc_pdfx))
 			 {
 				 $doc_pdf = new Documento_Pago_PDF();
-				 $doc_pdf->setIdDocumentoPagoPDF($registro2['id_documento_pago']);	
+				 $doc_pdf->setIdDocumentoPagoPDF($registro2['id_documento_pago']);
 				 $out2[]= $doc_pdf;
 			 }
 			 
