@@ -32,7 +32,6 @@
    
 	});
 </script>
-
 </head>
 
 <body>
@@ -138,13 +137,14 @@
   <tr>
     <td><table width="675" style="margin-top:10px" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td colspan="5"><table width="675" border="0" cellspacing="0" cellpadding="0">
+        <td colspan="7"><table width="675" border="0" cellspacing="0" cellpadding="0">
           <tr>
               <td>Por lo siguiente:</td>
               </tr>
         </table></td>
         </tr>
       <tr>
+        <td colspan="2"></td>
         <td width="97" align="center"><p>Cantidad</p></td>
         <td width="224" align="center"><p>Detalle</p></td>
         <td width="104" align="center"><p>Precio Unitario</p></td>
@@ -152,6 +152,8 @@
         <td width="167" align="center"><p>Total</p></td>
         </tr>
       <tr>
+        <td align="center" id="codigo"><input size="3" type="hidden" name="txtCodigo[]" id="txtCodigo0" /></td>
+        <td align="center" id="stock"><input size="3" type="hidden" name="txtStock[]" id="txtStock0" /></td>
         <td align="center" id="cantidad"><label for="txtCantidad"></label>
           <input size="5" type="text" onkeyUp="return ValNumero(this);" name="txtCantidad[]" id="txtCantidad0" dir="rtl" value="1"
           onChange="calcular(0);" /></td>

@@ -20,6 +20,8 @@
 	$vencimiento = strtoupper($_REQUEST['txtVencimiento']);
 	
 	//Obtenemos el contenido de la factura en arrays
+	$codigo = $_POST['txtCodigo'];
+	$stock = $_POST['txtStock'];
 	$cantidad = $_POST['txtCantidad'];
 	$detalle = $_POST['txtDetalle'];
 	$preunitario = $_POST['txtUnitario'];
@@ -146,11 +148,12 @@
 	
 	$lugar = 330;
 	for($i=0;$i<count($detalle);$i++){
+		imagettftext($image, 10,0,75,$lugar,$color,$fuente,$codigo[$i]);
 		imagettftext($image, 10,0,140,$lugar,$color,$fuente, $cantidad[$i]);
 		imagettftext($image, 10,0,220,$lugar,$color,$fuente, $detalle[$i]);
 		imagettftext($image, 10,0,550,$lugar,$color,$fuente, $preunitario[$i]);
 		imagettftext($image, 10,0,646,$lugar,$color,$fuente, $total[$i]);
-		$lugar = $lugar + 21;
+		$lugar = $lugar + 24;
 	}
 	
 	imagettftext($image, 10,0,646,810,$color,$fuente, $neto);
