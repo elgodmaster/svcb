@@ -42,6 +42,11 @@
 		 $documento->setIvaDocumentoPago($_REQUEST['txtIva']);
 		 
 		 //Obtenemos el contenido de la factura en arrays
+		 $codigo = $_POST['txtCodigo'];
+		 $stock = $_POST['txtStock'];
+		 $cantidad = $_POST['txtCantidad'];
+		 
+		 //Obtenemos el contenido de la factura en arrays
 		  /*$cantidad = $_POST['txtCantidad'];
 		  $detalle = $_POST['txtDetalle'];
 		  $preunitario = $_POST['txtUnitario'];
@@ -55,6 +60,14 @@
 		 
 		 if ($existe == 0)
 		 {
+			 $bodeguero = FabricaUsuario::crearUsuario($_SESSION['id_usuario'],$_SESSION['nombre_usuario'],$_SESSION['apat_usuario'],$_SESSION['amat_usuario'],$_SESSION['estado_usuario'],1003);
+			 
+			 for($i=0;$i<count($codigo);$i++)
+			 {
+				 $descuento = $stock[$i]-$cantidad[$i];
+				 $bodeguero->ingresarStockProducto($codigo[$i],$descuento);
+			 }
+						 
 			 require("test_pdf.php");
 			 require("_vista/imprimirFactura.php");
 		 }

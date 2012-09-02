@@ -153,7 +153,7 @@
 		imagettftext($image, 10,0,220,$lugar,$color,$fuente, $detalle[$i]);
 		imagettftext($image, 10,0,550,$lugar,$color,$fuente, $preunitario[$i]);
 		imagettftext($image, 10,0,646,$lugar,$color,$fuente, $total[$i]);
-		$lugar = $lugar + 24;
+		$lugar = $lugar + 22;
 	}
 	
 	imagettftext($image, 10,0,646,810,$color,$fuente, $neto);
