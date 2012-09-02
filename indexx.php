@@ -6,7 +6,7 @@
  $carpetaControladores = "_controlador/";
 
  if(!empty($_GET['controlador']))
- 	$controlador = $_GET['controlador'];
+ 	$controlador = ucfirst($_GET['controlador']);
 
  if(!empty($_GET['accion']))
  	$accion = $_GET['accion'];
