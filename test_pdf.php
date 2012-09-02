@@ -2,7 +2,7 @@
 	require('lib/fpdf/fpdf.php');
 	
 	//Obtenemos los datos que identifican a la factura
-	$numfactura = strtoupper($_REQUEST['txtFactura']);
+	//$documento->getIdDocumentoPago() = strtoupper($_REQUEST['txtFactura']);
 	$dia = strtoupper($_REQUEST['txtDia']);
 	$mes = strtolower($_REQUEST['txtMes']);
 	$mes = ucwords($mes);
@@ -44,7 +44,7 @@
 	//Numero de Factura
 	$pdf->SetFont('Arial','B',14);
 	$pdf->Cell(130);
-	$pdf->Cell(20,10,"N°: $numfactura",0,0,'R');	
+	$pdf->Cell(20,10,'N°: '.$documento->getIdDocumentoPago(),0,0,'R');	
 	$pdf->Ln();
 	//Fecha Factura
 	$pdf->Cell(20,14,'',0,0,'R');	
@@ -122,7 +122,7 @@
 	$pdf->Cell(45,8,$total2,0,0,'C');
 	$pdf->Ln();
 	//Guardamos la factura
-	$pdf->Output('facturas/impresion/'.$numfactura.'.pdf', 'F');
+	$pdf->Output('facturas/impresion/'.$documento->getIdDocumentoPago().'.pdf', 'F');
 	
 	/*_______________________________________________________*/
 	// 				CREACION IMAGEN JPG						 //
@@ -133,13 +133,13 @@
 	$color= imagecolorallocate($image,0,0,0);
 	$fuente = 'lib/font/arial.ttf';
 	
-	imagettftext($image, 15,0,659,61,$color,$fuente, $numfactura);
+	imagettftext($image, 15,0,659,67,$color,$fuente, $documento->getIdDocumentoPago());
 	imagettftext($image, 10,0,166,189,$color,$fuente, $cliente);
-	imagettftext($image, 10,0,544,189,$color,$fuente, $rut);
+	imagettftext($image, 10,0,546,189,$color,$fuente, $rut);
 	//imagettftext($image, 15,0,208,192,$color,$fuente, $atte);
 	$fecha = "$dia de $mes del $año";
 	imagettftext($image, 10,0,555,205,$color,$fuente, $fono);
-	imagettftext($image, 10,0,106,220,$color,$fuente, $fecha);
+	imagettftext($image, 10,0,108,220,$color,$fuente, $fecha);
 	imagettftext($image, 10,0,568,220,$color,$fuente, $ciudad);
 	imagettftext($image, 10,0,585,235,$color,$fuente, $_SESSION['id_usuario']);
 	//imagettftext($image, 10,0,585,235,$color,$fuente, $vendedor);
@@ -153,10 +153,23 @@
 		$lugar = $lugar + 21;
 	}
 	
-	imagettftext($image, 10,0,646,813,$color,$fuente, $neto);
-	imagettftext($image, 10,0,646,834,$color,$fuente, $iva);
-	imagettftext($image, 10,0,646,855,$color,$fuente, $total2);
+	imagettftext($image, 10,0,646,810,$color,$fuente, $neto);
+	imagettftext($image, 10,0,646,830,$color,$fuente, $iva);
+	imagettftext($image, 10,0,646,851,$color,$fuente, $total2);
 	
-	imagejpeg($image,'facturas/imagen/'.$numfactura.'.jpg');
+	imagettftext($image, 10,0,243,870,$color,$fuente,$condiciones);
+	imagettftext($image, 10,0,219,892,$color,$fuente,$vencimiento);
+	
+	imagejpeg($image,'facturas/imagen/'.$documento->getIdDocumentoPago().'.jpg');
+	
+	
+	/* PASAR A PDF LA NOTA DE VENTA*/
+	
+	$pdfx = new FPDF('P','mm','Letter');
+	$pdfx->AddPage();
+	$pdfx->SetFont('Arial','',15);
+	$pdfx->Cell(40,20);
+	$pdfx->Image('facturas/imagen/'.$documento->getIdDocumentoPago().'.jpg' , 0 ,3, 216 , 279,'JPG');
+	$pdfx->Output('facturas/pdf/'.$documento->getIdDocumentoPago().'.pdf', 'F');
 	
 ?>

@@ -84,7 +84,7 @@
 		
 		 if($num_rows != 0)
 		 {
-			 $registro=mysql_fetch_assoc($documentox);
+			 $registro = mysql_fetch_assoc($documentox);
 			 
 			 if($registro['v_existe'] == 2)
 			 {
