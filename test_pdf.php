@@ -148,7 +148,11 @@
 	
 	$lugar = 330;
 	for($i=0;$i<count($detalle);$i++){
-		imagettftext($image, 10,0,75,$lugar,$color,$fuente,$codigo[$i]);
+		if ($codigo[$i] != '')
+			imagettftext($image, 10,0,75,$lugar,$color,$fuente,$codigo[$i]);
+		else
+			imagettftext($image, 10,0,75,$lugar,$color,$fuente,'PERS.');
+		
 		imagettftext($image, 10,0,140,$lugar,$color,$fuente, $cantidad[$i]);
 		imagettftext($image, 10,0,220,$lugar,$color,$fuente, $detalle[$i]);
 		imagettftext($image, 10,0,550,$lugar,$color,$fuente, $preunitario[$i]);
