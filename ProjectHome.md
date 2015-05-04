@@ -1,0 +1,1 @@
+Aplicación web para la empresa Arte Bismarck, que permita gestionar y administrar el proceso de venta y el control de stock de bodega de ésta.
